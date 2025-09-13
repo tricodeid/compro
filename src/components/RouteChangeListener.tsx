@@ -9,40 +9,32 @@ export const RouteChangeListener = () => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
+  // Effect to stop loading when route change is complete
   useEffect(() => {
-    // On new page load (route change complete), set loading to false
     setIsLoading(false);
   }, [pathname, searchParams, setIsLoading]);
 
+  // Effect to start loading on link click using event delegation
   useEffect(() => {
-    const handleAnchorClick = (event: MouseEvent) => {
-      const target = event.currentTarget as HTMLAnchorElement;
-      const href = target.getAttribute('href');
-      
-      // Check if it's an internal link and not a hash link
-      if (href && href.startsWith('/') && !href.startsWith('/#')) {
-        setIsLoading(true);
+    const handleLinkClick = (event: MouseEvent) => {
+      const target = event.target as Element;
+      const anchor = target.closest('a[href]');
+
+      if (anchor) {
+        const href = anchor.getAttribute('href') || '';
+        const currentPath = window.location.pathname;
+
+        // Check for internal, non-hash link, and not the same page
+        if (href.startsWith('/') && !href.startsWith('/#') && href !== currentPath) {
+          setIsLoading(true);
+        }
       }
     };
 
-    const handleMutation = () => {
-      const anchorElements = document.querySelectorAll('a[href]');
-      anchorElements.forEach(anchor => {
-        // Remove old listener to prevent duplicates
-        (anchor as any).__handleClick = handleAnchorClick;
-        anchor.removeEventListener('click', (anchor as any).__handleClick);
-        anchor.addEventListener('click', (anchor as any).__handleClick);
-      });
-    };
-
-    const mutationObserver = new MutationObserver(handleMutation);
-    mutationObserver.observe(document.body, { childList: true, subtree: true });
-
-    // Initial run
-    handleMutation();
+    document.addEventListener('click', handleLinkClick);
 
     return () => {
-      mutationObserver.disconnect();
+      document.removeEventListener('click', handleLinkClick);
     };
   }, [setIsLoading]);
 
