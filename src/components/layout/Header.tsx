@@ -47,14 +47,37 @@ const Header = () => {
     }
   }, [isMenuOpen]);
 
+  const translations = {
+    en: {
+      home: 'Home',
+      processes: 'Processes',
+      products: 'Products',
+      application: 'Application',
+      aboutUs: 'About us',
+      contact: 'Contact',
+      blog: 'Blog',
+    },
+    id: {
+      home: 'Beranda',
+      processes: 'Proses',
+      products: 'Produk',
+      application: 'Aplikasi',
+      aboutUs: 'Tentang Kami',
+      contact: 'Kontak',
+      blog: 'Blog',
+    },
+  };
+
+  const currentContent = translations[language];
+
   const navLinks = [
-    { href: '/', label: 'Home' },
-    { href: '/processes', label: 'Processes' },
-    { href: '/products', label: 'Products' },
-    { href: '/application', label: 'Application' },
-    { href: '/about-us', label: 'About us' },
-    { href: '/contact', label: 'Contact' },
-    { href: '/blog', label: 'Blog' },
+    { href: '/', label: currentContent.home },
+    { href: '/processes', label: currentContent.processes },
+    { href: '/products', label: currentContent.products },
+    { href: '/application', label: currentContent.application },
+    { href: '/about-us', label: currentContent.aboutUs },
+    { href: '/contact', label: currentContent.contact },
+    { href: '/blog', label: currentContent.blog },
   ];
 
   const LanguageSwitcher = () => (

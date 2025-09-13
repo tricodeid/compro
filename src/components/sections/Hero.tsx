@@ -22,7 +22,7 @@ const Hero = () => {
   const currentContent = content[language];
 
   return (
-    <section className="bg-[#394959] text-white bg-cover bg-center" style={{ backgroundImage: 'url("/industrial-plant.jpg")' }}>
+    <section className="bg-[#394959] text-white bg-cover bg-center" style={{ backgroundImage: 'url("/industrial-plant.jpg")' }} data-aos="fade-up">
       <div className="container mx-auto px-4 py-48 text-left flex flex-col items-start">
         <h1 className="text-4xl md:text-6xl font-bold leading-tight">
           {currentContent.title}

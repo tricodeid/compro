@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { useLanguage } from '@/context/LanguageContext';
 
 // Define some generic SVG logos as React components with hardcoded grayscale colors
 const Logo1 = (props: React.SVGProps<SVGSVGElement>) => (
@@ -47,12 +48,24 @@ const Logo6 = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 const ClientLogosCarousel = () => {
+  const { language } = useLanguage();
   const logos = [Logo1, Logo2, Logo3, Logo4, Logo5, Logo6];
+
+  const translations = {
+    en: {
+      title: "THEY TRUST US",
+    },
+    id: {
+      title: "MEREKA MEMPERCAYAI KAMI",
+    },
+  };
+
+  const currentContent = translations[language];
 
   return (
     <section className="py-16 bg-[#f5f7fa]" data-aos="fade-up">
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-bold text-center mb-12 text-gray-800">THEY TRUST US</h2>
+        <h2 className="text-4xl font-bold text-center mb-12 text-gray-800">{currentContent.title}</h2>
         <div className="relative w-full overflow-hidden group">
           <div className="flex w-max animate-marquee-grouped group-hover:pause-animation">
             {/* Render logos */}

@@ -1,26 +1,52 @@
 'use client';
 
+'use client';
+
 import React, { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
+import { useLanguage } from '@/context/LanguageContext';
 
 const Phases = () => {
+  const { language } = useLanguage();
+
+  const translations = {
+    en: {
+      phase1Title: 'Phase 1',
+      phase1Description: 'Assess the faulty device and take in-situ dimensions',
+      phase2Title: 'Phase 2',
+      phase2Description: 'Design and make a metal enclosure adapted to the working conditions of the leaking equipment and environment.',
+      phase3Title: 'Phase 3',
+      phase3Description: 'Bolt that metal enclosure around the leak and fill it with our sealing compounds by means of specific in-house hydraulic equipments.',
+    },
+    id: {
+      phase1Title: 'Fase 1',
+      phase1Description: 'Menilai perangkat yang rusak dan mengambil dimensi di tempat',
+      phase2Title: 'Fase 2',
+      phase2Description: 'Merancang dan membuat penutup logam yang disesuaikan dengan kondisi kerja peralatan yang bocor dan lingkungan.',
+      phase3Title: 'Fase 3',
+      phase3Description: 'Memasang penutup logam di sekitar kebocoran dan mengisinya dengan senyawa penyegel kami menggunakan peralatan hidrolik khusus.',
+    },
+  };
+
+  const currentContent = translations[language];
+
   const phaseData = [
     {
       phase: 1,
-      title: 'Phase 1',
-      description: 'Assess the faulty device and take in-situ dimensions',
+      title: currentContent.phase1Title,
+      description: currentContent.phase1Description,
       image: '/images/9121424.jpg',
     },
     {
       phase: 2,
-      title: 'Phase 2',
-      description: 'Design and make a metal enclosure adapted to the working conditions of the leaking equipment and environment.',
+      title: currentContent.phase2Title,
+      description: currentContent.phase2Description,
       image: '/images/9121424.jpg',
     },
     {
       phase: 3,
-      title: 'Phase 3',
-      description: 'Bolt that metal enclosure around the leak and fill it with our sealing compounds by means of specific in-house hydraulic equipments.',
+      title: currentContent.phase3Title,
+      description: currentContent.phase3Description,
       image: '/images/9121424.jpg',
     },
   ];
