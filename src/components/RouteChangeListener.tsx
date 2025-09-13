@@ -17,10 +17,13 @@ export const RouteChangeListener = () => {
   // Effect to start loading on link click using event delegation
   useEffect(() => {
     const handleLinkClick = (event: MouseEvent) => {
-      const target = event.target as Element;
-      const anchor = target.closest('a[href]');
+      const target = event.target as HTMLElement | null;
+      
+      if (!target) return;
+      
+      const anchor = target.closest('a[href]') as HTMLAnchorElement | null;
 
-      if (anchor) {
+      if (anchor && anchor.href) {
         const href = anchor.getAttribute('href') || '';
         const currentPath = window.location.pathname;
 
