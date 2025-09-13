@@ -1,10 +1,11 @@
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import Image from 'next/image';
 
 const DummyImageGrid = ({ count = 5 }) => (
   <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-8">
     {Array.from({ length: count }).map((_, i) => (
-      <img key={i} src="/images/9121424.jpg" alt="Process Example" className="rounded shadow object-cover w-full h-48" />
+      <Image key={i} src="/images/9121424.jpg" alt="Process Example" width={300} height={200} className="rounded shadow object-cover w-full h-48" />
     ))}
   </div>
 );

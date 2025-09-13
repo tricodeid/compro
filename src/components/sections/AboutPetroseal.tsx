@@ -20,7 +20,7 @@ const AboutPetroseal = () => {
         </div>
         <div>
           <h3 className="text-xl font-bold text-white mb-4">FIDGI GROUP (HOLDING COMPANY)</h3>
-          <p>Parc d'Activités de l'Aérodrome</p>
+          <p>Parc d&apos;Activités de l&apos;Aérodrome</p>
           <p>BP 104 - 76430 ST ROMAIN DE COLBOSC</p>
           <p>France</p>
         </div>

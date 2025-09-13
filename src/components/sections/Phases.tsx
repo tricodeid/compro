@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 
 const Phases = () => {
@@ -9,19 +9,19 @@ const Phases = () => {
       phase: 1,
       title: 'Phase 1',
       description: 'Assess the faulty device and take in-situ dimensions',
-      image: '/images/9121424.jpg', // Using local dummy image
+      image: '/images/9121424.jpg',
     },
     {
       phase: 2,
       title: 'Phase 2',
       description: 'Design and make a metal enclosure adapted to the working conditions of the leaking equipment and environment.',
-      image: '/images/9121424.jpg', // Using local dummy image
+      image: '/images/9121424.jpg',
     },
     {
       phase: 3,
       title: 'Phase 3',
       description: 'Bolt that metal enclosure around the leak and fill it with our sealing compounds by means of specific in-house hydraulic equipments.',
-      image: '/images/9121424.jpg', // Using local dummy image
+      image: '/images/9121424.jpg',
     },
   ];
 
@@ -34,9 +34,9 @@ const Phases = () => {
     setModalOpen(true);
   };
 
-  const closeModal = () => {
+  const closeModal = useCallback(() => {
     setModalOpen(false);
-  };
+  }, []);
 
   const showNextImage = useCallback((e?: React.MouseEvent) => {
     e?.stopPropagation();
@@ -64,7 +64,7 @@ const Phases = () => {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [modalOpen, showNextImage, showPrevImage]);
+  }, [modalOpen, showNextImage, showPrevImage, closeModal]);
 
   return (
     <section className="py-20 bg-white">
