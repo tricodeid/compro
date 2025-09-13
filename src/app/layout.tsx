@@ -6,13 +6,14 @@ import { LanguageProvider } from "@/context/LanguageContext";
 import { LoadingProvider } from "@/context/LoadingContext";
 import LoaderOverlay from "@/components/LoaderOverlay";
 import { RouteChangeListener } from "@/components/RouteChangeListener";
+import { Suspense } from 'react'; // Import Suspense
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
+const geistMono = Geist({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
@@ -34,7 +35,9 @@ export default function RootLayout({
       >
         <LoadingProvider>
           <LoaderOverlay />
-          <RouteChangeListener />
+          <Suspense fallback={null}> {/* Wrap RouteChangeListener with Suspense */}
+            <RouteChangeListener />
+          </Suspense>
           <AOSProvider>
             <LanguageProvider>{children}</LanguageProvider>
           </AOSProvider>
