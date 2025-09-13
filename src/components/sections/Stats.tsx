@@ -12,19 +12,19 @@ const Stats = () => {
           </div>
           <div className="md:w-1/2 grid grid-cols-2 gap-8 mt-8 md:mt-0 md:ml-12">
             <div className="text-center">
-              <p className="text-5xl font-bold text-blue-800">+40</p>
+              <p className="text-4xl md:text-5xl font-bold text-blue-800">+40</p>
               <p className="text-gray-700">Years of experience</p>
             </div>
             <div className="text-center">
-              <p className="text-5xl font-bold text-blue-800">+1000</p>
+              <p className="text-4xl md:text-5xl font-bold text-blue-800">+1000</p>
               <p className="text-gray-700">Projects completed</p>
             </div>
             <div className="text-center">
-              <p className="text-5xl font-bold text-blue-800">+50</p>
+              <p className="text-4xl md:text-5xl font-bold text-blue-800">+50</p>
               <p className="text-gray-700">Countries served</p>
             </div>
             <div className="text-center">
-              <p className="text-5xl font-bold text-blue-800">+200</p>
+              <p className="text-4xl md:text-5xl font-bold text-blue-800">+200</p>
               <p className="text-gray-700">Happy clients</p>
             </div>
           </div>

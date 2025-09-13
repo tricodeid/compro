@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 const CallToActionBlocks = () => {
   return (
-    <section className="py-20 bg-[#f5f7fa]">
+    <section className="py-16 bg-white" data-aos="fade-up">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="bg-white p-6 rounded-lg shadow-md text-center">

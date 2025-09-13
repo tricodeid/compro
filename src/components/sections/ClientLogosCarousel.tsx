@@ -50,7 +50,7 @@ const ClientLogosCarousel = () => {
   const logos = [Logo1, Logo2, Logo3, Logo4, Logo5, Logo6];
 
   return (
-    <section className="py-16 bg-[#f5f7fa]">
+    <section className="py-16 bg-[#f5f7fa]" data-aos="fade-up">
       <div className="container mx-auto px-4">
         <h2 className="text-4xl font-bold text-center mb-12 text-gray-800">THEY TRUST US</h2>
         <div className="relative w-full overflow-hidden group">

@@ -3,7 +3,7 @@ import React from 'react';
 
 const InformationBlocks = () => {
   return (
-    <section className="py-20 bg-white">
+    <section className="py-16 bg-white" data-aos="fade-up">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div>

@@ -67,7 +67,7 @@ const Phases = () => {
   }, [modalOpen, showNextImage, showPrevImage, closeModal]);
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-white" data-aos="fade-up">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {phaseData.map((item, index) => (

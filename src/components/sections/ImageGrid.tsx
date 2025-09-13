@@ -50,7 +50,7 @@ const ImageGrid = () => {
 
 
   return (
-    <section className="py-16 bg-[#f5f7fa]">
+    <section className="py-16 bg-[#f5f7fa]" data-aos="fade-up">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {images.map((src, i) => (
