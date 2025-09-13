@@ -38,23 +38,23 @@ const Phases = () => {
     setModalOpen(false);
   };
 
-  const showNextImage = (e: React.MouseEvent) => {
-    e.stopPropagation();
+  const showNextImage = useCallback((e?: React.MouseEvent) => {
+    e?.stopPropagation();
     setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-  };
+  }, [images.length]);
 
-  const showPrevImage = (e: React.MouseEvent) => {
-    e.stopPropagation();
+  const showPrevImage = useCallback((e?: React.MouseEvent) => {
+    e?.stopPropagation();
     setCurrentImageIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
-  };
+  }, [images.length]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (!modalOpen) return;
       if (e.key === 'ArrowRight') {
-        showNextImage(e as any);
+        showNextImage();
       } else if (e.key === 'ArrowLeft') {
-        showPrevImage(e as any);
+        showPrevImage();
       } else if (e.key === 'Escape') {
         closeModal();
       }
@@ -64,7 +64,7 @@ const Phases = () => {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [modalOpen, images.length]);
+  }, [modalOpen, showNextImage, showPrevImage]);
 
   return (
     <section className="py-20 bg-white">
