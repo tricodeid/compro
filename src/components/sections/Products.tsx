@@ -28,6 +28,9 @@ const Products = () => {
       statsCansSold: "Cans sold worldwide over the last 20 years.",
       statsEvery60Seconds: "a stick of product is injected somewhere in the world",
       statsCountriesServed: "countries our products and technology are applied",
+      statsCansSoldValue: "1 000 000",
+      statsEvery60SecondsValue: "Every 60 seconds",
+      statsCountriesServedValue: "In more than 40",
       productionTitle: "An in-house production run under the highest quality controls",
       productionDescription: "From the mixture of selected raw ingredients to the final packaging, our laboratory technicians rigorously conform to the compounds formulas and manufacturing processes developed by the inventor",
       weightControl: "Weight control",
@@ -70,6 +73,14 @@ const Products = () => {
       aboutUs: "About us",
       contact: "Contact",
       blog: "Blog",
+      sealingCompoundCanAlt: "Sealing Compound Can",
+      sealingCompoundStickAlt: "Sealing Compound Stick",
+      premouldedElbowAlt: "Premoulded Elbow",
+      premouldedBoxAlt: "Premoulded Box",
+      premouldedHexAlt: "Premoulded Hex",
+      premouldedElbow2Alt: "Premoulded Elbow 2",
+      elbowSizes: "1/2” to 8”",
+      straightSizes: "1/2” to 10”",
     },
     id: {
       title: "SENYAWA PENYEGEL “BUATAN PRANCIS”",
@@ -91,6 +102,9 @@ const Products = () => {
       statsCansSold: "Kaleng terjual di seluruh dunia selama 20 tahun terakhir.",
       statsEvery60Seconds: "sebatang produk disuntikkan di suatu tempat di dunia",
       statsCountriesServed: "negara tempat produk dan teknologi kami diterapkan",
+      statsCansSoldValue: "1 000 000",
+      statsEvery60SecondsValue: "Setiap 60 detik",
+      statsCountriesServedValue: "Di lebih dari 40",
       productionTitle: "Produksi internal yang dijalankan di bawah kontrol kualitas tertinggi",
       productionDescription: "Dari campuran bahan baku pilihan hingga pengemasan akhir, teknisi laboratorium kami secara ketat mematuhi formula senyawa dan proses manufaktur yang dikembangkan oleh penemu",
       weightControl: "Kontrol berat",
@@ -133,6 +147,14 @@ const Products = () => {
       aboutUs: "Tentang kami",
       contact: "Kontak",
       blog: "Blog",
+      sealingCompoundCanAlt: "Kaleng Senyawa Penyegel",
+      sealingCompoundStickAlt: "Stik Senyawa Penyegel",
+      premouldedElbowAlt: "Siku Pra-cetak",
+      premouldedBoxAlt: "Kotak Pra-cetak",
+      premouldedHexAlt: "Hex Pra-cetak",
+      premouldedElbow2Alt: "Siku Pra-cetak 2",
+      elbowSizes: "1/2” hingga 8”",
+      straightSizes: "1/2” hingga 10”",
     },
   };
 
@@ -146,7 +168,7 @@ const Products = () => {
         <div className="flex-1 flex justify-center">
           <Image
             src="/product-can.png" // Ganti dengan gambar produk asli jika ada
-            alt="Sealing Compound Can"
+            alt={currentContent.sealingCompoundCanAlt}
             width={260}
             height={320}
             className="rounded-lg shadow-lg bg-white p-2"
@@ -187,7 +209,7 @@ const Products = () => {
         <div className="flex justify-center">
           <Image
             src="/product-stick-blue.png" // Ganti dengan gambar stick asli jika ada
-            alt="Sealing Compound Stick"
+            alt={currentContent.sealingCompoundStickAlt}
             width={180}
             height={220}
             className="rounded-lg shadow-lg bg-white p-2"
@@ -223,15 +245,15 @@ const Products = () => {
       <div className="bg-[#2c3846] py-8">
         <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-8 text-center">
           <div>
-            <div className="text-3xl font-bold">1 000 000</div>
+            <div className="text-3xl font-bold">{currentContent.statsCansSoldValue}</div>
             <div className="text-sm">{currentContent.statsCansSold}</div>
           </div>
           <div>
-            <div className="text-3xl font-bold">Every 60 seconds</div>
+            <div className="text-3xl font-bold">{currentContent.statsEvery60SecondsValue}</div>
             <div className="text-sm">{currentContent.statsEvery60Seconds}</div>
           </div>
           <div>
-            <div className="text-3xl font-bold">In more than 40</div>
+            <div className="text-3xl font-bold">{currentContent.statsCountriesServedValue}</div>
             <div className="text-sm">{currentContent.statsCountriesServed}</div>
           </div>
         </div>
@@ -266,7 +288,7 @@ const Products = () => {
       {/* INJECTION EQUIPMENT SECTION */}
       <div className="container mx-auto px-4 py-16">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">{currentContent.injectionEquipmentTitle}</h2>
-        <p className="text-center max-w-3xl mx-auto mb-10 text-lg text-gray-200">{currentContent.injectionEquipmentDescription}</p>
+        <p className="text-center max-w-3xl mx-auto mb-10 text-lg text-gray-200" dangerouslySetInnerHTML={{ __html: currentContent.injectionEquipmentDescription }} />
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
           {[
             { src: '/equip1.png', alt: currentContent.handPump },
@@ -286,15 +308,15 @@ const Products = () => {
         <div className="container mx-auto px-4 flex flex-col md:flex-row items-center gap-12">
           {/* Images */}
           <div className="flex-1 grid grid-cols-2 gap-4">
-            <Image src="/premoulded1.png" alt="Premoulded Elbow" width={120} height={120} className="rounded-lg object-contain bg-white p-2" />
-            <Image src="/premoulded2.png" alt="Premoulded Box" width={120} height={120} className="rounded-lg object-contain bg-white p-2" />
-            <Image src="/premoulded3.png" alt="Premoulded Hex" width={120} height={120} className="rounded-lg object-contain bg-white p-2" />
-            <Image src="/premoulded4.png" alt="Premoulded Elbow 2" width={120} height={120} className="rounded-lg object-contain bg-white p-2" />
+            <Image src="/premoulded1.png" alt={currentContent.premouldedElbowAlt} width={120} height={120} className="rounded-lg object-contain bg-white p-2" />
+            <Image src="/premoulded2.png" alt={currentContent.premouldedBoxAlt} width={120} height={120} className="rounded-lg object-contain bg-white p-2" />
+            <Image src="/premoulded3.png" alt={currentContent.premouldedHexAlt} width={120} height={120} className="rounded-lg object-contain bg-white p-2" />
+            <Image src="/premoulded4.png" alt={currentContent.premouldedElbow2Alt} width={120} height={120} className="rounded-lg object-contain bg-white p-2" />
           </div>
           {/* Text */}
           <div className="flex-1">
             <h2 className="text-2xl md:text-3xl font-bold mb-4">{currentContent.premouldedSolutionsTitle}</h2>
-            <p className="mb-4">{currentContent.premouldedSolutionsDescription}</p>
+            <p className="mb-4" dangerouslySetInnerHTML={{ __html: currentContent.premouldedSolutionsDescription }} />
             <div className="flex gap-8 mb-4">
               <div className="flex flex-col items-center">
                 <span className="text-3xl font-bold">160<sup>o</sup>C</span>
@@ -310,11 +332,11 @@ const Products = () => {
             <div className="flex gap-8">
               <div>
                 <span className="font-bold">{currentContent.elbowStandardSizes}</span><br />
-                1/2” to 8”
+                {currentContent.elbowSizes}
               </div>
               <div>
                 <span className="font-bold">{currentContent.straightStandardSizes}</span><br />
-                1/2” to 10”
+                {currentContent.straightSizes}
               </div>
             </div>
           </div>
@@ -330,35 +352,7 @@ const Products = () => {
         </div>
       </div>
 
-      {/* FOOTER CONTACT INFO */}
-      <div className="bg-[#222] py-12 text-gray-300">
-        <div className="container mx-auto px-4 grid md:grid-cols-4 gap-8 text-sm">
-          <div>
-            <h3 className="font-bold mb-2">{currentContent.aboutPetroseal}</h3>
-            <p>{currentContent.aboutPetrosealDescription}</p>
-          </div>
-          <div>
-            <h3 className="font-bold mb-2">{currentContent.petrosealAddress}</h3>
-            <p>{currentContent.petrosealAddressLine1}<br/>{currentContent.petrosealAddressLine2}<br/>{currentContent.petrosealAddressLine3}<br/>{currentContent.petrosealTel}<br/>{currentContent.petrosealFax}</p>
-          </div>
-          <div>
-            <h3 className="font-bold mb-2">{currentContent.fidgiGroup}</h3>
-            <p>{currentContent.fidgiGroupAddressLine1}<br/>{currentContent.fidgiGroupAddressLine2}<br/>{currentContent.fidgiGroupAddressLine3}</p>
-          </div>
-          <div>
-            <h3 className="font-bold mb-2">{currentContent.siteMap}</h3>
-            <ul>
-              <li>{currentContent.home}</li>
-              <li>{currentContent.processes}</li>
-              <li className="font-bold text-white">{currentContent.products}</li>
-              <li>{currentContent.application}</li>
-              <li>{currentContent.aboutUs}</li>
-              <li>{currentContent.contact}</li>
-              <li>{currentContent.blog}</li>
-            </ul>
-          </div>
-        </div>
-      </div>
+      
     </section>
   );
 };

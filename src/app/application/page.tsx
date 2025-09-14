@@ -4,6 +4,7 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Image from 'next/image';
 import { useLanguage } from '@/context/LanguageContext';
+import AboutPetroseal from '@/components/sections/AboutPetroseal';
 
 export default function ApplicationPage() {
   const { language } = useLanguage();
@@ -97,7 +98,7 @@ export default function ApplicationPage() {
     <main className="font-sans">
       <Header />
       {/* HERO SECTION */}
-      <section className="relative h-[60vh] flex items-center justify-center bg-cover bg-center" style={{ backgroundImage: 'url(/application-hero.jpg)' }}>
+      <section className="relative h-[60vh] flex items-center justify-center bg-cover bg-center" style={{ backgroundImage: 'url(/application-hero.jpg)' }} data-aos="fade-in">
         <div className="absolute inset-0 bg-blue-900 bg-opacity-70"></div>
         <div className="relative z-10 text-center w-full flex flex-col items-center justify-center px-4">
           <h1 className="text-3xl md:text-5xl font-bold text-white mb-6">{currentContent.heroTitle}</h1>
@@ -110,7 +111,7 @@ export default function ApplicationPage() {
       </section>
 
       {/* EXPERIENCE & 4 FEATURES SECTION */}
-      <section className="py-16 bg-white text-[#222]">
+      <section className="py-16 bg-white text-[#222]" data-aos="fade-up">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-light text-center mb-10">{currentContent.experienceTitle}</h2>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-5xl mx-auto">
@@ -139,7 +140,7 @@ export default function ApplicationPage() {
       </section>
 
       {/* ADVANTAGES SECTION */}
-      <section className="bg-white pb-0">
+      <section className="bg-white pb-0" data-aos="fade-up">
         <div className="w-full h-64 md:h-80 relative">
           <Image src="/application-advantage.jpg" alt="Workers" fill className="object-cover w-full h-full" />
           <div className="absolute inset-0 bg-gradient-to-t from-white via-white/80 to-transparent"></div>
@@ -168,7 +169,7 @@ export default function ApplicationPage() {
       </section>
 
       {/* HOW SECTION */}
-      <section className="py-16 bg-white text-[#222]">
+      <section className="py-16 bg-white text-[#222]" data-aos="fade-up">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-light text-center mb-8">{currentContent.howTitle}</h2>
           <div className="max-w-3xl mx-auto">
@@ -186,7 +187,7 @@ export default function ApplicationPage() {
       </section>
 
       {/* WHERE SECTION */}
-      <section className="py-16 bg-white text-[#222]">
+      <section className="py-16 bg-white text-[#222]" data-aos="fade-up">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-light text-center mb-8">{currentContent.whereTitle}</h2>
           <div className="max-w-5xl mx-auto mb-8">
@@ -206,7 +207,7 @@ export default function ApplicationPage() {
         </div>
       </section>
 
-      {/* FOOTER SECTION */}
+      <AboutPetroseal />
       <Footer />
     </main>
   );

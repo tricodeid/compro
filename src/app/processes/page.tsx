@@ -5,6 +5,7 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Image from 'next/image';
 import { useLanguage } from '@/context/LanguageContext';
+import AboutPetroseal from '@/components/sections/AboutPetroseal';
 
 // Data structure for separate galleries
 const galleries = {
@@ -213,6 +214,7 @@ export default function Processes() {
         </div>
       )}
 
+      <AboutPetroseal />
       <Footer />
     </main>
   );

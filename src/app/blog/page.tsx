@@ -3,6 +3,7 @@
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { useLanguage } from '@/context/LanguageContext';
+import AboutPetroseal from '@/components/sections/AboutPetroseal';
 
 export default function Blog() {
   const { language } = useLanguage();
@@ -62,6 +63,7 @@ export default function Blog() {
           </div>
         </div>
       </section>
+      <AboutPetroseal />
       <Footer />
     </main>
   );
