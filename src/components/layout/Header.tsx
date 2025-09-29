@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useLanguage } from '@/context/LanguageContext';
 
 // SVG Flag Components
@@ -102,8 +103,16 @@ const Header = () => {
   return (
     <header className={`bg-white shadow-md sticky top-0 z-50 transition-all duration-300 ${isScrolled ? 'py-2' : 'py-4'}`}>
       <div className="container mx-auto px-4 flex justify-between items-center">
-        <div className={`font-bold text-blue-800 transition-all duration-300 ${isScrolled ? 'text-xl' : 'text-2xl'}`}>
-          <Link href="/">PETROSEAL</Link>
+        <div className={`transition-all duration-300 ${isScrolled ? 'w-40' : 'w-48'}`}>
+          <Link href="/">
+            <Image
+              src="https://leaksealing.com/wp-content/uploads/2016/11/logo-web.png"
+              alt="Petroseal Logo"
+              width={200}
+              height={50}
+              priority
+            />
+          </Link>
         </div>
 
         {/* Desktop Menu */}

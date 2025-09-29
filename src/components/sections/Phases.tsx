@@ -35,19 +35,19 @@ const Phases = () => {
       phase: 1,
       title: currentContent.phase1Title,
       description: currentContent.phase1Description,
-      image: '/images/9121424.jpg',
+      image: 'https://leaksealing.com/wp-content/uploads/2016/05/Illustration-dimensionner-2-735x1030.jpg',
     },
     {
       phase: 2,
       title: currentContent.phase2Title,
       description: currentContent.phase2Description,
-      image: '/images/9121424.jpg',
+      image: 'https://leaksealing.com/wp-content/uploads/2016/09/Dimensionner-1030x734.jpg',
     },
     {
       phase: 3,
       title: currentContent.phase3Title,
       description: currentContent.phase3Description,
-      image: '/images/9121424.jpg',
+      image: 'https://leaksealing.com/wp-content/uploads/2016/09/positionner-et-injecter-1030x721.jpg',
     },
   ];
 

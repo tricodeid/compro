@@ -6,7 +6,26 @@ import { useLanguage } from '@/context/LanguageContext';
 
 const ImageGrid = () => {
   const { language } = useLanguage();
-  const images = Array(9).fill('/images/9121424.jpg');
+  const initialImages = [
+    'https://leaksealing.com/wp-content/uploads/2016/05/collierbagues-1030x773.jpg',
+    'https://leaksealing.com/wp-content/uploads/2016/05/DSC00259.jpg',
+    'https://leaksealing.com/wp-content/uploads/2016/05/fuite-chapelle-ronde-1030x773.jpg',
+    'https://leaksealing.com/wp-content/uploads/2016/05/fuite-gland-packing.jpg',
+    'https://leaksealing.com/wp-content/uploads/2016/05/fuite-sur-brides.png',
+    'https://leaksealing.com/wp-content/uploads/2016/05/ligne-torche-3-1030x773.jpg',
+    'https://leaksealing.com/wp-content/uploads/2016/05/P1000064.jpg',
+    'https://leaksealing.com/wp-content/uploads/2016/05/PHOTO-4-1030x773.jpg',
+    'https://leaksealing.com/wp-content/uploads/2016/05/PICT0009-1030x773.jpg',
+  ];
+
+  const [images, setImages] = useState(initialImages);
+  const fallbackImage = '/images/9121424.jpg';
+
+  const handleImageError = (index: number) => {
+    const newImages = [...images];
+    newImages[index] = fallbackImage;
+    setImages(newImages);
+  };
 
   const [modalOpen, setModalOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -83,6 +102,7 @@ const ImageGrid = () => {
                   layout="fill"
                   objectFit="cover" 
                   className="transition-transform duration-300 ease-in-out group-hover:scale-110"
+                  onError={() => handleImageError(i)}
                 />
               </div>
           ))}
@@ -123,6 +143,7 @@ const ImageGrid = () => {
                         layout="fill"
                         objectFit="contain"
                         className="rounded-md"
+                        onError={() => handleImageError(currentImageIndex)}
                     />
                 </div>
                 <p className="text-white text-lg mt-4">{currentImageIndex + 1} / {images.length}</p>

@@ -33,6 +33,9 @@ const galleries = {
   backClamp: [
     'https://leaksealing.com/wp-content/uploads/2016/06/PROCEDURE-PIQUAGE-1030x816.jpg',
     'https://leaksealing.com/wp-content/uploads/2016/06/coude-injecte%CC%81.jpg',
+    'https://leaksealing.com/wp-content/uploads/2016/06/DSC00097-773x1030.jpg',
+    'https://leaksealing.com/wp-content/uploads/2016/06/ligne-FUEL-LD.-048-1030x773.jpg',
+    'https://leaksealing.com/wp-content/uploads/2016/06/PICT0739-1030x773.jpg',
   ],
   premoulded: [
     'https://leaksealing.com/wp-content/uploads/2016/06/PROCEDURE-COUDE-1030x816.jpg',
@@ -46,11 +49,13 @@ const galleries = {
     'https://leaksealing.com/wp-content/uploads/2016/06/photo-1.jpg',
     'https://leaksealing.com/wp-content/uploads/2016/06/SAV-en-Y-1030x773.jpg',
   ],
-  static: [
+  static1: [
     'https://leaksealing.com/wp-content/uploads/2016/06/schemas_presto_colmatage_700px_02.jpg',
     'https://leaksealing.com/wp-content/uploads/2016/06/DSCN0200-1030x773.jpg',
     'https://leaksealing.com/wp-content/uploads/2016/06/DSCN0725.jpg',
     'https://leaksealing.com/wp-content/uploads/2016/06/PC120388-1030x773.jpg',
+  ],
+  static2: [
     'https://leaksealing.com/wp-content/uploads/2016/06/Photo-010-1030x773.jpg',
     'https://leaksealing.com/wp-content/uploads/2016/06/photo2-773x1030.jpg',
     'https://leaksealing.com/wp-content/uploads/2016/06/Cloche-bouchon-vanne.jpg',
@@ -62,7 +67,7 @@ type GalleryId = keyof typeof galleries;
 const DummyImageGrid = ({ galleryId, onImageClick }: { galleryId: GalleryId, onImageClick: (gallery: GalleryId, index: number) => void }) => {
   const images = galleries[galleryId];
   return (
-    <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-8">
+    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 mb-8">
       {images.map((src, i) => (
         <div key={i} className="relative w-full h-48 cursor-pointer overflow-hidden rounded-md shadow-md group" onClick={() => onImageClick(galleryId, i)}>
           <Image 
@@ -78,12 +83,14 @@ const DummyImageGrid = ({ galleryId, onImageClick }: { galleryId: GalleryId, onI
   );
 };
 
-export default function Processes() {
+export default function ProcessesClientPage() {
   const { language } = useLanguage();
   const [modalState, setModalState] = useState<{ galleryId: GalleryId | null; index: number }>({ galleryId: null, index: 0 });
+  const [imageVisible, setImageVisible] = useState(true);
 
   const openModal = (galleryId: GalleryId, index: number) => {
     setModalState({ galleryId, index });
+    setImageVisible(true);
   };
 
   const closeModal = useCallback(() => {
@@ -92,17 +99,25 @@ export default function Processes() {
 
   const showNextImage = useCallback(() => {
     if (modalState.galleryId) {
-      const gallery = galleries[modalState.galleryId];
-      setModalState(prevState => ({ ...prevState, index: (prevState.index + 1) % gallery.length }));
+      setImageVisible(false);
+      setTimeout(() => {
+        const gallery = galleries[modalState.galleryId!];
+        setModalState(prevState => ({ ...prevState, index: (prevState.index + 1) % gallery.length }));
+        setImageVisible(true);
+      }, 300);
     }
-  }, [modalState.galleryId]);
+  }, [modalState.galleryId, modalState.index]);
 
   const showPrevImage = useCallback(() => {
     if (modalState.galleryId) {
-      const gallery = galleries[modalState.galleryId];
-      setModalState(prevState => ({ ...prevState, index: (prevState.index - 1 + gallery.length) % gallery.length }));
+      setImageVisible(false);
+      setTimeout(() => {
+        const gallery = galleries[modalState.galleryId!];
+        setModalState(prevState => ({ ...prevState, index: (prevState.index - 1 + gallery.length) % gallery.length }));
+        setImageVisible(true);
+      }, 300);
     }
-  }, [modalState.galleryId]);
+  }, [modalState.galleryId, modalState.index]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -123,7 +138,7 @@ export default function Processes() {
       pageTitle: "OUR PROCESSES",
       gasketsSectionTitle: "LEAK SEALING JOB ON GASKETS OF BOLTED ASSEMBLIES",
       gasketsSubtitle: "A safe and non destructive process !",
-      gasketsDescription: `Depending on the size of flanges, our clamps are designed in two or more sections. The thickness of our clamp varies according the fluid pressure and its material is adapted to the fluid and temperature. Most of our clamps are machined with peripheral side lips. The caulking of these lips leads to a perfect mechanical adjusting of the clamp. Our injection valves are positioned (placed) <span class="text-blue-700 font-semibold">between</span> stud/bolts to guarantee an homogeneous and complete compound filling.`,
+      gasketsDescription: `Depending on the size of flanges, our clamps are designed in two or more sections. The thickness of our clamp varies according the fluid pressure and its material is adapted to the fluid and temperature. Most of our clamps are machined with peripheral side lips. The caulking of these lips leads to a perfect mechanical adjusting of the clamp. Our injection valves are positioned (placed) <span class="text-[#394959] font-semibold">between</span> stud/bolts to guarantee an homogeneous and complete compound filling.`,
       stiffenersTitle: "Stiffeners",
       stiffenersDescription: "With the view to limiting even more the stress on the flanges’ stud/bolts during the injection stage, all our clamps are designed with safety retainers called “stiffeners”.",
       flatFaceFlangesTitle: "GASKET OF FLAT FACE FLANGES",
@@ -147,7 +162,7 @@ export default function Processes() {
       pageTitle: "PROSES KAMI",
       gasketsSectionTitle: "PEKERJAAN PERBAIKAN KEBOCORAN PADA GASKET RAKITAN BAUT",
       gasketsSubtitle: "Proses yang aman dan tidak merusak!",
-      gasketsDescription: `Tergantung pada ukuran flensa, klem kami dirancang dalam dua atau lebih bagian. Ketebalan klem kami bervariasi sesuai dengan tekanan fluida dan materialnya disesuaikan dengan fluida dan suhu. Sebagian besar klem kami dikerjakan dengan bibir samping periferal. Pengisian bibir ini menghasilkan penyesuaian mekanis klem yang sempurna. Katup injeksi kami diposisikan (ditempatkan) <span class="text-blue-700 font-semibold">di antara</span> stud/baut untuk menjamin pengisian senyawa yang homogen dan lengkap.`,
+      gasketsDescription: `Tergantung pada ukuran flensa, klem kami dirancang dalam dua atau lebih bagian. Ketebalan klem kami bervariasi sesuai dengan tekanan fluida dan materialnya disesuaikan dengan fluida dan suhu. Sebagian besar klem kami dikerjakan dengan bibir samping periferal. Pengisian bibir ini menghasilkan penyesuaian mekanis klem yang sempurna. Katup injeksi kami diposisikan (ditempatkan) <span class="text-[#394959] font-semibold">di antara</span> stud/baut untuk menjamin pengisian senyawa yang homogen dan lengkap.`,
       stiffenersTitle: "Penguat",
       stiffenersDescription: "Dengan tujuan untuk lebih membatasi tekanan pada stud/baut flensa selama tahap injeksi, semua klem kami dirancang dengan penahan pengaman yang disebut 'penguat'.",
       flatFaceFlangesTitle: "GASKET FLENSA MUKA DATAR",
@@ -176,89 +191,65 @@ export default function Processes() {
       <Header />
       <section className="bg-[#394959] text-white py-20" data-aos="fade-in">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-6xl font-light tracking-wide mb-4">{currentContent.pageTitle}</h1>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-wide mb-4">{currentContent.pageTitle}</h1>
         </div>
       </section>
 
       <section className="bg-white text-[#394959] py-16" data-aos="fade-up">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-5xl font-light text-center mb-2">{currentContent.gasketsSectionTitle}</h2>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-center mb-2">{currentContent.gasketsSectionTitle}</h2>
           <p className="text-xl md:text-2xl text-center text-gray-500 mb-6 font-light">{currentContent.gasketsSubtitle}</p>
-          <p className="text-base md:text-lg text-center text-gray-600 max-w-4xl mx-auto mb-10 font-light" dangerouslySetInnerHTML={{ __html: currentContent.gasketsDescription }} />
+          <p className="text-base md:text-lg text-center text-white max-w-4xl mx-auto mb-10 font-light" dangerouslySetInnerHTML={{ __html: currentContent.gasketsDescription }} />
 
           <h3 className="text-2xl md:text-3xl font-bold text-left mb-2 mt-12">{currentContent.stiffenersTitle}</h3>
-          <p className="text-lg md:text-xl text-left text-gray-600 mb-4 font-light">{currentContent.stiffenersDescription}</p>
+          <p className="text-lg md:text-xl text-left text-white mb-4 font-light">{currentContent.stiffenersDescription}</p>
           <DummyImageGrid galleryId="stiffeners" onImageClick={openModal} />
 
           <h3 className="text-2xl md:text-3xl font-bold text-left mb-2 mt-12">{currentContent.flatFaceFlangesTitle}</h3>
-          <p className="text-lg md:text-xl text-left text-gray-600 mb-4 font-light">{currentContent.flatFaceFlangesDescription}</p>
+          <p className="text-lg md:text-xl text-left text-white mb-4 font-light">{currentContent.flatFaceFlangesDescription}</p>
           <DummyImageGrid galleryId="gasket" onImageClick={openModal} />
         </div>
       </section>
 
       <section className="bg-white text-[#394959] py-16" data-aos="fade-up">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-5xl font-light text-center mb-2">{currentContent.pipesSectionTitle}</h2>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-center mb-2">{currentContent.pipesSectionTitle}</h2>
           <p className="text-xl md:text-2xl text-center text-gray-500 mb-6 font-light">{currentContent.pipesSubtitle}</p>
 
           <h3 className="text-2xl md:text-3xl font-bold text-left mb-2 mt-12">{currentContent.protectiveSleeveTitle}</h3>
-          <p className="text-lg md:text-xl text-left text-gray-600 mb-4 font-light">{currentContent.protectiveSleeveDescription}</p>
+          <p className="text-lg md:text-xl text-left text-white mb-4 font-light">{currentContent.protectiveSleeveDescription}</p>
           <DummyImageGrid galleryId="sleeve" onImageClick={openModal} />
 
           <h3 className="text-2xl md:text-3xl font-bold text-left mb-2 mt-12">{currentContent.backClampTitle}</h3>
-          <p className="text-lg md:text-xl text-left text-gray-600 mb-4 font-light">{currentContent.backClampDescription}</p>
+          <p className="text-lg md:text-xl text-left text-white mb-4 font-light">{currentContent.backClampDescription}</p>
           <DummyImageGrid galleryId="backClamp" onImageClick={openModal} />
         </div>
       </section>
 
-      <section className="bg-[#f5f7fa] text-[#394959] py-16" data-aos="fade-up">
+      <section className="bg-[#2d5c88] text-[#394959] py-16" data-aos="fade-up">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-5xl font-light text-center mb-2">{currentContent.premouldedBoxSectionTitle}</h2>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-center mb-2">{currentContent.premouldedBoxSectionTitle}</h2>
           <p className="text-xl md:text-2xl text-center text-gray-500 mb-6 font-light">{currentContent.premouldedBoxSubtitle}</p>
           <DummyImageGrid galleryId="premoulded" onImageClick={openModal} />
-          <p className="text-xl text-center text-gray-600 mt-4 font-light">{currentContent.premouldedBoxDescription}</p>
+          <p className="text-xl text-center text-white mt-4 font-light">{currentContent.premouldedBoxDescription}</p>
         </div>
       </section>
 
       <section className="bg-white text-[#394959] py-16" data-aos="fade-up">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-5xl font-light text-center mb-2">{currentContent.valveGlandPackingsSectionTitle}</h2>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-center mb-2">{currentContent.valveGlandPackingsSectionTitle}</h2>
           <p className="text-xl md:text-2xl text-center text-gray-500 mb-6 font-light">{currentContent.valveGlandPackingsSubtitle}</p>
-          <p className="text-xl text-center text-gray-600 mb-4 font-light">{currentContent.valveGlandPackingsDescription1}</p>
-          <p className="text-xl text-center text-gray-600 mb-4 font-light">{currentContent.valveGlandPackingsDescription2}</p>
+          <p className="text-xl text-center text-white mb-4 font-light">{currentContent.valveGlandPackingsDescription1}</p>
+          <p className="text-xl text-center text-white mb-4 font-light">{currentContent.valveGlandPackingsDescription2}</p>
           <DummyImageGrid galleryId="valve" onImageClick={openModal} />
         </div>
       </section>
 
-      <section className="bg-[#f5f7fa] text-[#394959] py-16" data-aos="fade-up">
+      <section className="bg-[#2d5c88] text-[#394959] py-16" data-aos="fade-up">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-5xl font-light text-center mb-2">{currentContent.staticDevicesSectionTitle}</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-            {galleries.static.slice(0, 4).map((src, i) => (
-              <div key={i} className="relative w-full h-48 cursor-pointer overflow-hidden rounded-md shadow-md group" onClick={() => openModal("static", i)}>
-                <Image
-                  src={src}
-                  alt={`static Example ${i + 1}`}
-                  width={300}
-                  height={200}
-                  className="transition-transform duration-300 ease-in-out group-hover:scale-110 object-cover w-full h-full"
-                />
-              </div>
-            ))}
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8 max-w-4xl mx-auto"> {/* Added max-w and mx-auto to center the 3-image row */}
-            {galleries.static.slice(4, 7).map((src, i) => (
-              <div key={i + 4} className="relative w-full h-48 cursor-pointer overflow-hidden rounded-md shadow-md group" onClick={() => openModal("static", i + 4)}>
-                <Image
-                  src={src}
-                  alt={`static Example ${i + 5}`}
-                  width={300}
-                  height={200}
-                  className="transition-transform duration-300 ease-in-out group-hover:scale-110 object-cover w-full h-full"
-                />
-              </div>
-            ))}
-          </div>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-center mb-2">{currentContent.staticDevicesSectionTitle}</h2>
+          <DummyImageGrid galleryId="static1" onImageClick={openModal} />
+          <DummyImageGrid galleryId="static2" onImageClick={openModal} />
         </div>
       </section>
 
@@ -269,7 +260,13 @@ export default function Processes() {
             <button onClick={showPrevImage} className="absolute left-4 text-white text-4xl z-50 p-4 bg-black bg-opacity-30 rounded-full hover:bg-opacity-50 transition-all cursor-pointer" aria-label="Previous Image">&#10094;</button>
             <div className="relative flex flex-col items-center justify-center w-full h-full">
               <div className="relative w-[90%] h-[80%]">
-                <Image src={currentGalleryImages[modalState.index]} alt={`Enlarged image ${modalState.index + 1}`} layout="fill" objectFit="contain" className="rounded-md" />
+                <Image 
+                    src={currentGalleryImages[modalState.index]} 
+                    alt={`Enlarged image ${modalState.index + 1}`} 
+                    layout="fill" 
+                    objectFit="contain" 
+                    className={`rounded-md transition-opacity duration-300 ${imageVisible ? 'opacity-100' : 'opacity-0'}`}
+                />
               </div>
               <p className="text-white text-lg mt-4">{modalState.index + 1} / {currentGalleryImages.length}</p>
             </div>

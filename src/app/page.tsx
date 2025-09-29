@@ -11,6 +11,11 @@ import ClientLogosCarousel from '@/components/sections/ClientLogosCarousel';
 import CallToActionBlocks from '@/components/sections/CallToActionBlocks';
 import AboutPetroseal from '@/components/sections/AboutPetroseal';
 import Footer from '@/components/layout/Footer';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Home',
+};
 
 export default function Home() {
   return (

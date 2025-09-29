@@ -98,7 +98,7 @@ export default function ApplicationPage() {
     <main className="font-sans">
       <Header />
       {/* HERO SECTION */}
-      <section className="relative h-[60vh] flex items-center justify-center bg-cover bg-center" style={{ backgroundImage: 'url(/application-hero.jpg)' }} data-aos="fade-in">
+      <section className="relative h-[60vh] flex items-center justify-center bg-cover bg-center" style={{ backgroundImage: 'url(https://leaksealing.com/wp-content/uploads/2015/10/image-appilcateur.png)' }} data-aos="fade-in">
         <div className="absolute inset-0 bg-blue-900 bg-opacity-70"></div>
         <div className="relative z-10 text-center w-full flex flex-col items-center justify-center px-4">
           <h1 className="text-3xl md:text-5xl font-bold text-white mb-6">{currentContent.heroTitle}</h1>
@@ -142,7 +142,7 @@ export default function ApplicationPage() {
       {/* ADVANTAGES SECTION */}
       <section className="bg-white pb-0" data-aos="fade-up">
         <div className="w-full h-64 md:h-80 relative">
-          <Image src="/application-advantage.jpg" alt="Workers" fill className="object-cover w-full h-full" />
+          <Image src="https://leaksealing.com/wp-content/uploads/2015/10/image-appilcateur.png" alt="Workers" fill className="object-cover w-full h-full" />
           <div className="absolute inset-0 bg-gradient-to-t from-white via-white/80 to-transparent"></div>
         </div>
         <div className="container mx-auto px-4 -mt-24 md:-mt-32 relative z-10">
