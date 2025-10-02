@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { useLanguage } from '@/context/LanguageContext';
@@ -58,23 +58,21 @@ export default function AboutUs() {
     setModalOpen(false);
   };
 
-  const showNextImage = (e: React.MouseEvent) => {
-    e.stopPropagation();
+  const showNextImage = useCallback(() => {
     setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-  };
+  }, [images.length]);
 
-  const showPrevImage = (e: React.MouseEvent) => {
-    e.stopPropagation();
+  const showPrevImage = useCallback(() => {
     setCurrentImageIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
-  };
+  }, [images.length]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (!modalOpen) return;
       if (e.key === 'ArrowRight') {
-        showNextImage(e as any);
+        showNextImage();
       } else if (e.key === 'ArrowLeft') {
-        showPrevImage(e as any);
+        showPrevImage();
       } else if (e.key === 'Escape') {
         closeModal();
       }
@@ -84,7 +82,7 @@ export default function AboutUs() {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [modalOpen, images.length]);
+  }, [modalOpen, showNextImage, showPrevImage]);
 
   const topImages = images.slice(0, 4);
   const bottomImages = images.slice(4, 8);
@@ -141,9 +139,11 @@ export default function AboutUs() {
           </div>
           <div data-aos="fade-left" data-aos-delay="300">
             <div className="flex items-center mb-4">
-              <img
+              <Image
                 src="https://leaksealing.com/wp-content/uploads/2016/05/face-petroseal-copy-80x80.jpg"
                 alt="face-petroseal"
+                width={64}
+                height={64}
                 className="w-16 h-16 rounded-full mr-4"
               />
               <h3 className="text-2xl font-bold">40 years of experience…</h3>
@@ -179,7 +179,7 @@ export default function AboutUs() {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-4">
             {topImages.map((src, i) => (
               <div key={i} className="relative group cursor-pointer !h-48" data-aos="zoom-in" onClick={() => openModal(i)}>
-                <img src={src} alt={`Image ${i + 1}`} className="w-full h-full object-cover rounded-lg" />
+                <Image src={src} alt={`Image ${i + 1}`} layout="fill" objectFit="cover" className="rounded-lg" />
                 <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <p className="text-white text-lg font-bold">View Image</p>
                 </div>
@@ -189,7 +189,7 @@ export default function AboutUs() {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
             {bottomImages.map((src, i) => (
               <div key={i} className="relative group cursor-pointer !h-48" data-aos="zoom-in" onClick={() => openModal(i + 4)}>
-                <img src={src} alt={`Image ${i + 5}`} className="w-full h-full object-cover rounded-lg" />
+                <Image src={src} alt={`Image ${i + 5}`} layout="fill" objectFit="cover" className="rounded-lg" />
                 <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <p className="text-white text-lg font-bold">View Image</p>
                 </div>
