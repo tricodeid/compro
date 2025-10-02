@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { useLanguage } from '@/context/LanguageContext';
 import AboutPetroseal from '@/components/sections/AboutPetroseal';
 
-export default function ApplicationPage() {
+export default function ApplicationClientPage() {
   const { language } = useLanguage();
 
   const translations = {
@@ -98,90 +98,121 @@ export default function ApplicationPage() {
     <main className="font-sans">
       <Header />
       {/* HERO SECTION */}
-      <section className="relative h-[60vh] flex items-center justify-center bg-cover bg-center" style={{ backgroundImage: 'url(https://leaksealing.com/wp-content/uploads/2015/10/image-appilcateur.png)' }} data-aos="fade-in">
-        <div className="absolute inset-0 bg-blue-900 bg-opacity-70"></div>
-        <div className="relative z-10 text-center w-full flex flex-col items-center justify-center px-4">
-          <h1 className="text-3xl md:text-5xl font-bold text-white mb-6">{currentContent.heroTitle}</h1>
-          <p className="text-lg md:text-2xl text-white mb-8 max-w-2xl mx-auto">{currentContent.heroSubtitle}</p>
-          <div className="flex gap-4 justify-center">
-            <a href="#contact" className="bg-transparent border-2 border-white text-white px-6 py-2 rounded hover:bg-white hover:text-blue-900 transition">{currentContent.contactUs}</a>
-            <a href="#learn" className="bg-white text-blue-900 px-6 py-2 rounded hover:bg-blue-100 transition">{currentContent.learnMore}</a>
-          </div>
+      <section className="h-[60vh] bg-cover bg-center bg-no-repeat bg-fixed" style={{ backgroundImage: 'url(https://leaksealing.com/wp-content/uploads/2015/10/image-appilcateur.png)' }} data-aos="fade-in">
+        <div className="bg-[#2d5c88]/50 w-full h-full flex flex-col items-center justify-center text-center text-white p-4">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6" data-aos="fade-down">{currentContent.heroTitle}</h1>
+            <p className="text-base sm:text-xl md:text-2xl mb-8 max-w-2xl mx-auto" data-aos="fade-down" data-aos-delay="100">{currentContent.heroSubtitle}</p>
+            <div className="flex gap-4 justify-center" data-aos="fade-up" data-aos-delay="200">
+              <a href="#contact" className="bg-transparent border-2 border-white text-white px-6 py-2 rounded hover:bg-white hover:text-[#394959] transition">{currentContent.contactUs}</a>
+              <a href="#learn" className="bg-white text-[#394959] px-6 py-2 rounded hover:bg-[#2d5c88] transition">{currentContent.learnMore}</a>
+            </div>
         </div>
       </section>
 
       {/* EXPERIENCE & 4 FEATURES SECTION */}
-      <section className="py-16 bg-white text-[#222]" data-aos="fade-up">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-light text-center mb-10">{currentContent.experienceTitle}</h2>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-5xl mx-auto">
-            <div className="flex flex-col items-center text-center">
-              <div className="bg-gray-200 rounded-full w-14 h-14 flex items-center justify-center mb-2 text-2xl">✔️</div>
-              <h3 className="font-bold mb-1">{currentContent.feature1Title}</h3>
-              <p className="text-gray-600 text-sm">{currentContent.feature1Text}</p>
+      <section className="py-16 bg-white text-[#394959]" data-aos="fade-up">
+        <div className="container mx-auto px-4 py-10 rounded-lg">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-center mb-10" data-aos="zoom-in">{currentContent.experienceTitle}</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            {/* Left Column */}
+            <div className="flex flex-col gap-8">
+              <div className="flex items-start text-left gap-4" data-aos="fade-up" data-aos-delay="100">
+                <div className="bg-[#394959] rounded-full w-14 h-14 flex-shrink-0 flex items-center justify-center text-2xl text-white">✔️</div>
+                <div>
+                  <h3 className="font-bold mb-1 text-base sm:text-lg">{currentContent.feature1Title}</h3>
+                  <p className="text-sm">{currentContent.feature1Text}</p>
+                </div>
+              </div>
+              <div className="flex items-start text-left gap-4" data-aos="fade-up" data-aos-delay="300">
+                <div className="bg-[#394959] rounded-full w-14 h-14 flex-shrink-0 flex items-center justify-center text-2xl text-white">✔️</div>
+                <div>
+                  <h3 className="font-bold mb-1 text-base sm:text-lg">{currentContent.feature3Title}</h3>
+                  <p className="text-sm">{currentContent.feature3Text}</p>
+                </div>
+              </div>
             </div>
-            <div className="flex flex-col items-center text-center">
-              <div className="bg-gray-200 rounded-full w-14 h-14 flex items-center justify-center mb-2 text-2xl">🛠️</div>
-              <h3 className="font-bold mb-1">{currentContent.feature2Title}</h3>
-              <p className="text-gray-600 text-sm">{currentContent.feature2Text}</p>
-            </div>
-            <div className="flex flex-col items-center text-center">
-              <div className="bg-gray-200 rounded-full w-14 h-14 flex items-center justify-center mb-2 text-2xl">✔️</div>
-              <h3 className="font-bold mb-1">{currentContent.feature3Title}</h3>
-              <p className="text-gray-600 text-sm">{currentContent.feature3Text}</p>
-            </div>
-            <div className="flex flex-col items-center text-center">
-              <div className="bg-gray-200 rounded-full w-14 h-14 flex items-center justify-center mb-2 text-2xl">🤍</div>
-              <h3 className="font-bold mb-1">{currentContent.feature4Title}</h3>
-              <p className="text-gray-600 text-sm">{currentContent.feature4Text}</p>
+            {/* Right Column */}
+            <div className="flex flex-col gap-8">
+              <div className="flex items-start text-left gap-4" data-aos="fade-up" data-aos-delay="200">
+                <div className="bg-[#394959] rounded-full w-14 h-14 flex-shrink-0 flex items-center justify-center text-2xl text-white">🛠️</div>
+                <div>
+                  <h3 className="font-bold mb-1 text-base sm:text-lg">{currentContent.feature2Title}</h3>
+                  <p className="text-sm">{currentContent.feature2Text}</p>
+                </div>
+              </div>
+              <div className="flex items-start text-left gap-4" data-aos="fade-up" data-aos-delay="400">
+                <div className="bg-[#394959] rounded-full w-14 h-14 flex-shrink-0 flex items-center justify-center text-2xl text-white">🤍</div>
+                <div>
+                  <h3 className="font-bold mb-1 text-base sm:text-lg">{currentContent.feature4Title}</h3>
+                  <p className="text-sm">{currentContent.feature4Text}</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
+
+      {/* IMAGE BANNER SECTION */}
+      <section
+        className="h-64 bg-cover bg-center bg-no-repeat bg-scroll"
+        style={{
+          backgroundImage: 'url(https://leaksealing.com/wp-content/uploads/2016/05/Application-2e-photo-1030x773.jpg)',
+        }}
+        data-aos="fade-in"
+      ></section>
 
       {/* ADVANTAGES SECTION */}
       <section className="bg-white pb-0" data-aos="fade-up">
         <div className="w-full h-64 md:h-80 relative">
-          <Image src="https://leaksealing.com/wp-content/uploads/2015/10/image-appilcateur.png" alt="Workers" fill className="object-cover w-full h-full" />
+          <Image src="/application-advantage.jpg" alt="Workers" fill className="object-cover w-full h-full" />
           <div className="absolute inset-0 bg-gradient-to-t from-white via-white/80 to-transparent"></div>
         </div>
         <div className="container mx-auto px-4 -mt-24 md:-mt-32 relative z-10">
-          <h2 className="text-3xl md:text-4xl font-light text-center mb-10 mt-10">{currentContent.advantagesTitle}</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-8">
-            <div className="flex flex-col items-center text-center">
-              <div className="bg-gray-100 rounded-full w-16 h-16 flex items-center justify-center mb-2 text-2xl">🎓</div>
-              <h3 className="font-bold mb-1">{currentContent.advantage1Title}</h3>
-              <p className="text-gray-600 text-sm">{currentContent.advantage1Text}</p>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-center mb-10 mt-10 text-[#394959]" data-aos="zoom-in">{currentContent.advantagesTitle}</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-8">
+            <div className="flex flex-col items-center text-center" data-aos="fade-up" data-aos-delay="100">
+              <div className="bg-[#2d5c88] rounded-full w-16 h-16 flex items-center justify-center mb-2 text-2xl">🎓</div>
+              <h3 className="font-bold mb-1 text-base sm:text-lg text-[#394959]">{currentContent.advantage1Title}</h3>
+              <p className="text-[#394959] text-sm">{currentContent.advantage1Text}</p>
             </div>
-            <div className="flex flex-col items-center text-center">
-              <div className="bg-gray-100 rounded-full w-16 h-16 flex items-center justify-center mb-2 text-2xl">🛟</div>
-              <h3 className="font-bold mb-1">{currentContent.advantage2Title}</h3>
-              <p className="text-gray-600 text-sm">{currentContent.advantage2Text}</p>
+            <div className="flex flex-col items-center text-center" data-aos="fade-up" data-aos-delay="200">
+              <div className="bg-[#2d5c88] rounded-full w-16 h-16 flex items-center justify-center mb-2 text-2xl">🛟</div>
+              <h3 className="font-bold mb-1 text-base sm:text-lg text-[#394959]">{currentContent.advantage2Title}</h3>
+              <p className="text-[#394959] text-sm">{currentContent.advantage2Text}</p>
             </div>
-            <div className="flex flex-col items-center text-center">
-              <div className="bg-gray-100 rounded-full w-16 h-16 flex items-center justify-center mb-2 text-2xl">⚙️</div>
-              <h3 className="font-bold mb-1">{currentContent.advantage3Title}</h3>
-              <p className="text-gray-600 text-sm">{currentContent.advantage3Text}</p>
+            <div className="flex flex-col items-center text-center" data-aos="fade-up" data-aos-delay="300">
+              <div className="bg-[#2d5c88] rounded-full w-16 h-16 flex items-center justify-center mb-2 text-2xl">⚙️</div>
+              <h3 className="font-bold mb-1 text-base sm:text-lg text-[#394959]">{currentContent.advantage3Title}</h3>
+              <p className="text-[#394959] text-sm">{currentContent.advantage3Text}</p>
             </div>
           </div>
-          <p className="text-center text-gray-600 text-lg mb-8">{currentContent.advantageText}</p>
+          <p className="text-center text-[#394959] text-base sm:text-lg mb-8" data-aos="fade-up" data-aos-delay="400">{currentContent.advantageText}</p>
         </div>
       </section>
+
+      {/* IMAGE BANNER SECTION */}
+      <section
+        className="h-64 bg-cover bg-center"
+        style={{
+          backgroundImage: 'url(https://leaksealing.com/wp-content/uploads/2016/01/003.jpg)',
+        }}
+        data-aos="fade-in"
+      ></section>
 
       {/* HOW SECTION */}
       <section className="py-16 bg-white text-[#222]" data-aos="fade-up">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-light text-center mb-8">{currentContent.howTitle}</h2>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-center mb-8" data-aos="zoom-in">{currentContent.howTitle}</h2>
           <div className="max-w-3xl mx-auto">
-            <p className="mb-4">{currentContent.howText1}</p>
-            <ul className="list-disc list-inside mb-4 space-y-2">
-              <li>{currentContent.howList1}</li>
-              <li>{currentContent.howList2}</li>
-              <li>{currentContent.howList3}</li>
-              <li>{currentContent.howList4}</li>
-              <li>{currentContent.howList5}</li>
+            <p className="mb-4 text-base sm:text-lg" data-aos="fade-right">{currentContent.howText1}</p>
+            <ul className="list-disc list-inside mb-4 space-y-2" data-aos="fade-right">
+              <li className="text-base sm:text-lg" data-aos="fade-right" data-aos-delay="100">{currentContent.howList1}</li>
+              <li className="text-base sm:text-lg" data-aos="fade-right" data-aos-delay="200">{currentContent.howList2}</li>
+              <li className="text-base sm:text-lg" data-aos="fade-right" data-aos-delay="300">{currentContent.howList3}</li>
+              <li className="text-base sm:text-lg" data-aos="fade-right" data-aos-delay="400">{currentContent.howList4}</li>
+              <li className="text-base sm:text-lg" data-aos="fade-right" data-aos-delay="500">{currentContent.howList5}</li>
             </ul>
-            <p>{currentContent.howText2}</p>
+            <p className="text-base sm:text-lg" data-aos="fade-right" data-aos-delay="600">{currentContent.howText2}</p>
           </div>
         </div>
       </section>
@@ -189,20 +220,20 @@ export default function ApplicationPage() {
       {/* WHERE SECTION */}
       <section className="py-16 bg-white text-[#222]" data-aos="fade-up">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-light text-center mb-8">{currentContent.whereTitle}</h2>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-center mb-8" data-aos="zoom-in">{currentContent.whereTitle}</h2>
           <div className="max-w-5xl mx-auto mb-8">
-            <p className="mb-6"><span className="text-blue-800 font-bold">{currentContent.whereText1}</span> {currentContent.whereText2} <span className="italic">{currentContent.whereText3}</span>{currentContent.whereText4}</p>
+            <p className="mb-6 text-base sm:text-lg" data-aos="fade-right"><span className="text-[#394959] font-bold">{currentContent.whereText1}</span> {currentContent.whereText2} <span className="italic">{currentContent.whereText3}</span>{currentContent.whereText4}</p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-              <Image src="/application-where1.jpg" alt="Where 1" width={250} height={180} className="rounded object-cover w-full h-32 md:h-40" />
-              <Image src="/application-where2.jpg" alt="Where 2" width={250} height={180} className="rounded object-cover w-full h-32 md:h-40" />
-              <Image src="/application-where3.jpg" alt="Where 3" width={250} height={180} className="rounded object-cover w-full h-32 md:h-40" />
-              <Image src="/application-where4.jpg" alt="Where 4" width={250} height={180} className="rounded object-cover w-full h-32 md:h-40" />
+              <Image src="https://leaksealing.com/wp-content/uploads/2016/05/Formation-CSS-3-529x705.jpg" alt="Where 1" width={250} height={180} className="rounded object-cover w-full h-24 sm:h-32 md:h-40" data-aos="zoom-in" data-aos-delay="100" />
+              <Image src="https://leaksealing.com/wp-content/uploads/2016/05/IMG_0023.jpg" alt="Where 2" width={250} height={180} className="rounded object-cover w-full h-24 sm:h-32 md:h-40" data-aos="zoom-in" data-aos-delay="200" />
+              <Image src="https://leaksealing.com/wp-content/uploads/2016/05/IMG_0141.jpg" alt="Where 3" width={250} height={180} className="rounded object-cover w-full h-24 sm:h-32 md:h-40" data-aos="zoom-in" data-aos-delay="300" />
+              <Image src="https://leaksealing.com/wp-content/uploads/2016/05/IMG_0533.jpg" alt="Where 4" width={250} height={180} className="rounded object-cover w-full h-24 sm:h-32 md:h-40" data-aos="zoom-in" data-aos-delay="400" />
             </div>
-            <p className="mb-6"><span className="text-blue-800 font-bold">{currentContent.whereText5}</span> {currentContent.whereText6}</p>
-            <p>{currentContent.whereText7} <span className="text-blue-800 font-bold">+33 2 35 55 04 70</span> or fulfil our online form, below:</p>
+            <p className="mb-6 text-base sm:text-lg" data-aos="fade-left">{currentContent.whereText5} {currentContent.whereText6}</p>
+            <p className="text-base sm:text-lg" data-aos="fade-up" data-aos-delay="100">{currentContent.whereText7} <span className="text-[#394959] font-bold">+33 2 35 55 04 70</span> or fulfil our online form, below:</p>
           </div>
           <div className="flex justify-center">
-            <a href="#join" className="bg-blue-700 hover:bg-blue-800 text-white font-bold py-3 px-16 rounded text-lg transition">{currentContent.joinUs}</a>
+            <a href="#join" className="bg-[#394959] hover:bg-[#2c3a47] text-white font-bold py-3 px-16 rounded text-lg transition" data-aos="zoom-in" data-aos-delay="200">{currentContent.joinUs}</a>
           </div>
         </div>
       </section>

@@ -20,7 +20,7 @@ const ApplicationsBanner = () => {
   return (
     <section className="py-12 bg-blue-800 text-white" data-aos="fade-up">
       <div className="container mx-auto px-4 text-center">
-        <h2 className="text-3xl md:text-4xl font-bold text-white">{currentContent.title}</h2>
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white" data-aos="zoom-in">{currentContent.title}</h2>
       </div>
     </section>
   );

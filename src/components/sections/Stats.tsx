@@ -39,25 +39,25 @@ const Stats = () => {
   return (
     <section className="py-20 bg-gray-100" data-aos="fade-up">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">{currentContent.title}</h2>
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12" data-aos="zoom-in">{currentContent.title}</h2>
         <div className="flex flex-col md:flex-row items-center">
-          <div className="md:w-1/2">
+          <div className="md:w-1/2" data-aos="fade-right">
             <Image src="https://via.placeholder.com/600x400?text=World+Map" alt={currentContent.mapAlt} width={600} height={400} className="w-full h-auto rounded-md shadow-md" />
           </div>
           <div className="md:w-1/2 grid grid-cols-2 gap-8 mt-8 md:mt-0 md:ml-12">
-            <div className="text-center">
+            <div className="text-center" data-aos="fade-up" data-aos-delay="100">
               <p className="text-4xl md:text-5xl font-bold text-blue-800">{currentContent.stat1Value}</p>
               <p className="text-gray-700">{currentContent.stat1Label}</p>
             </div>
-            <div className="text-center">
+            <div className="text-center" data-aos="fade-up" data-aos-delay="200">
               <p className="text-4xl md:text-5xl font-bold text-blue-800">{currentContent.stat2Value}</p>
               <p className="text-gray-700">{currentContent.stat2Label}</p>
             </div>
-            <div className="text-center">
+            <div className="text-center" data-aos="fade-up" data-aos-delay="300">
               <p className="text-4xl md:text-5xl font-bold text-blue-800">{currentContent.stat3Value}</p>
               <p className="text-gray-700">{currentContent.stat3Label}</p>
             </div>
-            <div className="text-center">
+            <div className="text-center" data-aos="fade-up" data-aos-delay="400">
               <p className="text-4xl md:text-5xl font-bold text-blue-800">{currentContent.stat4Value}</p>
               <p className="text-gray-700">{currentContent.stat4Label}</p>
             </div>

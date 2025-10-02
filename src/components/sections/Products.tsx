@@ -230,7 +230,7 @@ const Products = () => {
       {/* HEADER & HERO SECTION */}
       <div className="container mx-auto px-4 py-16 md:py-24 flex flex-col md:flex-row items-center gap-12">
         {/* Product Image */}
-        <div className="flex-1 flex justify-center relative w-full h-80"> {/* Added relative, w-full, h-80 for carousel container */}
+        <div className="flex-1 flex justify-center relative w-full h-80" data-aos="fade-right"> {/* Added relative, w-full, h-80 for carousel container */}
           <Image
             src={carouselImages[currentCarouselIndex]}
             alt={currentContent.sealingCompoundCanAlt}
@@ -240,17 +240,17 @@ const Products = () => {
           />
         </div>
         {/* Text Content */}
-        <div className="flex-1">
-          <h1 className="text-3xl md:text-5xl font-bold mb-4 text-gray-800">{currentContent.title}</h1>
-          <p className="text-lg md:text-xl mb-2 text-gray-800">{currentContent.isoCertified}</p>
-          <div className="h-1 w-24 bg-white mb-6"></div>
-          <p className="text-lg mb-4 font-semibold text-gray-800">{currentContent.provenFormulations}</p>
-          <p className="text-2xl md:text-3xl font-bold mb-2 text-yellow-300">{currentContent.steamWaterAirAcids}</p>
-          <p className="text-2xl md:text-3xl font-bold mb-2 text-yellow-300">{currentContent.hydrocarbonsByproducts}</p>
-          <p className="mt-4 mb-2 text-gray-800">{currentContent.readyToBeInjected}</p>
-          <p className="text-gray-800 mb-6">{currentContent.halfPastyDescription}</p>
+        <div className="flex-1" data-aos="fade-left">
+          <h1 className="text-3xl md:text-5xl font-bold mb-4 text-gray-800" data-aos="fade-left">{currentContent.title}</h1>
+          <p className="text-lg md:text-xl mb-2 text-gray-800" data-aos="fade-left" data-aos-delay="100">{currentContent.isoCertified}</p>
+          <div className="h-1 w-24 bg-white mb-6" data-aos="zoom-in" data-aos-delay="200"></div>
+          <p className="text-lg mb-4 font-semibold text-gray-800" data-aos="fade-left" data-aos-delay="300">{currentContent.provenFormulations}</p>
+          <p className="text-2xl md:text-3xl font-bold mb-2 text-yellow-300" data-aos="fade-left" data-aos-delay="400">{currentContent.steamWaterAirAcids}</p>
+          <p className="text-2xl md:text-3xl font-bold mb-2 text-yellow-300" data-aos="fade-left" data-aos-delay="500">{currentContent.hydrocarbonsByproducts}</p>
+          <p className="mt-4 mb-2 text-gray-800" data-aos="fade-left" data-aos-delay="600">{currentContent.readyToBeInjected}</p>
+          <p className="text-gray-800 mb-6" data-aos="fade-left" data-aos-delay="700">{currentContent.halfPastyDescription}</p>
           {/* Specs */}
-          <div className="flex gap-8 mt-8">
+          <div className="flex gap-8 mt-8" data-aos="fade-up" data-aos-delay="800">
             <div className="flex flex-col items-center">
               <AnimatedCounter targetValue={-180} unit="o" suffix="C" />
               <span className="text-sm mt-1">{currentContent.minTemp}</span>
@@ -271,7 +271,7 @@ const Products = () => {
       {/* FEATURES & STICK IMAGE SECTION */}
       <div className="container mx-auto px-4 py-12 grid md:grid-cols-2 gap-12 items-center">
         {/* Blue stick image */}
-        <div className="flex justify-center">
+        <div className="flex justify-center" data-aos="fade-right">
           <Image
             src="https://leaksealing.com/wp-content/uploads/2016/01/gal002.png"
             alt={currentContent.sealingCompoundStickAlt}
@@ -281,22 +281,22 @@ const Products = () => {
           />
         </div>
         {/* Features List */}
-        <div className="space-y-8">
-          <div className="flex items-start gap-4">
+        <div className="space-y-8" data-aos="fade-left">
+          <div className="flex items-start gap-4" data-aos="fade-left" data-aos-delay="100">
             <span className="text-2xl">🔗</span>
             <div>
               <h3 className="font-bold text-lg">{currentContent.traceability}</h3>
               <p>{currentContent.traceabilityDescription}</p>
             </div>
           </div>
-          <div className="flex items-start gap-4">
+          <div className="flex items-start gap-4" data-aos="fade-left" data-aos-delay="200">
             <span className="text-2xl">📦</span>
             <div>
               <h3 className="font-bold text-lg">{currentContent.packagingShelfLife}</h3>
               <p>{currentContent.packagingShelfLifeDescription}</p>
             </div>
           </div>
-          <div className="flex items-start gap-4">
+          <div className="flex items-start gap-4" data-aos="fade-left" data-aos-delay="300">
             <span className="text-2xl">⏱️</span>
             <div>
               <h3 className="font-bold text-lg">{currentContent.availability}</h3>
@@ -309,15 +309,15 @@ const Products = () => {
       {/* STATISTICS SECTION */}
       <div className="bg-gray-100 py-8">
         <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-8 text-center text-gray-800">
-          <div>
+          <div data-aos="zoom-in" data-aos-delay="100">
             <div className="text-3xl font-bold">{currentContent.statsCansSoldValue}</div>
             <div className="text-sm">{currentContent.statsCansSold}</div>
           </div>
-          <div>
+          <div data-aos="zoom-in" data-aos-delay="200">
             <div className="text-3xl font-bold">{currentContent.statsEvery60SecondsValue}</div>
             <div className="text-sm">{currentContent.statsEvery60Seconds}</div>
           </div>
-          <div>
+          <div data-aos="zoom-in" data-aos-delay="300">
             <div className="text-3xl font-bold">{currentContent.statsCountriesServedValue}</div>
             <div className="text-sm">{currentContent.statsCountriesServed}</div>
           </div>
@@ -326,8 +326,8 @@ const Products = () => {
 
       {/* VIDEO PRODUCTION SECTION */}
       <div className="container mx-auto px-4 py-16">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 text-gray-800">{currentContent.productionTitle}</h2>
-        <p className="text-center max-w-3xl mx-auto mb-10 text-lg text-gray-800">{currentContent.productionDescription}</p>
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 text-gray-800" data-aos="zoom-in">{currentContent.productionTitle}</h2>
+        <p className="text-center max-w-3xl mx-auto mb-10 text-lg text-gray-800" data-aos="fade-up">{currentContent.productionDescription}</p>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {[
             { title: currentContent.weightControl, src: 'https://leaksealing.com/wp-content/uploads/2016/01/phase-1.jpg', youtubeLink: 'https://youtu.be/-PrdIpDYuhk' },
@@ -335,7 +335,7 @@ const Products = () => {
             { title: currentContent.printing, src: 'https://leaksealing.com/wp-content/uploads/2016/01/phase-3.jpg', youtubeLink: 'https://youtu.be/DMJWCpLe1vY' },
             { title: currentContent.labelling, src: 'https://leaksealing.com/wp-content/uploads/2016/01/phase-4.jpg', youtubeLink: 'https://youtu.be/GtO1HCZpRrI' },
           ].map((v, i) => (
-            <div key={i} className="flex flex-col items-center">
+            <div key={i} className="flex flex-col items-center" data-aos="fade-up" data-aos-delay={i * 100}>
               <a href={v.youtubeLink} target="_blank" rel="noopener noreferrer" className="relative w-full h-40 mb-2 block"> {/* Added <a> tag */}
                 <Image src={v.src} alt={v.title} width={220} height={120} className="rounded-lg object-cover w-full h-full" />
                 <div className="absolute inset-0 flex items-center justify-center">
@@ -352,8 +352,8 @@ const Products = () => {
 
       {/* INJECTION EQUIPMENT SECTION */}
       <div className="container mx-auto px-4 py-16">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 text-gray-800">{currentContent.injectionEquipmentTitle}</h2>
-        <p className="text-center max-w-3xl mx-auto mb-10 text-lg text-gray-800" dangerouslySetInnerHTML={{ __html: currentContent.injectionEquipmentDescription }} />
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 text-gray-800" data-aos="zoom-in">{currentContent.injectionEquipmentTitle}</h2>
+        <p className="text-center max-w-3xl mx-auto mb-10 text-lg text-gray-800" dangerouslySetInnerHTML={{ __html: currentContent.injectionEquipmentDescription }} data-aos="fade-up" />
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-8">
           {[
             { src: 'https://leaksealing.com/wp-content/uploads/2016/01/pompe-a-main-gif.png', alt: currentContent.handPump },
@@ -361,7 +361,7 @@ const Products = () => {
             { src: 'https://leaksealing.com/wp-content/uploads/2016/01/pompe2-low-res.png', alt: currentContent.pneumaticPump },
             { src: 'https://leaksealing.com/wp-content/uploads/2016/01/verin-4-batton-low-res.png', alt: currentContent.jack4Stick },
           ].map((e, i) => (
-            <div key={i} className="flex flex-col items-center">
+            <div key={i} className="flex flex-col items-center" data-aos="zoom-in" data-aos-delay={i * 100}>
               <Image src={e.src} alt={e.alt} width={300} height={200} className="rounded-lg object-contain bg-white p-2 mb-2" />
             </div>
           ))}
@@ -371,9 +371,9 @@ const Products = () => {
       {/* NEW IMAGE ROW BEFORE PREMOULDED SOLUTIONS */}
       <div className="container mx-auto px-4 py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="relative w-full h-[30rem] bg-cover bg-center rounded-lg shadow-lg" style={{ backgroundImage: 'url(https://leaksealing.com/wp-content/uploads/2016/01/gal001.png)' }}></div>
-          <div className="relative w-full h-[30rem] bg-cover bg-center rounded-lg shadow-lg" style={{ backgroundImage: 'url(https://leaksealing.com/wp-content/uploads/2016/01/gal002.png)' }}></div>
-          <div className="relative w-full h-[30rem] bg-cover bg-center rounded-lg shadow-lg" style={{ backgroundImage: 'url(https://leaksealing.com/wp-content/uploads/2016/01/gal004.png)' }}></div>
+          <div className="relative w-full h-[30rem] bg-cover bg-center rounded-lg shadow-lg" style={{ backgroundImage: 'url(https://leaksealing.com/wp-content/uploads/2016/01/gal001.png)' }} data-aos="zoom-in" data-aos-delay="100"></div>
+          <div className="relative w-full h-[30rem] bg-cover bg-center rounded-lg shadow-lg" style={{ backgroundImage: 'url(https://leaksealing.com/wp-content/uploads/2016/01/gal002.png)' }} data-aos="zoom-in" data-aos-delay="200"></div>
+          <div className="relative w-full h-[30rem] bg-cover bg-center rounded-lg shadow-lg" style={{ backgroundImage: 'url(https://leaksealing.com/wp-content/uploads/2016/01/gal004.png)' }} data-aos="zoom-in" data-aos-delay="300"></div>
         </div>
       </div>
 
@@ -381,15 +381,15 @@ const Products = () => {
       <div className="bg-white py-16">
         <div className="container mx-auto px-4 flex flex-col md:flex-row items-center gap-12 text-gray-800">
           {/* Images */}
-          <div className="flex-1 flex flex-col gap-4"> {/* Changed to flex-col for vertical stacking */}
-            <Image src="https://leaksealing.com/wp-content/uploads/2015/02/coude2-300x200.jpg" alt={currentContent.premouldedElbowAlt} width={300} height={200} className="rounded-lg object-contain bg-white p-2" />
-            <Image src="https://leaksealing.com/wp-content/uploads/2016/01/premoulded-elements-300x200.jpg" alt={currentContent.premouldedBoxAlt} width={300} height={200} className="rounded-lg object-contain bg-white p-2" />
-            <Image src="https://leaksealing.com/wp-content/uploads/2015/02/prem-coude-300x219.jpg" alt={currentContent.premouldedHexAlt} width={300} height={219} className="rounded-lg object-contain bg-white p-2" />
+          <div className="flex-1 flex flex-col gap-4" data-aos="fade-right">
+            <Image src="https://leaksealing.com/wp-content/uploads/2015/02/coude2-300x200.jpg" alt={currentContent.premouldedElbowAlt} width={300} height={200} className="rounded-lg object-contain bg-white p-2" data-aos="zoom-in" data-aos-delay="100" />
+            <Image src="https://leaksealing.com/wp-content/uploads/2016/01/premoulded-elements-300x200.jpg" alt={currentContent.premouldedBoxAlt} width={300} height={200} className="rounded-lg object-contain bg-white p-2" data-aos="zoom-in" data-aos-delay="200" />
+            <Image src="https://leaksealing.com/wp-content/uploads/2015/02/prem-coude-300x219.jpg" alt={currentContent.premouldedHexAlt} width={300} height={219} className="rounded-lg object-contain bg-white p-2" data-aos="zoom-in" data-aos-delay="300" />
           </div>
           {/* Text */}
-          <div className="flex-1">
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">{currentContent.premouldedSolutionsTitle}</h2>
-            <p className="mb-4" dangerouslySetInnerHTML={{ __html: currentContent.premouldedSolutionsDescription }} />
+          <div className="flex-1" data-aos="fade-left">
+            <h2 className="text-2xl md:text-3xl font-bold mb-4" data-aos="fade-left">{currentContent.premouldedSolutionsTitle}</h2>
+            <p className="mb-4" dangerouslySetInnerHTML={{ __html: currentContent.premouldedSolutionsDescription }} data-aos="fade-left" data-aos-delay="100" />
             <div className="flex gap-8 mb-4">
                           <div className="flex flex-col items-center">
                             <AnimatedCounter targetValue={160} unit="o" suffix="C" />
@@ -400,8 +400,8 @@ const Products = () => {
                             <span className="text-base font-bold">Bar</span>
                             <span className="text-sm mt-1">{currentContent.maxPressurePremoulded}</span>
                           </div>            </div>
-            <p className="mb-2">{currentContent.noInjectionDescription}</p>
-            <div className="flex gap-8">
+            <p className="mb-2" data-aos="fade-left" data-aos-delay="300">{currentContent.noInjectionDescription}</p>
+            <div className="flex gap-8" data-aos="fade-up" data-aos-delay="400">
               <div>
                 <span className="font-bold">{currentContent.elbowStandardSizes}</span><br />
                 {currentContent.elbowSizes}
@@ -418,9 +418,9 @@ const Products = () => {
       {/* CONTACT SECTION */}
       <div className="bg-white py-16">
         <div className="container mx-auto px-4 text-center text-gray-800">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">{currentContent.getTechnicalDocumentation}</h2>
-          <p className="mb-8">{currentContent.getTechnicalDocumentationDescription}</p>
-          <a href="#contact" className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded transition">{currentContent.contactUs}</a>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6" data-aos="zoom-in">{currentContent.getTechnicalDocumentation}</h2>
+          <p className="mb-8" data-aos="fade-up">{currentContent.getTechnicalDocumentationDescription}</p>
+          <a href="#contact" className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded transition" data-aos="zoom-in" data-aos-delay="200">{currentContent.contactUs}</a>
         </div>
       </div>
 

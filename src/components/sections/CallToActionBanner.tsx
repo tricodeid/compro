@@ -21,7 +21,7 @@ const CallToActionBanner = () => {
   return (
     <section className="py-16 bg-blue-800 text-white" data-aos="fade-up">
       <div className="container mx-auto px-4 text-center">
-        <Link href="/processes" className="text-3xl md:text-4xl font-bold">
+        <Link href="/processes" className="text-2xl sm:text-3xl md:text-4xl font-bold" data-aos="zoom-in">
           {currentContent.text}
         </Link>
       </div>

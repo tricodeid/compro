@@ -58,35 +58,35 @@ const AboutPetroseal = () => {
 
   return (
     <section className="bg-[#394959] text-white py-16" data-aos="fade-up">
-      <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
-        <div>
-          <h3 className="text-xl font-bold text-white mb-4">{currentContent.aboutPetroseal}</h3>
-          <p>{currentContent.aboutPetrosealDescription}</p>
+      <div className="container mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+        <div data-aos="fade-right">
+          <h3 className="text-lg sm:text-xl font-bold text-white mb-4">{currentContent.aboutPetroseal}</h3>
+          <p className="text-sm sm:text-base">{currentContent.aboutPetrosealDescription}</p>
         </div>
-        <div className="mt-8 md:mt-0">
-          <h3 className="text-xl font-bold text-white mb-4">{currentContent.petrosealAddress}</h3>
-          <p>{currentContent.petrosealAddressLine1}</p>
-          <p>{currentContent.petrosealAddressLine2}</p>
-          <p>{currentContent.petrosealAddressLine3}</p>
-          <p className="mt-4">{currentContent.petrosealTel}</p>
-          <p>{currentContent.petrosealFax}</p>
+        <div className="mt-8 md:mt-0" data-aos="fade-right" data-aos-delay="200">
+          <h3 className="text-lg sm:text-xl font-bold text-white mb-4">{currentContent.petrosealAddress}</h3>
+          <p className="text-sm sm:text-base">{currentContent.petrosealAddressLine1}</p>
+          <p className="text-sm sm:text-base">{currentContent.petrosealAddressLine2}</p>
+          <p className="text-sm sm:text-base">{currentContent.petrosealAddressLine3}</p>
+          <p className="mt-4 text-sm sm:text-base">{currentContent.petrosealTel}</p>
+          <p className="text-sm sm:text-base">{currentContent.petrosealFax}</p>
         </div>
-        <div className="mt-8 md:mt-0">
-          <h3 className="text-xl font-bold text-white mb-4">{currentContent.fidgiGroup}</h3>
-          <p>{currentContent.fidgiGroupAddressLine1}</p>
-          <p>{currentContent.fidgiGroupAddressLine2}</p>
-          <p>{currentContent.fidgiGroupAddressLine3}</p>
+        <div className="mt-8 md:mt-0" data-aos="fade-left" data-aos-delay="400">
+          <h3 className="text-lg sm:text-xl font-bold text-white mb-4">{currentContent.fidgiGroup}</h3>
+          <p className="text-sm sm:text-base">{currentContent.fidgiGroupAddressLine1}</p>
+          <p className="text-sm sm:text-base">{currentContent.fidgiGroupAddressLine2}</p>
+          <p className="text-sm sm:text-base">{currentContent.fidgiGroupAddressLine3}</p>
         </div>
-        <div className="mt-8 md:mt-0">
-          <h3 className="text-xl font-bold text-white mb-4">{currentContent.siteMap}</h3>
+        <div className="mt-8 md:mt-0" data-aos="fade-left" data-aos-delay="600">
+          <h3 className="text-lg sm:text-xl font-bold text-white mb-4">{currentContent.siteMap}</h3>
           <ul>
-            <li><Link href="/" className="hover:text-white">{currentContent.home}</Link></li>
-            <li><Link href="/processes" className="hover:text-white">{currentContent.processes}</Link></li>
-            <li><Link href="/products" className="hover:text-white">{currentContent.products}</Link></li>
-            <li><Link href="/application" className="hover:text-white">{currentContent.application}</Link></li>
-            <li><Link href="/about" className="hover:text-white">{currentContent.aboutUs}</Link></li>
-            <li><Link href="/contact" className="hover:text-white">{currentContent.contact}</Link></li>
-            <li><Link href="/blog" className="hover:text-white">{currentContent.blog}</Link></li>
+            <li><Link href="/" className="hover:text-white text-sm sm:text-base">{currentContent.home}</Link></li>
+            <li><Link href="/processes" className="hover:text-white text-sm sm:text-base">{currentContent.processes}</Link></li>
+            <li><Link href="/products" className="hover:text-white text-sm sm:text-base">{currentContent.products}</Link></li>
+            <li><Link href="/application" className="hover:text-white text-sm sm:text-base">{currentContent.application}</Link></li>
+            <li><Link href="/about" className="hover:text-white text-sm sm:text-base">{currentContent.aboutUs}</Link></li>
+            <li><Link href="/contact" className="hover:text-white text-sm sm:text-base">{currentContent.contact}</Link></li>
+            <li><Link href="/blog" className="hover:text-white text-sm sm:text-base">{currentContent.blog}</Link></li>
           </ul>
         </div>
       </div>

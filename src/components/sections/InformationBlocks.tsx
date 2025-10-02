@@ -34,28 +34,28 @@ const InformationBlocks = () => {
   return (
     <section className="py-16 bg-white" data-aos="fade-up">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div>
-            <h3 className="text-xl font-bold mb-2 text-black">{currentContent.fluidTitle}</h3>
-            <p className="text-gray-700">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-8">
+          <div data-aos="fade-right">
+            <h3 className="text-lg sm:text-xl md:text-xl font-bold mb-2 text-black">{currentContent.fluidTitle}</h3>
+            <p className="text-sm sm:text-base text-gray-700">
               {currentContent.fluidText}
             </p>
           </div>
-          <div>
-            <h3 className="text-xl font-bold mb-2 text-black">{currentContent.pressureTempTitle}</h3>
-            <p className="text-gray-700">
+          <div data-aos="fade-left">
+            <h3 className="text-lg sm:text-xl md:text-xl font-bold mb-2 text-black">{currentContent.pressureTempTitle}</h3>
+            <p className="text-sm sm:text-base text-gray-700">
               {currentContent.pressureTempText}
             </p>
           </div>
-          <div>
-            <h3 className="text-xl font-bold mb-2 text-black">{currentContent.equipmentsTitle}</h3>
-            <p className="text-gray-700">
+          <div data-aos="fade-right" data-aos-delay="200">
+            <h3 className="text-lg sm:text-xl md:text-xl font-bold mb-2 text-black">{currentContent.equipmentsTitle}</h3>
+            <p className="text-sm sm:text-base text-gray-700">
               {currentContent.equipmentsText}
             </p>
           </div>
-          <div>
-            <h3 className="text-xl font-bold mb-2 text-black">{currentContent.industriesTitle}</h3>
-            <p className="text-gray-700">
+          <div data-aos="fade-left" data-aos-delay="200">
+            <h3 className="text-lg sm:text-xl md:text-xl font-bold mb-2 text-black">{currentContent.industriesTitle}</h3>
+            <p className="text-sm sm:text-base text-gray-700">
               {currentContent.industriesText}
             </p>
           </div>

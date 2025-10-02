@@ -33,19 +33,19 @@ const Services = () => {
   return (
     <section className="py-20" data-aos="fade-up">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-12">{currentContent.title}</h2>
+        <h2 className="text-3xl font-bold text-center mb-12" data-aos="zoom-in">{currentContent.title}</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="text-center">
+          <div className="text-center" data-aos="fade-right" data-aos-delay="100">
             <div className="w-full h-48 bg-gray-300 rounded-md mb-4"></div>
             <h3 className="text-xl font-bold mb-2">{currentContent.onlineLeakSealingTitle}</h3>
             <p>{currentContent.onlineLeakSealingDescription}</p>
           </div>
-          <div className="text-center">
+          <div className="text-center" data-aos="fade-up" data-aos-delay="200">
             <div className="w-full h-48 bg-gray-300 rounded-md mb-4"></div>
             <h3 className="text-xl font-bold mb-2">{currentContent.compositeRepairTitle}</h3>
             <p>{currentContent.compositeRepairDescription}</p>
           </div>
-          <div className="text-center">
+          <div className="text-center" data-aos="fade-left" data-aos-delay="300">
             <div className="w-full h-48 bg-gray-300 rounded-md mb-4"></div>
             <h3 className="text-xl font-bold mb-2">{currentContent.hotTappingTitle}</h3>
             <p>{currentContent.hotTappingDescription}</p>

@@ -28,14 +28,14 @@ const Introduction = () => {
   return (
     <section id="introduction" className="py-20 bg-white" data-aos="fade-up">
       <div className="container mx-auto px-4 text-center">
-        <h2 className="text-4xl md:text-5xl font-light text-black mb-8">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-black mb-8" data-aos="zoom-in">
           {currentContent.title1_part1}
           <span className="text-[#394959]">{currentContent.title1_part2}</span>
           <br />
           <span className="text-[#394959]">{currentContent.title2_part1}</span>
           {currentContent.title2_part2}
         </h2>
-        <p className="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed font-light">
+        <p className="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed font-light" data-aos="fade-up" data-aos-delay="200">
           {currentContent.description}
         </p>
       </div>

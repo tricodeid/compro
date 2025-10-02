@@ -263,7 +263,7 @@ export default function Processes() {
       </section>
 
       {modalState.galleryId && (
-        <div className="fixed inset-0 bg-black bg-opacity-70 z-50 flex justify-center items-center" onClick={closeModal}>
+        <div className="fixed inset-0 bg-black/30 backdrop-blur-md z-[9999] flex justify-center items-center" onClick={closeModal}>
           <div className="relative max-w-4xl max-h-[90vh] w-full h-full flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
             <button onClick={closeModal} className="absolute top-4 right-4 w-12 h-12 flex items-center justify-center text-white text-2xl bg-black bg-opacity-30 rounded-full hover:bg-opacity-50 transition-all duration-300 ease-in-out hover:rotate-90 z-50 cursor-pointer" aria-label="Close">&times;</button>
             <button onClick={showPrevImage} className="absolute left-4 text-white text-4xl z-50 p-4 bg-black bg-opacity-30 rounded-full hover:bg-opacity-50 transition-all cursor-pointer" aria-label="Previous Image">&#10094;</button>

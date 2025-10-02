@@ -69,7 +69,7 @@ const DummyImageGrid = ({ galleryId, onImageClick }: { galleryId: GalleryId, onI
   return (
     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 mb-8">
       {images.map((src, i) => (
-        <div key={i} className="relative w-full h-48 cursor-pointer overflow-hidden rounded-md shadow-md group" onClick={() => onImageClick(galleryId, i)}>
+        <div key={i} className="relative w-full h-32 sm:h-40 md:h-48 cursor-pointer overflow-hidden rounded-md shadow-md group" onClick={() => onImageClick(galleryId, i)}>
           <Image 
             src={src} 
             alt={`${galleryId} Example ${i + 1}`} 
@@ -189,72 +189,72 @@ export default function ProcessesClientPage() {
   return (
     <main className="font-sans">
       <Header />
-      <section className="bg-[#394959] text-white py-20" data-aos="fade-in">
+      <section className="bg-[#394959] text-white py-12 sm:py-16 md:py-20" data-aos="fade-in">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-wide mb-4">{currentContent.pageTitle}</h1>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-wide mb-4" data-aos="fade-down">{currentContent.pageTitle}</h1>
         </div>
       </section>
 
-      <section className="bg-white text-[#394959] py-16" data-aos="fade-up">
+      <section className="bg-white text-[#394959] py-12 sm:py-16 md:py-20" data-aos="fade-up">
         <div className="container mx-auto px-4">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-center mb-2">{currentContent.gasketsSectionTitle}</h2>
-          <p className="text-xl md:text-2xl text-center text-gray-500 mb-6 font-light">{currentContent.gasketsSubtitle}</p>
-          <p className="text-base md:text-lg text-center text-white max-w-4xl mx-auto mb-10 font-light" dangerouslySetInnerHTML={{ __html: currentContent.gasketsDescription }} />
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-center mb-2" data-aos="zoom-in">{currentContent.gasketsSectionTitle}</h2>
+          <p className="text-lg sm:text-xl md:text-2xl text-center text-gray-500 mb-6 font-light" data-aos="fade-up" data-aos-delay="100">{currentContent.gasketsSubtitle}</p>
+          <p className="text-sm sm:text-base md:text-lg text-center text-white max-w-4xl mx-auto mb-10 font-light" dangerouslySetInnerHTML={{ __html: currentContent.gasketsDescription }} data-aos="fade-up" data-aos-delay="200" />
 
-          <h3 className="text-2xl md:text-3xl font-bold text-left mb-2 mt-12">{currentContent.stiffenersTitle}</h3>
-          <p className="text-lg md:text-xl text-left text-white mb-4 font-light">{currentContent.stiffenersDescription}</p>
-          <DummyImageGrid galleryId="stiffeners" onImageClick={openModal} />
+          <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-left mb-2 mt-12" data-aos="fade-right">{currentContent.stiffenersTitle}</h3>
+          <p className="text-base sm:text-lg md:text-xl text-left text-white mb-4 font-light" data-aos="fade-right" data-aos-delay="100">{currentContent.stiffenersDescription}</p>
+          <DummyImageGrid galleryId="stiffeners" onImageClick={openModal} data-aos="fade-up" />
 
-          <h3 className="text-2xl md:text-3xl font-bold text-left mb-2 mt-12">{currentContent.flatFaceFlangesTitle}</h3>
-          <p className="text-lg md:text-xl text-left text-white mb-4 font-light">{currentContent.flatFaceFlangesDescription}</p>
-          <DummyImageGrid galleryId="gasket" onImageClick={openModal} />
+          <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-left mb-2 mt-12" data-aos="fade-right">{currentContent.flatFaceFlangesTitle}</h3>
+          <p className="text-base sm:text-lg md:text-xl text-left text-white mb-4 font-light" data-aos="fade-right" data-aos-delay="100">{currentContent.flatFaceFlangesDescription}</p>
+          <DummyImageGrid galleryId="gasket" onImageClick={openModal} data-aos="fade-up" />
         </div>
       </section>
 
-      <section className="bg-white text-[#394959] py-16" data-aos="fade-up">
+      <section className="bg-white text-[#394959] py-12 sm:py-16 md:py-20" data-aos="fade-up">
         <div className="container mx-auto px-4">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-center mb-2">{currentContent.pipesSectionTitle}</h2>
-          <p className="text-xl md:text-2xl text-center text-gray-500 mb-6 font-light">{currentContent.pipesSubtitle}</p>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-center mb-2" data-aos="zoom-in">{currentContent.pipesSectionTitle}</h2>
+          <p className="text-lg sm:text-xl md:text-2xl text-center text-gray-500 mb-6 font-light" data-aos="fade-up" data-aos-delay="100">{currentContent.pipesSubtitle}</p>
 
-          <h3 className="text-2xl md:text-3xl font-bold text-left mb-2 mt-12">{currentContent.protectiveSleeveTitle}</h3>
-          <p className="text-lg md:text-xl text-left text-white mb-4 font-light">{currentContent.protectiveSleeveDescription}</p>
-          <DummyImageGrid galleryId="sleeve" onImageClick={openModal} />
+          <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-left mb-2 mt-12" data-aos="fade-right">{currentContent.protectiveSleeveTitle}</h3>
+          <p className="text-base sm:text-lg md:text-xl text-left text-white mb-4 font-light" data-aos="fade-right" data-aos-delay="100">{currentContent.protectiveSleeveDescription}</p>
+          <DummyImageGrid galleryId="sleeve" onImageClick={openModal} data-aos="fade-up" />
 
-          <h3 className="text-2xl md:text-3xl font-bold text-left mb-2 mt-12">{currentContent.backClampTitle}</h3>
-          <p className="text-lg md:text-xl text-left text-white mb-4 font-light">{currentContent.backClampDescription}</p>
-          <DummyImageGrid galleryId="backClamp" onImageClick={openModal} />
+          <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-left mb-2 mt-12" data-aos="fade-right">{currentContent.backClampTitle}</h3>
+          <p className="text-base sm:text-lg md:text-xl text-left text-white mb-4 font-light" data-aos="fade-right" data-aos-delay="100">{currentContent.backClampDescription}</p>
+          <DummyImageGrid galleryId="backClamp" onImageClick={openModal} data-aos="fade-up" />
         </div>
       </section>
 
-      <section className="bg-[#2d5c88] text-[#394959] py-16" data-aos="fade-up">
+      <section className="bg-[#2d5c88] text-[#394959] py-12 sm:py-16 md:py-20" data-aos="fade-up">
         <div className="container mx-auto px-4">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-center mb-2">{currentContent.premouldedBoxSectionTitle}</h2>
-          <p className="text-xl md:text-2xl text-center text-gray-500 mb-6 font-light">{currentContent.premouldedBoxSubtitle}</p>
-          <DummyImageGrid galleryId="premoulded" onImageClick={openModal} />
-          <p className="text-xl text-center text-white mt-4 font-light">{currentContent.premouldedBoxDescription}</p>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-center mb-2" data-aos="zoom-in">{currentContent.premouldedBoxSectionTitle}</h2>
+          <p className="text-lg sm:text-xl md:text-2xl text-center text-gray-500 mb-6 font-light" data-aos="fade-up" data-aos-delay="100">{currentContent.premouldedBoxSubtitle}</p>
+          <DummyImageGrid galleryId="premoulded" onImageClick={openModal} data-aos="fade-up" />
+          <p className="text-lg sm:text-xl text-center text-white mt-4 font-light" data-aos="fade-up" data-aos-delay="200">{currentContent.premouldedBoxDescription}</p>
         </div>
       </section>
 
-      <section className="bg-white text-[#394959] py-16" data-aos="fade-up">
+      <section className="bg-white text-[#394959] py-12 sm:py-16 md:py-20" data-aos="fade-up">
         <div className="container mx-auto px-4">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-center mb-2">{currentContent.valveGlandPackingsSectionTitle}</h2>
-          <p className="text-xl md:text-2xl text-center text-gray-500 mb-6 font-light">{currentContent.valveGlandPackingsSubtitle}</p>
-          <p className="text-xl text-center text-white mb-4 font-light">{currentContent.valveGlandPackingsDescription1}</p>
-          <p className="text-xl text-center text-white mb-4 font-light">{currentContent.valveGlandPackingsDescription2}</p>
-          <DummyImageGrid galleryId="valve" onImageClick={openModal} />
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-center mb-2" data-aos="zoom-in">{currentContent.valveGlandPackingsSectionTitle}</h2>
+          <p className="text-lg sm:text-xl md:text-2xl text-center text-gray-500 mb-6 font-light" data-aos="fade-up" data-aos-delay="100">{currentContent.valveGlandPackingsSubtitle}</p>
+          <p className="text-lg sm:text-xl text-center text-white mb-4 font-light" data-aos="fade-up" data-aos-delay="200">{currentContent.valveGlandPackingsDescription1}</p>
+          <p className="text-lg sm:text-xl text-center text-white mb-4 font-light" data-aos="fade-up" data-aos-delay="300">{currentContent.valveGlandPackingsDescription2}</p>
+          <DummyImageGrid galleryId="valve" onImageClick={openModal} data-aos="fade-up" />
         </div>
       </section>
 
-      <section className="bg-[#2d5c88] text-[#394959] py-16" data-aos="fade-up">
+      <section className="bg-[#2d5c88] text-[#394959] py-12 sm:py-16 md:py-20" data-aos="fade-up">
         <div className="container mx-auto px-4">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-center mb-2">{currentContent.staticDevicesSectionTitle}</h2>
-          <DummyImageGrid galleryId="static1" onImageClick={openModal} />
-          <DummyImageGrid galleryId="static2" onImageClick={openModal} />
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-center mb-2" data-aos="zoom-in">{currentContent.staticDevicesSectionTitle}</h2>
+          <DummyImageGrid galleryId="static1" onImageClick={openModal} data-aos="fade-up" />
+          <DummyImageGrid galleryId="static2" onImageClick={openModal} data-aos="fade-up" data-aos-delay="100" />
         </div>
       </section>
 
       {modalState.galleryId && (
-        <div className="fixed inset-0 bg-black bg-opacity-70 z-50 flex justify-center items-center" onClick={closeModal}>
+        <div className="fixed inset-0 bg-black/30 backdrop-blur-md z-[9999] flex justify-center items-center" onClick={closeModal}>
           <div className="relative max-w-4xl max-h-[90vh] w-full h-full flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
             <button onClick={closeModal} className="absolute top-4 right-4 w-12 h-12 flex items-center justify-center text-white text-2xl bg-black bg-opacity-30 rounded-full hover:bg-opacity-50 transition-all duration-300 ease-in-out hover:rotate-90 z-50 cursor-pointer" aria-label="Close">&times;</button>
             <button onClick={showPrevImage} className="absolute left-4 text-white text-4xl z-50 p-4 bg-black bg-opacity-30 rounded-full hover:bg-opacity-50 transition-all cursor-pointer" aria-label="Previous Image">&#10094;</button>

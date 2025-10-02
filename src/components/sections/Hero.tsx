@@ -36,17 +36,17 @@ const Hero = () => {
   const currentRotatingPhrase = rotatingPhrases[currentPhraseIndex][language];
 
   return (
-    <section className="bg-cover bg-center bg-no-repeat bg-fixed" style={{ backgroundImage: 'url(/images/9121424.jpg)' }}>
+    <section className="bg-cover" style={{ backgroundRepeat: 'no-repeat', backgroundImage: 'url(https://leaksealing.com/wp-content/uploads/2016/05/homeimage-1030x773.jpg)', backgroundAttachment: 'scroll', backgroundPosition: 'top left' }}>
       <div className="backdrop-blur-sm bg-black/30">
-        <div className="container mx-auto px-4 py-48 text-left flex flex-col items-start">
-          <h1 className="text-4xl md:text-6xl font-bold leading-tight text-white">
+        <div className="container mx-auto px-4 py-24 sm:py-32 md:py-48 text-left flex flex-col items-start">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-white" data-aos="fade-right">
             {currentContent.staticTitle} <span className="text-[#B8B880]">{currentRotatingPhrase}</span>
           </h1>
-          <div className="w-24 h-1 bg-white mt-4"></div>
-          <p className="mt-8 text-base md:text-lg max-w-2xl text-white" dangerouslySetInnerHTML={{ __html: currentContent.description }} />
+          <div className="w-24 h-1 bg-white mt-4" data-aos="fade-left"></div>
+          <p className="mt-8 text-base sm:text-md md:text-lg text-white" dangerouslySetInnerHTML={{ __html: currentContent.description }} data-aos="fade-up" />
           <div className="w-full flex justify-center mt-16">
             <a href="#introduction" className="animate-bounce text-white">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 sm:h-16 sm:w-16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
             </a>

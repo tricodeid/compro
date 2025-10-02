@@ -35,11 +35,11 @@ const CallToActionBlocks = () => {
   return (
     <section className="py-16 bg-white" data-aos="fade-up">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
           {/* Block 1 */}
-          <div className="bg-white p-6 rounded-lg shadow-md text-center">
-            <h3 className="text-xl font-bold mb-2">{currentContent.block1Title}</h3>
-            <p className="text-gray-700 mb-4">{currentContent.block1Text}</p>
+          <div className="bg-white p-6 rounded-lg shadow-md text-center" data-aos="fade-right" data-aos-delay="100">
+            <h3 className="text-lg sm:text-xl font-bold mb-2">{currentContent.block1Title}</h3>
+            <p className="text-sm sm:text-base text-gray-700 mb-4">{currentContent.block1Text}</p>
             <Link
               href="/learn-more"
               className="bg-blue-800 text-white font-bold py-2 px-4 rounded-md hover:bg-blue-700 transition-colors"
@@ -49,9 +49,9 @@ const CallToActionBlocks = () => {
           </div>
 
           {/* Block 2 */}
-          <div className="bg-white p-6 rounded-lg shadow-md text-center">
-            <h3 className="text-xl font-bold mb-2">{currentContent.block2Title}</h3>
-            <p className="text-gray-700 mb-4">{currentContent.block2Text}</p>
+          <div className="bg-white p-6 rounded-lg shadow-md text-center" data-aos="fade-up" data-aos-delay="200">
+            <h3 className="text-lg sm:text-xl font-bold mb-2">{currentContent.block2Title}</h3>
+            <p className="text-sm sm:text-base text-gray-700 mb-4">{currentContent.block2Text}</p>
             <Link
               href="/products"
               className="bg-blue-800 text-white font-bold py-2 px-4 rounded-md hover:bg-blue-700 transition-colors"
@@ -61,9 +61,9 @@ const CallToActionBlocks = () => {
           </div>
 
           {/* Block 3 */}
-          <div className="bg-white p-6 rounded-lg shadow-md text-center">
-            <h3 className="text-xl font-bold mb-2">{currentContent.block3Title}</h3>
-            <p className="text-gray-700 mb-4">{currentContent.block3Text}</p>
+          <div className="bg-white p-6 rounded-lg shadow-md text-center" data-aos="fade-left" data-aos-delay="300">
+            <h3 className="text-lg sm:text-xl font-bold mb-2">{currentContent.block3Title}</h3>
+            <p className="text-sm sm:text-base text-gray-700 mb-4">{currentContent.block3Text}</p>
             <Link
               href="/processes"
               className="bg-blue-800 text-white font-bold py-2 px-4 rounded-md hover:bg-blue-700 transition-colors"

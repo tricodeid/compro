@@ -39,22 +39,22 @@ const NewsEvents = () => {
   return (
     <section className="py-16 bg-white" data-aos="fade-up">
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-bold text-center mb-12">{currentContent.title}</h2>
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-12" data-aos="zoom-in">{currentContent.title}</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-          <div className="bg-gray-100 p-6 rounded-lg shadow-md transition-transform transform hover:scale-105">
-            <h3 className="text-xl font-bold mb-2 text-gray-800">{currentContent.news1Title}</h3>
+          <div className="bg-gray-100 p-6 rounded-lg shadow-md transition-transform transform hover:scale-105" data-aos="fade-right" data-aos-delay="100">
+            <h3 className="text-lg sm:text-xl font-bold mb-2 text-gray-800">{currentContent.news1Title}</h3>
             <p className="text-gray-600 text-sm mb-4">{currentContent.news1Date}</p>
-            <p className="text-gray-700">{currentContent.news1Description}</p>
+            <p className="text-sm sm:text-base text-gray-700">{currentContent.news1Description}</p>
           </div>
-          <div className="bg-gray-100 p-6 rounded-lg shadow-md transition-transform transform hover:scale-105">
-            <h3 className="text-xl font-bold mb-2 text-gray-800">{currentContent.news2Title}</h3>
+          <div className="bg-gray-100 p-6 rounded-lg shadow-md transition-transform transform hover:scale-105" data-aos="fade-up" data-aos-delay="200">
+            <h3 className="text-lg sm:text-xl font-bold mb-2 text-gray-800">{currentContent.news2Title}</h3>
             <p className="text-gray-600 text-sm mb-4">{currentContent.news2Date}</p>
-            <p className="text-gray-700">{currentContent.news2Description}</p>
+            <p className="text-sm sm:text-base text-gray-700">{currentContent.news2Description}</p>
           </div>
-          <div className="bg-gray-100 p-6 rounded-lg shadow-md transition-transform transform hover:scale-105">
-            <h3 className="text-xl font-bold mb-2 text-gray-800">{currentContent.news3Title}</h3>
+          <div className="bg-gray-100 p-6 rounded-lg shadow-md transition-transform transform hover:scale-105" data-aos="fade-left" data-aos-delay="300">
+            <h3 className="text-lg sm:text-xl font-bold mb-2 text-gray-800">{currentContent.news3Title}</h3>
             <p className="text-gray-600 text-sm mb-4">{currentContent.news3Date}</p>
-            <p className="text-gray-700">{currentContent.news3Description}</p>
+            <p className="text-sm sm:text-base text-gray-700">{currentContent.news3Description}</p>
           </div>
         </div>
       </div>

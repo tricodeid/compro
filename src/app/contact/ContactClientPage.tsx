@@ -46,28 +46,28 @@ export default function ContactClientPage() {
       <Header />
       <section className="bg-[#394959] text-white py-20" data-aos="fade-in">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-6xl font-light tracking-wide mb-4">{currentContent.pageTitle}</h1>
+          <h1 className="text-3xl sm:text-4xl md:text-6xl font-light tracking-wide mb-4" data-aos="fade-down">{currentContent.pageTitle}</h1>
         </div>
       </section>
       <section className="py-16 bg-white text-[#394959]" data-aos="fade-up">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-5xl font-light text-center mb-2">{currentContent.sectionTitle}</h2>
-          <p className="text-xl md:text-2xl text-center text-gray-500 mb-8 font-light">{currentContent.sectionSubtitle}</p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
-            <div>
-              <h2 className="text-2xl font-bold mb-2">{currentContent.contactInfoTitle}</h2>
-              <ul className="text-gray-700 text-lg">
+          <h2 className="text-2xl sm:text-3xl md:text-5xl font-light text-center mb-2" data-aos="zoom-in">{currentContent.sectionTitle}</h2>
+          <p className="text-lg sm:text-xl md:text-2xl text-center text-gray-500 mb-8 font-light" data-aos="fade-up" data-aos-delay="100">{currentContent.sectionSubtitle}</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-8 mt-12">
+            <div data-aos="fade-right" data-aos-delay="200">
+              <h2 className="text-xl sm:text-2xl font-bold mb-2">{currentContent.contactInfoTitle}</h2>
+              <ul className="text-gray-700 text-base sm:text-lg">
                 <li>{currentContent.contactAddress}</li>
                 <li>{currentContent.contactTel}</li>
                 <li>{currentContent.contactFax}</li>
               </ul>
             </div>
-            <div>
-              <h2 className="text-2xl font-bold mb-2">{currentContent.contactFormTitle}</h2>
+            <div data-aos="fade-left" data-aos-delay="300">
+              <h2 className="text-xl sm:text-2xl font-bold mb-2">{currentContent.contactFormTitle}</h2>
               <form className="space-y-4">
-                <input type="text" placeholder={currentContent.formNamePlaceholder} className="w-full border border-gray-300 rounded px-3 py-2" />
-                <input type="email" placeholder={currentContent.formEmailPlaceholder} className="w-full border border-gray-300 rounded px-3 py-2" />
-                <textarea placeholder={currentContent.formMessagePlaceholder} className="w-full border border-gray-300 rounded px-3 py-2" rows={4}></textarea>
+                <input type="text" placeholder={currentContent.formNamePlaceholder} className="w-full border border-gray-300 rounded px-3 py-2 text-base sm:text-lg" />
+                <input type="email" placeholder={currentContent.formEmailPlaceholder} className="w-full border border-gray-300 rounded px-3 py-2 text-base sm:text-lg" />
+                <textarea placeholder={currentContent.formMessagePlaceholder} className="w-full border border-gray-300 rounded px-3 py-2 text-base sm:text-lg" rows={4}></textarea>
                 <button type="submit" className="bg-[#394959] text-white px-6 py-2 rounded font-bold">{currentContent.formSubmitButton}</button>
               </form>
             </div>

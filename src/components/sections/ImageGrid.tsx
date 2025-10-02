@@ -89,12 +89,13 @@ const ImageGrid = () => {
   return (
     <section className="py-16 bg-[#f5f7fa]" data-aos="fade-up">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
           {images.map((src, i) => (
             <div 
                 key={i} 
-                className="relative w-full h-48 cursor-pointer overflow-hidden rounded-md shadow-md group"
+                className="relative w-full h-32 sm:h-40 md:h-48 cursor-pointer overflow-hidden rounded-md shadow-md group"
                 onClick={() => openModal(i)}
+                data-aos="zoom-in" data-aos-delay={i * 100}
               >
                 <Image 
                   src={src} 
@@ -111,7 +112,7 @@ const ImageGrid = () => {
 
       {modalOpen && (
         <div 
-          className="fixed inset-0 bg-black bg-opacity-70 z-50 flex justify-center items-center"
+          className="fixed inset-0 bg-black/30 backdrop-blur-md z-[9999] flex justify-center items-center"
           onClick={closeModal}
         >
           <div className="relative max-w-4xl max-h-[90vh] w-full h-full flex items-center justify-center" onClick={(e) => e.stopPropagation()}>

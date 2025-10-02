@@ -103,7 +103,7 @@ const Header = () => {
   return (
     <header className={`bg-white shadow-md sticky top-0 z-50 transition-all duration-300 ${isScrolled ? 'py-2' : 'py-4'}`}>
       <div className="container mx-auto px-4 flex justify-between items-center">
-        <div className={`transition-all duration-300 ${isScrolled ? 'w-40' : 'w-48'}`}>
+        <div className={`transition-all duration-300 ${isScrolled ? 'w-32 sm:w-40' : 'w-40 sm:w-48'}`}>
           <Link href="/">
             <Image
               src="https://leaksealing.com/wp-content/uploads/2016/11/logo-web.png"
@@ -116,17 +116,17 @@ const Header = () => {
         </div>
 
         {/* Desktop Menu */}
-        <nav className="hidden md:flex items-center space-x-4">
+        <nav className="hidden lg:flex items-center lg:space-x-6 xl:space-x-8">
           <ul className="flex space-x-4">
             {navLinks.map(link => (
-              <li key={link.href}><Link href={link.href} className="text-sm text-gray-600 hover:text-blue-800">{link.label}</Link></li>
+              <li key={link.href}><Link href={link.href} className="md:text-base text-gray-600 hover:text-blue-800">{link.label}</Link></li>
             ))}
           </ul>
           <LanguageSwitcher />
         </nav>
 
         {/* Mobile Menu Button */}
-        <div className="md:hidden flex items-center">
+        <div className="lg:hidden flex items-center">
           <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="z-50 text-gray-600 hover:text-blue-800 focus:outline-none">
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               {isMenuOpen ? (
@@ -140,11 +140,27 @@ const Header = () => {
       </div>
 
       {/* Mobile Side-Drawer Menu */}
-      <div className={`md:hidden fixed top-0 right-0 h-full bg-white shadow-lg z-40 transition-transform duration-300 ease-in-out w-64 ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
-        <nav className="mt-20 p-4">
-          <ul className="flex flex-col space-y-4">
+      <div className={`lg:hidden fixed top-0 right-0 h-full bg-white shadow-lg z-40 transition-transform duration-300 ease-in-out w-3/4 max-w-xs ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+        <div className="flex items-center justify-between p-4 border-b">
+          <Link href="/" onClick={() => setIsMenuOpen(false)}>
+            <Image
+              src="https://leaksealing.com/wp-content/uploads/2016/11/logo-web.png"
+              alt="Petroseal Logo"
+              width={120}
+              height={30}
+              priority
+            />
+          </Link>
+          <button onClick={() => setIsMenuOpen(false)} className="text-gray-600 hover:text-blue-800 focus:outline-none">
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+        <nav className="p-4">
+          <ul className="flex flex-col space-y-2">
             {navLinks.map(link => (
-              <li key={link.href}><Link href={link.href} className="text-lg text-gray-700 hover:text-blue-800" onClick={() => setIsMenuOpen(false)}>{link.label}</Link></li>
+              <li key={link.href}><Link href={link.href} className="block py-2 px-3 text-lg text-gray-700 hover:bg-gray-100 hover:text-blue-800 rounded-md transition-colors" onClick={() => setIsMenuOpen(false)}>{link.label}</Link></li>
             ))}
           </ul>
         </nav>
@@ -156,7 +172,7 @@ const Header = () => {
       {/* Backdrop Overlay */}
       {isMenuOpen && (
         <div 
-          className="md:hidden fixed inset-0 bg-black bg-opacity-50 z-30"
+          className="lg:hidden fixed inset-0 z-30 backdrop-blur-sm"
           onClick={() => setIsMenuOpen(false)}
         ></div>
       )}

@@ -65,19 +65,19 @@ const ClientLogosCarousel = () => {
   return (
     <section className="py-16 bg-[#f5f7fa]" data-aos="fade-up">
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-bold text-center mb-12 text-gray-800">{currentContent.title}</h2>
-        <div className="relative w-full overflow-hidden group">
-          <div className="flex w-max animate-marquee-grouped group-hover:pause-animation">
+        <h2 className="text-3xl sm:text-4xl font-bold text-center mb-12 text-gray-800" data-aos="zoom-in">{currentContent.title}</h2>
+        <div className="relative w-full overflow-hidden group" data-aos="fade-up">
+          <div className="flex w-max min-w-0 animate-marquee-grouped group-hover:pause-animation">
             {/* Render logos */}
             {logos.map((Logo, i) => (
-              <div key={i} className="mx-8 flex-shrink-0 opacity-75 hover:opacity-100 transition-opacity duration-300">
-                <Logo className="h-12 w-auto" />
+              <div key={i} className="mx-4 sm:mx-8 flex-shrink-0 opacity-75 hover:opacity-100 transition-opacity duration-300">
+                <Logo className="h-10 sm:h-12 md:h-16 w-auto" />
               </div>
             ))}
             {/* Duplicate logos for continuous scroll effect */}
             {logos.map((Logo, i) => (
-              <div key={i + logos.length} className="mx-8 flex-shrink-0 opacity-75 hover:opacity-100 transition-opacity duration-300">
-                <Logo className="h-12 w-auto" />
+              <div key={i + logos.length} className="mx-4 sm:mx-8 flex-shrink-0 opacity-75 hover:opacity-100 transition-opacity duration-300">
+                <Logo className="h-10 sm:h-12 md:h-16 w-auto" />
               </div>
             ))}
           </div>

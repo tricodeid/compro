@@ -22,8 +22,8 @@ const ProvenProcessesBanner = () => {
   return (
     <section className="py-12 bg-blue-800 text-white" data-aos="fade-up">
       <div className="container mx-auto px-4 text-center">
-        <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">{currentContent.title}</h2>
-        <p className="text-base md:text-xl text-white">{currentContent.subtitle}</p>
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4" data-aos="zoom-in">{currentContent.title}</h2>
+        <p className="text-base sm:text-lg md:text-xl text-white" data-aos="fade-up" data-aos-delay="200">{currentContent.subtitle}</p>
       </div>
     </section>
   );

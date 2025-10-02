@@ -32,10 +32,10 @@ const Clients = () => {
   return (
     <section className="py-16 bg-gray-100" data-aos="fade-up">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">{currentContent.title}</h2>
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12" data-aos="zoom-in">{currentContent.title}</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 items-center justify-items-center">
           {logos.map((src, i) => (
-            <Image key={i} src={src} alt={`${currentContent.clientLogoAlt} ${i + 1}`} width={128} height={128} className="w-32 h-32 object-contain" />
+            <Image key={i} src={src} alt={`${currentContent.clientLogoAlt} ${i + 1}`} width={128} height={128} className="w-32 h-32 object-contain" data-aos="fade-up" data-aos-delay={i * 100} />
           ))}
         </div>
       </div>

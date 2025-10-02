@@ -95,17 +95,18 @@ const Phases = () => {
   return (
     <section className="py-20 bg-white" data-aos="fade-up">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
           {phaseData.map((item, index) => (
-            <div key={index} className="text-center">
-              <div className="w-20 h-20 rounded-full bg-blue-800 text-white flex items-center justify-center text-3xl font-bold mx-auto mb-4">
+            <div key={index} className="text-center" data-aos="fade-up" data-aos-delay={index * 150}>
+              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-blue-800 text-white flex items-center justify-center text-2xl sm:text-3xl font-bold mx-auto mb-4" data-aos="zoom-in">
                 {item.phase}
               </div>
-              <h3 className="text-xl font-bold mb-2 text-black">{item.title}</h3>
-              <p className="text-gray-700 mb-4">{item.description}</p>
+              <h3 className="text-lg sm:text-xl font-bold mb-2 text-black">{item.title}</h3>
+              <p className="text-sm sm:text-base text-gray-700 mb-4">{item.description}</p>
               <div 
-                className="relative w-full h-48 cursor-pointer overflow-hidden rounded-md shadow-md group"
+                className="relative w-full h-32 sm:h-40 md:h-48 cursor-pointer overflow-hidden rounded-md shadow-md group"
                 onClick={() => openModal(index)}
+                data-aos="zoom-in" data-aos-delay={index * 150 + 100}
               >
                 <Image 
                   src={item.image} 
@@ -122,7 +123,7 @@ const Phases = () => {
 
       {modalOpen && (
         <div 
-          className="fixed inset-0 bg-black bg-opacity-70 z-50 flex justify-center items-center"
+          className="fixed inset-0 bg-black/30 backdrop-blur-md z-[9999] flex justify-center items-center"
           onClick={closeModal}
         >
           <div className="relative max-w-4xl max-h-[90vh] w-full h-full flex items-center justify-center" onClick={(e) => e.stopPropagation()}>

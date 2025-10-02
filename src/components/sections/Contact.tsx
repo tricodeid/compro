@@ -52,9 +52,9 @@ const Contact = () => {
   return (
     <section className="py-16 bg-gray-100" data-aos="fade-up">
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-bold text-center mb-12">{currentContent.title}</h2>
+        <h2 className="text-4xl font-bold text-center mb-12" data-aos="zoom-in">{currentContent.title}</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          <div className="bg-white p-8 rounded-lg shadow-md">
+          <div className="bg-white p-8 rounded-lg shadow-md" data-aos="fade-right">
             <h3 className="text-2xl font-bold mb-4">{currentContent.getInTouch}</h3>
             <p className="text-gray-700 mb-4">{currentContent.getInTouchDescription}</p>
             <p className="text-gray-700 mb-2"><strong>{currentContent.address}</strong> {currentContent.addressValue}</p>
@@ -62,7 +62,7 @@ const Contact = () => {
             <p className="text-gray-700 mb-4"><strong>{currentContent.email}</strong> {currentContent.emailValue}</p>
             <div className="w-full h-64 bg-gray-300 rounded-md flex items-center justify-center text-gray-600">{currentContent.mapPlaceholder}</div>
           </div>
-          <div className="bg-white p-8 rounded-lg shadow-md">
+          <div className="bg-white p-8 rounded-lg shadow-md" data-aos="fade-left">
             <form>
               <div className="mb-4">
                 <label htmlFor="name" className="block text-gray-700 text-sm font-bold mb-2">{currentContent.nameLabel}</label>
