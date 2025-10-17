@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { useState, useEffect, useCallback } from 'react';
+import TopBar from '@/components/layout/TopBar';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { useLanguage } from '@/context/LanguageContext';
@@ -89,6 +90,7 @@ export default function AboutUs() {
 
   return (
     <main className="font-sans">
+      <TopBar />
       <Header />
       <section className="bg-cover bg-center bg-no-repeat bg-fixed" style={{ backgroundImage: 'url(https://leaksealing.com/wp-content/uploads/2016/05/apropos-fond.jpg)' }}>
         <div className="bg-[#2d5c88]/50">

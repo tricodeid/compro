@@ -51,21 +51,21 @@ const Header = () => {
   const translations = {
     en: {
       home: 'Home',
-      processes: 'Processes',
-      products: 'Products',
-      application: 'Application',
-      aboutUs: 'About us',
-      contact: 'Contact',
-      blog: 'Blog',
+      coreBusiness: 'Our Core Business',
+      facilities: 'Facilities',
+      activities: 'Activities',
+      achievements: 'Achievements',
+      news: 'News',
+      contactUs: 'Contact Us',
     },
     id: {
       home: 'Beranda',
-      processes: 'Proses',
-      products: 'Produk',
-      application: 'Aplikasi',
-      aboutUs: 'Tentang Kami',
-      contact: 'Kontak',
-      blog: 'Blog',
+      coreBusiness: 'Bisnis Inti Kami',
+      facilities: 'Fasilitas',
+      activities: 'Aktivitas',
+      achievements: 'Pencapaian',
+      news: 'Berita',
+      contactUs: 'Hubungi Kami',
     },
   };
 
@@ -73,12 +73,12 @@ const Header = () => {
 
   const navLinks = [
     { href: '/', label: currentContent.home },
-    { href: '/processes', label: currentContent.processes },
-    { href: '/products', label: currentContent.products },
-    { href: '/application', label: currentContent.application },
-    { href: '/about-us', label: currentContent.aboutUs },
-    { href: '/contact', label: currentContent.contact },
-    { href: '/blog', label: currentContent.blog },
+    { href: '/core-business', label: currentContent.coreBusiness },
+    { href: '/facilities', label: currentContent.facilities },
+    { href: '/activities', label: currentContent.activities },
+    { href: '/achievements', label: currentContent.achievements },
+    { href: '/news', label: currentContent.news },
+    { href: '/contact-us', label: currentContent.contactUs },
   ];
 
   const LanguageSwitcher = () => (

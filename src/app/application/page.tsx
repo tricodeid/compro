@@ -1,5 +1,6 @@
 'use client';
 
+import TopBar from '@/components/layout/TopBar';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Image from 'next/image';
@@ -96,6 +97,7 @@ export default function ApplicationClientPage() {
 
   return (
     <main className="font-sans">
+      <TopBar />
       <Header />
       {/* HERO SECTION */}
       <section className="h-[60vh] bg-cover bg-center bg-no-repeat bg-fixed" style={{ backgroundImage: 'url(https://leaksealing.com/wp-content/uploads/2015/10/image-appilcateur.png)' }} data-aos="fade-in">

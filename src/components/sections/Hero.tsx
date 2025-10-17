@@ -1,57 +1,43 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 
 const Hero = () => {
   const { language } = useLanguage();
 
-  const rotatingPhrases = [
-    { en: 'SINCE 1974', id: 'SEJAK 1974' },
-    { en: 'PRODUCTS & ASSISTANCE', id: 'PRODUK & BANTUAN' },
-    { en: 'SAFETY and QUALITY', id: 'KESELAMATAN dan KUALITAS' },
-  ];
-
-  const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentPhraseIndex((prevIndex) => (prevIndex + 1) % rotatingPhrases.length);
-    }, 3000); // Change phrase every 3 seconds
-    return () => clearInterval(interval);
-  }, [rotatingPhrases.length]);
-
   const content = {
     en: {
-      staticTitle: 'INDUSTRIAL ON LINE LEAK SEALING',
-      description: 'Our job: <span class="font-bold">the repair of industrial leaks</span> without plant shutdown. Our company has been developing and designing products and procedures to fix – on line – any types of industrial leakages.',
+      title: 'ENGINEERING SERVICES WITH A GLOBAL REPUTATION',
+      subtitle: 'Constantly challenging ourselves to deliver more to our clients',
+      button: "LET'S GET STARTED",
     },
     id: {
-      staticTitle: 'PERBAIKAN KEBOCORAN INDUSTRI ONLINE',
-      description: 'Pekerjaan kami: <span class="font-bold">perbaikan kebocoran industri</span> tanpa mematikan pabrik. Perusahaan kami telah mengembangkan dan merancang produk dan prosedur untuk memperbaiki – secara on line – segala jenis kebocoran industri.',
+      title: 'LAYANAN TEKNIK DENGAN REPUTASI GLOBAL',
+      subtitle: 'Terus menantang diri kami untuk memberikan lebih banyak kepada klien kami',
+      button: 'MARI MULAI',
     },
   };
 
   const currentContent = content[language];
-  const currentRotatingPhrase = rotatingPhrases[currentPhraseIndex][language];
 
   return (
-    <section className="bg-cover" style={{ backgroundRepeat: 'no-repeat', backgroundImage: 'url(https://leaksealing.com/wp-content/uploads/2016/05/homeimage-1030x773.jpg)', backgroundAttachment: 'scroll', backgroundPosition: 'top left' }}>
-      <div className="backdrop-blur-sm bg-black/30">
-        <div className="container mx-auto px-4 py-24 sm:py-32 md:py-48 text-left flex flex-col items-start">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-white" data-aos="fade-right">
-            {currentContent.staticTitle} <span className="text-[#B8B880]">{currentRotatingPhrase}</span>
-          </h1>
-          <div className="w-24 h-1 bg-white mt-4" data-aos="fade-left"></div>
-          <p className="mt-8 text-base sm:text-md md:text-lg text-white" dangerouslySetInnerHTML={{ __html: currentContent.description }} data-aos="fade-up" />
-          <div className="w-full flex justify-center mt-16">
-            <a href="#introduction" className="animate-bounce text-white">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 sm:h-16 sm:w-16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </a>
-          </div>
-        </div>
+    <section className="relative bg-cover bg-center h-[600px]" style={{ backgroundImage: 'url(https://petroseal.com.my/wp-content/uploads/2015/02/HOMEPAGE_black.png)', maxWidth: '100%' }}>
+      <div className="absolute inset-0 bg-black/40"></div>
+      <div className="relative container mx-auto px-4 py-32 md:py-40 text-center flex flex-col items-center justify-center h-[600px]">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-white max-w-5xl" data-aos="fade-up">
+          {currentContent.title}
+        </h1>
+        <p className="mt-6 text-lg sm:text-xl md:text-2xl text-white max-w-3xl" data-aos="fade-up" data-aos-delay="100">
+          {currentContent.subtitle}
+        </p>
+        <button 
+          className="mt-10 px-10 py-4 bg-[#dc2626] hover:bg-[#b91c1c] text-white font-bold text-lg transition-colors duration-300"
+          data-aos="fade-up" 
+          data-aos-delay="200"
+        >
+          {currentContent.button}
+        </button>
       </div>
     </section>
   );

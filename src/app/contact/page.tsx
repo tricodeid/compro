@@ -1,5 +1,6 @@
 'use client';
 
+import TopBar from '@/components/layout/TopBar';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { useLanguage } from '@/context/LanguageContext';
@@ -43,6 +44,7 @@ export default function Contact() {
 
   return (
     <main className="font-sans">
+      <TopBar />
       <Header />
       <section className="bg-[#394959] text-white py-20" data-aos="fade-in">
         <div className="container mx-auto px-4 text-center">
