@@ -6,6 +6,17 @@ import Footer from '@/components/layout/Footer';
 import Image from 'next/image';
 import { useState, useRef } from 'react';
 
+// Type definitions for vendor-prefixed fullscreen methods
+interface DocumentWithFullscreen extends Document {
+  webkitExitFullscreen?: () => Promise<void>;
+  msExitFullscreen?: () => Promise<void>;
+}
+
+interface ElementWithFullscreen extends HTMLDivElement {
+  webkitRequestFullscreen?: () => Promise<void>;
+  msRequestFullscreen?: () => Promise<void>;
+}
+
 export default function CoreBusinessPage() {
   const [activeTab, setActiveTab] = useState<'malaysia' | 'indonesia' | 'vietnam'>('malaysia');
   const [modalOpen, setModalOpen] = useState(false);
@@ -45,26 +56,27 @@ export default function CoreBusinessPage() {
   };
 
   const enterFullscreen = () => {
-    const elem = modalRef.current;
+    const elem = modalRef.current as ElementWithFullscreen | null;
     if (elem) {
       if (elem.requestFullscreen) {
         elem.requestFullscreen();
-      } else if ((elem as any).webkitRequestFullscreen) {
-        (elem as any).webkitRequestFullscreen();
-      } else if ((elem as any).msRequestFullscreen) {
-        (elem as any).msRequestFullscreen();
+      } else if (elem.webkitRequestFullscreen) {
+        elem.webkitRequestFullscreen();
+      } else if (elem.msRequestFullscreen) {
+        elem.msRequestFullscreen();
       }
       setIsFullscreen(true);
     }
   };
 
   const exitFullscreen = () => {
+    const doc = document as DocumentWithFullscreen;
     if (document.exitFullscreen) {
       document.exitFullscreen();
-    } else if ((document as any).webkitExitFullscreen) {
-      (document as any).webkitExitFullscreen();
-    } else if ((document as any).msExitFullscreen) {
-      (document as any).msExitFullscreen();
+    } else if (doc.webkitExitFullscreen) {
+      doc.webkitExitFullscreen();
+    } else if (doc.msExitFullscreen) {
+      doc.msExitFullscreen();
     }
     setIsFullscreen(false);
   };
@@ -316,11 +328,15 @@ export default function CoreBusinessPage() {
             </button>
 
             {/* Main Image */}
-            <img 
-              src={images[currentImageIndex]} 
-              alt={`Mechanical Seal ${currentImageIndex + 1}`}
-              className="max-w-full max-h-full object-contain"
-            />
+            <div className="relative w-full h-full flex items-center justify-center">
+              <Image 
+                src={images[currentImageIndex]} 
+                alt={`Mechanical Seal ${currentImageIndex + 1}`}
+                width={1200}
+                height={900}
+                className="max-w-full max-h-full object-contain"
+              />
+            </div>
 
             {/* Next Button (Down Arrow) */}
             <button
@@ -351,10 +367,11 @@ export default function CoreBusinessPage() {
                     : 'border-transparent hover:border-gray-300'
                 }`}
               >
-                <img
+                <Image
                   src={src}
                   alt={`Thumbnail ${index + 1}`}
-                  className="w-full h-full object-cover"
+                  fill
+                  className="object-cover"
                 />
               </div>
             ))}

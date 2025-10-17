@@ -52,10 +52,10 @@ export default function ContactUsPage() {
             {/* Left Column - Let's Get Started */}
             <div className="text-white" data-aos="fade-right">
               <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                LET'S GET STARTED
+                LET&apos;S GET STARTED
               </h2>
               <p className="text-lg mb-8 italic leading-relaxed">
-                We're here to help answer your questions. Our experts are on hand to help inform you of every aspect regarding your topic. We take great pride in using our expertise for you and look forward to hearing from you.
+                We&apos;re here to help answer your questions. Our experts are on hand to help inform you of every aspect regarding your topic. We take great pride in using our expertise for you and look forward to hearing from you.
               </p>
               
               {/* Social Media Icons */}

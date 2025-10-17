@@ -106,7 +106,7 @@ export default function ProcessesClientPage() {
         setImageVisible(true);
       }, 300);
     }
-  }, [modalState.galleryId, modalState.index]);
+  }, [modalState.galleryId]);
 
   const showPrevImage = useCallback(() => {
     if (modalState.galleryId) {
@@ -117,7 +117,7 @@ export default function ProcessesClientPage() {
         setImageVisible(true);
       }, 300);
     }
-  }, [modalState.galleryId, modalState.index]);
+  }, [modalState.galleryId]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {

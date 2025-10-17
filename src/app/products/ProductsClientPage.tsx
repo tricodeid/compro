@@ -7,7 +7,7 @@ import Products from '@/components/sections/Products';
 import AboutPetroseal from '@/components/sections/AboutPetroseal';
 
 export default function ProductsClientPage() {
-  const { language } = useLanguage();
+  // const { language } = useLanguage();
 
   return (
     <main className="font-sans">
