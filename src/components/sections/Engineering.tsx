@@ -1,7 +1,19 @@
 'use client';
 
 import React, { useState, useRef } from 'react';
+import Image from 'next/image';
 import { useLanguage } from '@/context/LanguageContext';
+
+// Type definitions for vendor-prefixed fullscreen methods
+interface DocumentWithFullscreen extends Document {
+  webkitExitFullscreen?: () => Promise<void>;
+  msExitFullscreen?: () => Promise<void>;
+}
+
+interface ElementWithFullscreen extends HTMLDivElement {
+  webkitRequestFullscreen?: () => Promise<void>;
+  msRequestFullscreen?: () => Promise<void>;
+}
 
 const Engineering = () => {
   const { language } = useLanguage();
@@ -42,26 +54,27 @@ const Engineering = () => {
   };
 
   const enterFullscreen = () => {
-    const elem = modalRef.current;
+    const elem = modalRef.current as ElementWithFullscreen | null;
     if (elem) {
       if (elem.requestFullscreen) {
         elem.requestFullscreen();
-      } else if ((elem as any).webkitRequestFullscreen) {
-        (elem as any).webkitRequestFullscreen();
-      } else if ((elem as any).msRequestFullscreen) {
-        (elem as any).msRequestFullscreen();
+      } else if (elem.webkitRequestFullscreen) {
+        elem.webkitRequestFullscreen();
+      } else if (elem.msRequestFullscreen) {
+        elem.msRequestFullscreen();
       }
       setIsFullscreen(true);
     }
   };
 
   const exitFullscreen = () => {
+    const doc = document as DocumentWithFullscreen;
     if (document.exitFullscreen) {
       document.exitFullscreen();
-    } else if ((document as any).webkitExitFullscreen) {
-      (document as any).webkitExitFullscreen();
-    } else if ((document as any).msExitFullscreen) {
-      (document as any).msExitFullscreen();
+    } else if (doc.webkitExitFullscreen) {
+      doc.webkitExitFullscreen();
+    } else if (doc.msExitFullscreen) {
+      doc.msExitFullscreen();
     }
     setIsFullscreen(false);
   };
@@ -72,9 +85,11 @@ const Engineering = () => {
         <div className="flex flex-col items-center">
           {/* Image - Clickable */}
           <div className="w-full max-w-2xl mb-8 cursor-pointer" data-aos="fade-up" onClick={openModal}>
-            <img 
+            <Image 
               src="https://petroseal.com.my/wp-content/uploads/2019/01/oil.png" 
               alt="Engineering" 
+              width={800}
+              height={600}
               className="w-full h-auto object-cover rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
             />
           </div>
@@ -130,9 +145,11 @@ const Engineering = () => {
 
           {/* Image Container */}
           <div className="relative w-full h-full flex items-center justify-center p-8">
-            <img 
+            <Image 
               src="https://petroseal.com.my/wp-content/uploads/2019/01/oil.png" 
               alt="Engineering - Full View" 
+              width={1200}
+              height={900}
               className="max-w-full max-h-full object-contain shadow-2xl"
             />
           </div>
