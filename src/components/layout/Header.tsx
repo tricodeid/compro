@@ -3,34 +3,12 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useLanguage } from '@/context/LanguageContext';
 
-// SVG Flag Components
-const FlagUK = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30" {...props}>
-    <clipPath id="t">
-      <path d="M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z"/>
-    </clipPath>
-    <path d="M0,0 v30 h60 v-30 z" fill="#00247d"/>
-    <path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" strokeWidth="6"/>
-    <path d="M0,0 L60,30 M60,0 L0,30" clipPath="url(#t)" stroke="#cf142b" strokeWidth="4"/>
-    <path d="M30,0 v30 M0,15 h60" stroke="#fff" strokeWidth="10"/>
-    <path d="M30,0 v30 M0,15 h60" stroke="#cf142b" strokeWidth="6"/>
-  </svg>
-);
-
-const FlagID = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" {...props}>
-    <rect fill="#fff" width="900" height="600"/>
-    <rect fill="#ce1126" width="900" height="300"/>
-  </svg>
-);
 
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { language, setLanguage } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -48,68 +26,27 @@ const Header = () => {
     }
   }, [isMenuOpen]);
 
-  const translations = {
-    en: {
-      home: 'Home',
-      coreBusiness: 'Our Core Business',
-      facilities: 'Facilities',
-      activities: 'Activities',
-      achievements: 'Achievements',
-      news: 'News',
-      contactUs: 'Contact Us',
-    },
-    id: {
-      home: 'Beranda',
-      coreBusiness: 'Bisnis Inti Kami',
-      facilities: 'Fasilitas',
-      activities: 'Aktivitas',
-      achievements: 'Pencapaian',
-      news: 'Berita',
-      contactUs: 'Hubungi Kami',
-    },
-  };
-
-  const currentContent = translations[language];
-
   const navLinks = [
-    { href: '/', label: currentContent.home },
-    { href: '/core-business', label: currentContent.coreBusiness },
-    { href: '/facilities', label: currentContent.facilities },
-    { href: '/activities', label: currentContent.activities },
-    { href: '/achievements', label: currentContent.achievements },
-    { href: '/news', label: currentContent.news },
-    { href: '/contact-us', label: currentContent.contactUs },
+    { href: '/', label: 'Home' },
+    { href: '/core-business', label: 'Our Core Business' },
+    { href: '/facilities', label: 'Facilities' },
+    { href: '/activities', label: 'Activities' },
+    { href: '/achievements', label: 'Achievements' },
+    { href: '/news', label: 'News' },
+    { href: '/contact-us', label: 'Contact Us' },
   ];
 
-  const LanguageSwitcher = () => (
-    <div className="flex items-center space-x-3 ml-4 border-l pl-4">
-      <button 
-        onClick={() => setLanguage('en')} 
-        className={`cursor-pointer rounded-sm transition-all duration-200 ${language === 'en' ? 'ring-1 ring-blue-800' : 'opacity-60 hover:opacity-100'}`}
-        title="English"
-      >
-        <FlagUK className="w-8 h-auto" />
-      </button>
-      <button 
-        onClick={() => setLanguage('id')} 
-        className={`cursor-pointer rounded-sm transition-all duration-200 ${language === 'id' ? 'ring-1 ring-blue-800' : 'opacity-60 hover:opacity-100'}`}
-        title="Indonesia"
-      >
-        <FlagID className="w-8 h-auto" />
-      </button>
-    </div>
-  );
 
   return (
     <header className={`bg-white shadow-md sticky top-0 z-50 transition-all duration-300 ${isScrolled ? 'py-2' : 'py-4'}`}>
       <div className="container mx-auto px-4 flex justify-between items-center">
-        <div className={`transition-all duration-300 ${isScrolled ? 'w-32 sm:w-40' : 'w-40 sm:w-48'}`}>
+        <div className={`transition-all duration-300 ${isScrolled ? 'w-64 sm:w-72' : 'w-72 sm:w-80'}`}>
           <Link href="/">
             <Image
-              src="https://leaksealing.com/wp-content/uploads/2016/11/logo-web.png"
+              src="https://petroseal.com.my/wp-content/uploads/2019/01/complete-logo-1.png-small-1.png"
               alt="Petroseal Logo"
-              width={200}
-              height={50}
+              width={600}
+              height={300}
               priority
             />
           </Link>
@@ -117,12 +54,11 @@ const Header = () => {
 
         {/* Desktop Menu */}
         <nav className="hidden lg:flex items-center lg:space-x-6 xl:space-x-8">
-          <ul className="flex space-x-4">
+          <ul className="flex space-x-6">
             {navLinks.map(link => (
-              <li key={link.href}><Link href={link.href} className="md:text-base text-gray-600 hover:text-blue-800">{link.label}</Link></li>
+              <li key={link.href}><Link href={link.href} className="text-lg font-medium text-gray-700 hover:text-blue-800 transition-colors duration-200">{link.label}</Link></li>
             ))}
           </ul>
-          <LanguageSwitcher />
         </nav>
 
         {/* Mobile Menu Button */}
@@ -144,10 +80,10 @@ const Header = () => {
         <div className="flex items-center justify-between p-4 border-b">
           <Link href="/" onClick={() => setIsMenuOpen(false)}>
             <Image
-              src="https://leaksealing.com/wp-content/uploads/2016/11/logo-web.png"
+              src="https://petroseal.com.my/wp-content/uploads/2019/01/complete-logo-1.png-small-1.png"
               alt="Petroseal Logo"
-              width={120}
-              height={30}
+              width={300}
+              height={150}
               priority
             />
           </Link>
@@ -158,15 +94,12 @@ const Header = () => {
           </button>
         </div>
         <nav className="p-4">
-          <ul className="flex flex-col space-y-2">
+          <ul className="flex flex-col space-y-3">
             {navLinks.map(link => (
-              <li key={link.href}><Link href={link.href} className="block py-2 px-3 text-lg text-gray-700 hover:bg-gray-100 hover:text-blue-800 rounded-md transition-colors" onClick={() => setIsMenuOpen(false)}>{link.label}</Link></li>
+              <li key={link.href}><Link href={link.href} className="block py-3 px-4 text-xl font-medium text-gray-700 hover:bg-gray-100 hover:text-blue-800 rounded-md transition-colors" onClick={() => setIsMenuOpen(false)}>{link.label}</Link></li>
             ))}
           </ul>
         </nav>
-        <div className="absolute bottom-4 left-4 right-4 flex items-center justify-center pt-4 border-t">
-           <LanguageSwitcher />
-        </div>
       </div>
 
       {/* Backdrop Overlay */}

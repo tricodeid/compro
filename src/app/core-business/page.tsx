@@ -4,7 +4,7 @@ import TopBar from '@/components/layout/TopBar';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Image from 'next/image';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 // Type definitions for vendor-prefixed fullscreen methods
 interface DocumentWithFullscreen extends Document {
@@ -96,6 +96,23 @@ export default function CoreBusinessPage() {
     }
   };
 
+  // Keyboard navigation for modal
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!modalOpen) return;
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+        setCurrentImageIndex((prev) => (prev + 1) % images.length);
+      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+        setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
+      } else if (e.key === 'Escape') {
+        closeModal();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [modalOpen, images.length, closeModal]);
+
   const clients = {
     malaysia: [
       'PETRONAS CHEMICALS ETHYLENE',
@@ -162,16 +179,26 @@ export default function CoreBusinessPage() {
                 {images.map((src, index) => (
                   <div 
                     key={index} 
-                    className="relative w-full h-64 overflow-hidden rounded shadow-md cursor-pointer group"
+                    className="relative w-full h-64 overflow-hidden rounded shadow-md cursor-pointer group bg-gray-100"
                     data-aos="fade-up"
                     data-aos-delay={index * 100}
                     onClick={() => openModal(index)}
+                    style={{ minHeight: '256px', backgroundColor: '#f8f9fa' }}
                   >
                     <Image
                       src={src}
                       alt={`Mechanical Seal ${index + 1}`}
                       fill
+                      sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
                       className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      priority={index === 0}
+                      unoptimized
+                      onError={() => {
+                        console.log('Image failed to load:', src);
+                      }}
+                      onLoad={() => {
+                        console.log('Image loaded successfully:', src);
+                      }}
                     />
                     <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300"></div>
                   </div>
@@ -189,14 +216,19 @@ export default function CoreBusinessPage() {
                   PARTNER
                 </h2>
                 <div className="flex justify-center my-8">
-                  <div className="w-64 h-32 relative">
-                    <Image
-                      src="https://petroseal.com.my/wp-content/uploads/2019/01/Untitled-3-1.png"
-                      alt="Petroseal International Partner"
-                      fill
-                      className="object-contain"
-                    />
-                  </div>
+                  <Image
+                    src="https://petroseal.com.my/wp-content/uploads/2019/01/Untitled-3-1.png"
+                    alt="Petroseal International Partner"
+                    width={256}
+                    height={128}
+                    className="object-contain"
+                    style={{ width: 'auto', height: 'auto' }}
+                    unoptimized
+                    onError={() => {
+                      console.log('Partner logo failed to load');
+                    }}
+                    onLoad={() => console.log('Partner logo loaded successfully')}
+                  />
                 </div>
               </div>
 
@@ -328,15 +360,11 @@ export default function CoreBusinessPage() {
             </button>
 
             {/* Main Image */}
-            <div className="relative w-full h-full flex items-center justify-center">
-              <Image 
-                src={images[currentImageIndex]} 
-                alt={`Mechanical Seal ${currentImageIndex + 1}`}
-                width={1200}
-                height={900}
-                className="max-w-full max-h-full object-contain"
-              />
-            </div>
+            <img 
+              src={images[currentImageIndex]} 
+              alt={`Mechanical Seal ${currentImageIndex + 1}`}
+              className="max-w-full max-h-full object-contain"
+            />
 
             {/* Next Button (Down Arrow) */}
             <button
@@ -367,11 +395,10 @@ export default function CoreBusinessPage() {
                     : 'border-transparent hover:border-gray-300'
                 }`}
               >
-                <Image
+                <img
                   src={src}
                   alt={`Thumbnail ${index + 1}`}
-                  fill
-                  className="object-cover"
+                  className="w-full h-full object-cover"
                 />
               </div>
             ))}
