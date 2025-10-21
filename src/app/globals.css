@@ -45,3 +45,148 @@ body {
   animation: marquee-grouped 20s linear infinite;
   white-space: nowrap;
 }
+
+/* Contact Us Page Styling */
+.tfs-slider {
+  position: relative;
+  overflow: hidden;
+}
+
+.tfs-slider .slides {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tfs-slider .slides li {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.slide-content-container {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slide-content {
+  text-align: center;
+  max-width: 800px;
+  padding: 0 20px;
+}
+
+.fusion-title {
+  margin: 0;
+}
+
+.fusion-separator {
+  border-top: 1px solid;
+}
+
+.fusion-social-links {
+  margin-top: 20px;
+}
+
+.fusion-social-networks-wrapper {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.fusion-social-network-icon {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.fusion-social-network-icon:hover {
+  opacity: 0.8;
+  transform: translateY(-2px);
+}
+
+.wpcf7-form {
+  color: #fff;
+}
+
+.wpcf7-form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.wpcf7-form-control {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #fff;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.wpcf7-form-control:focus {
+  outline: none;
+  border-color: #d61d1b;
+  box-shadow: 0 0 5px rgba(214, 29, 27, 0.3);
+}
+
+.wpcf7-submit {
+  background: #d61d1b;
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: background 0.3s ease;
+}
+
+.wpcf7-submit:hover {
+  background: #b91c1c;
+}
+
+.fusion-one-half {
+  width: 48%;
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 4%;
+}
+
+.fusion-column-last {
+  margin-right: 0;
+}
+
+@media (max-width: 768px) {
+  .fusion-one-half {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 15px;
+  }
+}
+
+/* Ensure background images are visible */
+section[style*="background-image"] {
+  background-attachment: scroll !important;
+}
+
+/* Fix for background image display */
+.relative {
+  background-attachment: scroll;
+}
+
+/* Ensure proper background rendering */
+.bg-cover {
+  background-attachment: scroll !important;
+}

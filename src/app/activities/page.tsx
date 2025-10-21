@@ -117,9 +117,15 @@ export default function ActivitiesPage() {
                   onError={() => handleImageError(index)}
                 />
                 <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
-                  <span className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-lg font-semibold">
-                    View Image
-                  </span>
+                  <Image
+                    src={getImageSrc(index)}
+                    alt={`Activity ${index + 1}`}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw"
+                    className="object-cover transition-transform duration-300 group-hover:scale-110"
+                    priority={index < 4}
+                    unoptimized
+                  />
                 </div>
               </div>
             ))}

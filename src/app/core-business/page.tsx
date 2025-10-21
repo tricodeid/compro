@@ -4,6 +4,7 @@ import TopBar from '@/components/layout/TopBar';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Image from 'next/image';
+
 import { useState, useRef, useEffect } from 'react';
 
 // Type definitions for vendor-prefixed fullscreen methods
@@ -192,7 +193,6 @@ export default function CoreBusinessPage() {
                       sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
                       className="object-cover group-hover:scale-105 transition-transform duration-300"
                       priority={index === 0}
-                      unoptimized
                       onError={() => {
                         console.log('Image failed to load:', src);
                       }}
@@ -200,7 +200,16 @@ export default function CoreBusinessPage() {
                         console.log('Image loaded successfully:', src);
                       }}
                     />
-                    <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300"></div>
+                    <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300">
+                      <Image
+                        src={src}
+                        alt={`Mechanical Seal ${index + 1}`}
+                        fill
+                        sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
+                        className="object-cover group-hover:scale-105 transition-transform duration-300"
+                        priority={index === 0}
+                      />
+                    </div>
                   </div>
                 ))}
               </div>
@@ -223,7 +232,6 @@ export default function CoreBusinessPage() {
                     height={128}
                     className="object-contain"
                     style={{ width: 'auto', height: 'auto' }}
-                    unoptimized
                     onError={() => {
                       console.log('Partner logo failed to load');
                     }}

@@ -7,7 +7,7 @@ import { LoadingProvider } from "@/context/LoadingContext";
 import LoaderOverlay from "@/components/LoaderOverlay";
 import { RouteChangeListener } from "@/components/RouteChangeListener";
 import { Suspense } from 'react'; // Import Suspense
-import ScrollToTopButton from "@/components/ui/ScrollToTopButton";
+// import ScrollToTopButton from "@/components/ui/ScrollToTopButton";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -45,7 +45,7 @@ export default function RootLayout({
           <AOSProvider>
             <LanguageProvider>{children}</LanguageProvider>
           </AOSProvider>
-          <ScrollToTopButton />
+          {/* <ScrollToTopButton /> */}
         </LoadingProvider>
       </body>
     </html>

@@ -119,9 +119,15 @@ export default function AchievementsPage() {
                     onError={() => handleImageError(index)}
                   />
                   <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center">
-                    <span className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-lg font-semibold">
-                      View
-                    </span>
+                    <Image
+                      src={getImageSrc(index)}
+                      alt={`Achievement ${index + 1}`}
+                      fill
+                      sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
+                      className="object-cover transition-transform duration-300 group-hover:scale-105"
+                      priority={index < 4}
+                      unoptimized
+                    />
                   </div>
                 </div>
               </div>
