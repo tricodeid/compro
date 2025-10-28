@@ -24,8 +24,16 @@ export default function CoreBusinessPage() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [imageKey, setImageKey] = useState(0);
   const modalRef = useRef<HTMLDivElement | null>(null);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const thumbnailRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const thumbnailContainerRef = useRef<HTMLDivElement | null>(null);
+
+  // Trigger fade animation when image changes
+  useEffect(() => {
+    setImageKey(prev => prev + 1);
+  }, [currentImageIndex]);
 
   const images = [
     'https://petroseal.com.my/wp-content/uploads/2019/01/mech1.png',
@@ -114,6 +122,39 @@ export default function CoreBusinessPage() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [modalOpen, images.length, closeModal]);
 
+  // Auto-scroll thumbnail sidebar to center active thumbnail
+  useEffect(() => {
+    if (!modalOpen || !thumbnailRefs.current[currentImageIndex] || !thumbnailContainerRef.current) return;
+
+    const thumbnailContainer = thumbnailContainerRef.current;
+    const thumbnail = thumbnailRefs.current[currentImageIndex];
+    
+    if (!thumbnail || !thumbnailContainer) return;
+
+    const containerHeight = thumbnailContainer.clientHeight;
+    const thumbnailHeight = thumbnail.clientHeight;
+    
+    // Get the scroll position of the container
+    const containerScrollTop = thumbnailContainer.scrollTop;
+    const thumbnailTop = thumbnail.offsetTop;
+    
+    // Calculate where the thumbnail is currently positioned
+    const thumbnailVisibleTop = thumbnailTop - containerScrollTop;
+    
+    // Calculate center position in the visible area
+    const thumbnailCenter = thumbnailVisibleTop + (thumbnailHeight / 2);
+    const containerCenter = containerHeight / 2;
+    
+    // Calculate how much we need to scroll to center the thumbnail
+    const scrollOffset = thumbnailCenter - containerCenter;
+    const newScrollPosition = containerScrollTop + scrollOffset;
+    
+    thumbnailContainer.scrollTo({
+      top: newScrollPosition,
+      behavior: 'smooth'
+    });
+  }, [currentImageIndex, modalOpen]);
+
   const clients = {
     malaysia: [
       'PETRONAS CHEMICALS ETHYLENE',
@@ -147,18 +188,21 @@ export default function CoreBusinessPage() {
       'FPG OLEOCHEMICALS SDN BHD',
     ],
     indonesia: [
-      'PT PERTAMINA (PERSERO)',
-      'PT CHANDRA ASRI PETROCHEMICAL',
-      'PT PUPUK KALTIM',
-      'PT BADAK NGL',
-      'PT INDO ACIDATAMA',
+      'CONOCOPHILLIPS',
+      'MEDCO OFFSHORE NATUNA',
+      'TITIS SAMPURNA',
     ],
     vietnam: [
-      'PETROVIETNAM',
-      'VIETSOVPETRO',
-      'BINH SON REFINERY',
-      'NGHI SON REFINERY',
-      'PV GAS',
+      'VIETSO PETROL',
+      'PTSC PS-FPSO RUBY II',
+      'PV TRANS',
+      'DAIHUNG OFFSHORE',
+      'PVD DRILLING',
+      'VARD SHIPYARD',
+      'STRATEGIC MARINE',
+      'PIRIOU SHIPYARD',
+      'PC SHIPYARD',
+      'DAMEN SHIPYARD',
     ],
   };
 
@@ -241,7 +285,7 @@ export default function CoreBusinessPage() {
               </div>
 
               {/* Client List Section */}
-              <div className="border-t-4 border-[#dc2626] pt-6" data-aos="fade-left" data-aos-delay="200">
+              <div className="pt-6" data-aos="fade-left" data-aos-delay="200">
                 <h3 className="text-xl md:text-2xl font-bold text-[#3a4a5c] mb-4">
                   Client List
                 </h3>
@@ -250,33 +294,42 @@ export default function CoreBusinessPage() {
                 <div className="flex gap-2 mb-6">
                   <button
                     onClick={() => setActiveTab('malaysia')}
-                    className={`px-4 py-2 text-sm font-medium transition-colors ${
+                    className={`px-4 py-2 text-sm font-medium transition-colors relative cursor-pointer ${
                       activeTab === 'malaysia'
-                        ? 'bg-[#3a4a5c] text-white'
+                        ? 'bg-gray-200 text-gray-700'
                         : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
                     }`}
                   >
                     MALAYSIA
+                    {activeTab === 'malaysia' && (
+                      <div className="absolute -top-1 left-0 right-0 h-1 bg-[#dc2626]"></div>
+                    )}
                   </button>
                   <button
                     onClick={() => setActiveTab('indonesia')}
-                    className={`px-4 py-2 text-sm font-medium transition-colors ${
+                    className={`px-4 py-2 text-sm font-medium transition-colors relative cursor-pointer ${
                       activeTab === 'indonesia'
-                        ? 'bg-[#3a4a5c] text-white'
+                        ? 'bg-gray-200 text-gray-700'
                         : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
                     }`}
                   >
                     INDONESIA
+                    {activeTab === 'indonesia' && (
+                      <div className="absolute -top-1 left-0 right-0 h-1 bg-[#dc2626]"></div>
+                    )}
                   </button>
                   <button
                     onClick={() => setActiveTab('vietnam')}
-                    className={`px-4 py-2 text-sm font-medium transition-colors ${
+                    className={`px-4 py-2 text-sm font-medium transition-colors relative cursor-pointer ${
                       activeTab === 'vietnam'
-                        ? 'bg-[#3a4a5c] text-white'
+                        ? 'bg-gray-200 text-gray-700'
                         : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
                     }`}
                   >
                     VIETNAM
+                    {activeTab === 'vietnam' && (
+                      <div className="absolute -top-1 left-0 right-0 h-1 bg-[#dc2626]"></div>
+                    )}
                   </button>
                 </div>
 
@@ -355,7 +408,7 @@ export default function CoreBusinessPage() {
           </div>
 
           {/* Main Content Area */}
-          <div className="flex-1 flex items-center justify-center p-8 relative">
+          <div className="flex-1 flex items-center justify-center relative p-8">
             {/* Previous Button (Up Arrow) */}
             <button
               onClick={() => setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length)}
@@ -367,11 +420,13 @@ export default function CoreBusinessPage() {
               </svg>
             </button>
 
-            {/* Main Image */}
+            {/* Main Image with fade animation */}
             <img 
+              key={imageKey}
               src={images[currentImageIndex]} 
               alt={`Mechanical Seal ${currentImageIndex + 1}`}
-              className="max-w-full max-h-full object-contain"
+              className="max-w-[calc(100%-12rem)] max-h-full object-contain animate-[fadeInDown_0.5s_ease-out]"
+              style={{ maxWidth: '75%' }}
             />
 
             {/* Next Button (Down Arrow) */}
@@ -386,28 +441,37 @@ export default function CoreBusinessPage() {
             </button>
 
             {/* Image Counter */}
-            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/70 text-white px-4 py-2 rounded-full text-sm font-medium">
+            <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 bg-black/70 text-white px-4 py-2 rounded-full text-sm font-medium">
               {currentImageIndex + 1} / {images.length}
             </div>
           </div>
 
           {/* Thumbnail Sidebar - Right */}
-          <div className="w-48 bg-gray-100 p-4 overflow-y-auto flex flex-col gap-3">
+          <div ref={thumbnailContainerRef} className="w-52 bg-gray-100 overflow-y-auto flex flex-col gap-3 px-2" style={{ height: '100%', paddingTop: 'calc(50vh - 240px)', paddingBottom: 'calc(50vh - 240px)' }}>
             {images.map((src, index) => (
               <div
                 key={index}
+                ref={(el) => {
+                  if (thumbnailRefs.current) {
+                    thumbnailRefs.current[index] = el;
+                  }
+                }}
                 onClick={() => setCurrentImageIndex(index)}
-                className={`relative w-full h-28 cursor-pointer rounded overflow-hidden border-2 transition-all ${
+                className={`relative w-full cursor-pointer rounded overflow-hidden border-[3px] transition-all ${
                   currentImageIndex === index 
                     ? 'border-blue-500 shadow-lg' 
                     : 'border-transparent hover:border-gray-300'
                 }`}
+                style={{ width: '100%', paddingBottom: '100%', position: 'relative', height: 0 }}
               >
-                <img
-                  src={src}
-                  alt={`Thumbnail ${index + 1}`}
-                  className="w-full h-full object-cover"
-                />
+                <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', opacity: currentImageIndex === index ? 1 : 0.7, transition: 'opacity 0.3s ease-in-out' }}>
+                  <img
+                    src={src}
+                    alt={`Thumbnail ${index + 1}`}
+                    className="w-full h-full object-cover"
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  />
+                </div>
               </div>
             ))}
           </div>

@@ -6,73 +6,26 @@ import Footer from '@/components/layout/Footer';
 import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
 
-export default function FacilitiesPage() {
+export default function IndonesiaClientsPage() {
   const [modalOpen, setModalOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [imageErrors, setImageErrors] = useState<boolean[]>(new Array(26).fill(false));
   const [imageKey, setImageKey] = useState(0);
+  const modalRef = useRef<HTMLDivElement | null>(null);
   const thumbnailRefs = useRef<(HTMLDivElement | null)[]>([]);
   const thumbnailContainerRef = useRef<HTMLDivElement | null>(null);
 
-  // Array of facility images with fallback to dummy images
-  const facilityImages = [
-    'https://petroseal.com.my/wp-content/uploads/2019/11/f1-400x400.png',
-    'https://petroseal.com.my/wp-content/uploads/2019/11/f2-400x400.png',
-    'https://petroseal.com.my/wp-content/uploads/2019/11/f3-400x400.png',
-    'https://petroseal.com.my/wp-content/uploads/2019/11/f4-400x400.png',
-    'https://petroseal.com.my/wp-content/uploads/2019/11/f5-400x400.png',
-    'https://petroseal.com.my/wp-content/uploads/2019/11/f6-400x400.png',
-    'https://petroseal.com.my/wp-content/uploads/2019/11/f7-400x400.png',
-    'https://petroseal.com.my/wp-content/uploads/2019/11/f8-400x400.png',
-    'https://petroseal.com.my/wp-content/uploads/2019/11/f9-400x400.png',
-    'https://petroseal.com.my/wp-content/uploads/2019/11/f10-400x400.png',
-    'https://petroseal.com.my/wp-content/uploads/2019/11/f11-400x400.png',
-    'https://petroseal.com.my/wp-content/uploads/2019/11/f12-400x400.png',
-    'https://petroseal.com.my/wp-content/uploads/2019/11/f13-400x400.png',
-    'https://petroseal.com.my/wp-content/uploads/2019/11/f14-400x400.png',
-    'https://petroseal.com.my/wp-content/uploads/2019/11/f15-400x400.png',
-    'https://petroseal.com.my/wp-content/uploads/2019/11/f16-400x400.png',
-    'https://petroseal.com.my/wp-content/uploads/2019/11/f17-400x400.png',
-    'https://petroseal.com.my/wp-content/uploads/2019/11/f18-400x400.png',
-    'https://petroseal.com.my/wp-content/uploads/2019/11/t1-400x267.png',
-    'https://petroseal.com.my/wp-content/uploads/2019/11/t2-400x267.png',
-    'https://petroseal.com.my/wp-content/uploads/2019/11/t3-400x267.png',
-    'https://petroseal.com.my/wp-content/uploads/2019/11/t4-400x267.png',
-    'https://petroseal.com.my/wp-content/uploads/2019/11/t5-400x267.png',
-    'https://petroseal.com.my/wp-content/uploads/2019/11/t6-400x267.png',
-    'https://petroseal.com.my/wp-content/uploads/2019/11/t7-400x267.png',
-    'https://petroseal.com.my/wp-content/uploads/2019/11/t8-400x267.png',
+  // Gallery images with aspect ratio data
+  const imagesData = [
+    { src: 'https://petroseal.com.my/wp-content/uploads/2019/12/df644635-a33a-4215-aed6-5a5802ed5812-400x300.jpg', width: 400, height: 300 }, // kiri atas
+    { src: 'https://petroseal.com.my/wp-content/uploads/2019/12/70c16fdd-e15e-4384-8b57-49eae7312caa-400x533.jpg', width: 400, height: 533 }, // tengah atas
+    { src: 'https://petroseal.com.my/wp-content/uploads/2019/12/87c445c0-3180-46db-abbf-cfcbe3aa459f-400x533.jpg', width: 400, height: 533 }, // kanan atas
+    { src: 'https://petroseal.com.my/wp-content/uploads/2019/12/cfcdcba4-c3f6-475a-bd19-1075f7c1cae8-400x300.jpg', width: 400, height: 300 }, // kiri tengah
+    { src: 'https://petroseal.com.my/wp-content/uploads/2019/12/d2c847e9-4c1a-4f1b-8bf3-eea76094cd50-400x300.jpg', width: 400, height: 300 }, // tengah tengah
+    { src: 'https://petroseal.com.my/wp-content/uploads/2019/12/f08ee412-1c41-4d64-a172-00ad6a3ab593-400x300.jpg', width: 400, height: 300 }, // kanan tengah
+    { src: 'https://petroseal.com.my/wp-content/uploads/2019/12/ab6cc018-0a15-4cd6-8d3e-d016cef55bd8-400x533.jpg', width: 400, height: 533 }, // tengah paling bawah (certificate)
   ];
 
-  // Fallback dummy images from public folder
-  const dummyImages = [
-    '/images/9121424.jpg',
-    '/images/9121424.jpg',
-    '/images/9121424.jpg',
-    '/images/9121424.jpg',
-    '/images/9121424.jpg',
-    '/images/9121424.jpg',
-    '/images/9121424.jpg',
-    '/images/9121424.jpg',
-    '/images/9121424.jpg',
-    '/images/9121424.jpg',
-    '/images/9121424.jpg',
-    '/images/9121424.jpg',
-    '/images/9121424.jpg',
-    '/images/9121424.jpg',
-    '/images/9121424.jpg',
-    '/images/9121424.jpg',
-    '/images/9121424.jpg',
-    '/images/9121424.jpg',
-    '/images/9121424.jpg',
-    '/images/9121424.jpg',
-    '/images/9121424.jpg',
-    '/images/9121424.jpg',
-    '/images/9121424.jpg',
-    '/images/9121424.jpg',
-    '/images/9121424.jpg',
-    '/images/9121424.jpg',
-  ];
+  const images = imagesData.map(img => img.src);
 
   const openModal = (index: number) => {
     setCurrentImageIndex(index);
@@ -84,23 +37,11 @@ export default function FacilitiesPage() {
   };
 
   const showNextImage = () => {
-    setCurrentImageIndex((prevIndex) => (prevIndex + 1) % facilityImages.length);
+    setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
   };
 
   const showPrevImage = () => {
-    setCurrentImageIndex((prevIndex) => (prevIndex - 1 + facilityImages.length) % facilityImages.length);
-  };
-
-  const handleImageError = (index: number) => {
-    setImageErrors(prev => {
-      const newErrors = [...prev];
-      newErrors[index] = true;
-      return newErrors;
-    });
-  };
-
-  const getImageSrc = (index: number) => {
-    return imageErrors[index] ? dummyImages[index] : facilityImages[index];
+    setCurrentImageIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
   };
 
   // Trigger fade animation when image changes
@@ -123,7 +64,7 @@ export default function FacilitiesPage() {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [modalOpen]);
+  }, [modalOpen, images.length]);
 
   // Auto-scroll thumbnail sidebar to center active thumbnail
   useEffect(() => {
@@ -151,7 +92,7 @@ export default function FacilitiesPage() {
       top: newScrollPosition,
       behavior: 'smooth'
     });
-  }, [currentImageIndex, modalOpen]);
+  }, [currentImageIndex, modalOpen, images.length]);
 
   return (
     <main className="font-sans bg-white">
@@ -160,43 +101,57 @@ export default function FacilitiesPage() {
       
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
-          <h1 className="text-3xl md:text-4xl font-bold text-[#3a4a5c] mb-8" data-aos="fade-up">
-            Facilities
+          <h1 className="text-2xl md:text-4xl font-bold text-gray-800 mb-12 pl-4" data-aos="fade-up">
+            Indonesia Clients client-Conocophilips, Medco offshore Natuna, dan Titis Sampurna
           </h1>
-
+          
           {/* Image Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {facilityImages.map((src, index) => (
-              <div
-                key={index}
-                className="relative w-full h-64 overflow-hidden rounded shadow-md cursor-pointer group"
-                data-aos="fade-up"
-                data-aos-delay={index * 50}
-                onClick={() => openModal(index)}
-              >
-                <Image
-                  src={getImageSrc(index)}
-                  alt={`Facility ${index + 1}`}
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  className="object-cover transition-transform duration-300 group-hover:scale-110"
-                  priority={index < 6}
-                  unoptimized
-                  onError={() => handleImageError(index)}
-                />
-                <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 max-w-6xl mx-auto">
+            {imagesData.slice(0, 6).map((imageData, index) => {
+              const aspectRatio = (imageData.height / imageData.width * 100).toFixed(2);
+              return (
+                <div
+                  key={index}
+                  className="relative w-full overflow-hidden shadow-lg cursor-pointer group"
+                  onClick={() => openModal(index)}
+                  data-aos="fade-up"
+                  data-aos-delay={index * 100}
+                  style={{ paddingBottom: `${aspectRatio}%` }}
+                >
                   <Image
-                    src={getImageSrc(index)}
-                    alt={`Facility ${index + 1}`}
+                    src={imageData.src}
+                    alt={`Indonesia Clients ${index + 1}`}
                     fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    className="object-cover transition-transform duration-300 group-hover:scale-110"
-                    priority={index < 6}
-                    unoptimized
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 25vw"
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300" />
+                  <Image
+                    src={imageData.src}
+                    alt={`Indonesia Clients ${index + 1}`}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 25vw"
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>
-              </div>
-            ))}
+              );
+            })}
+          </div>
+
+          {/* Certificate Section - Larger image below */}
+          <div className="max-w-xs mx-auto" data-aos="fade-up" data-aos-delay="600">
+            <div
+              className="relative w-full overflow-hidden shadow-lg cursor-pointer group"
+              onClick={() => openModal(6)}
+              style={{ paddingBottom: `${(imagesData[6].height / imagesData[6].width * 100).toFixed(2)}%` }}
+            >
+              <Image
+                src={imagesData[6].src}
+                alt="Certificate"
+                fill
+                className="object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -205,7 +160,7 @@ export default function FacilitiesPage() {
       {modalOpen && (
         <div 
           className="fixed inset-0 bg-white z-[9999] flex"
-          onClick={closeModal}
+          ref={modalRef}
         >
           {/* Controls - Top Left */}
           <div className="absolute top-4 left-4 flex gap-2 z-50">
@@ -222,7 +177,7 @@ export default function FacilitiesPage() {
           </div>
 
           {/* Main Content Area */}
-          <div className="flex-1 flex items-center justify-center p-8 relative">
+          <div className="flex-1 flex items-center justify-center relative p-8">
             {/* Previous Button (Up Arrow) */}
             <button
               onClick={showPrevImage}
@@ -237,8 +192,8 @@ export default function FacilitiesPage() {
             {/* Main Image with fade animation */}
             <img 
               key={imageKey}
-              src={getImageSrc(currentImageIndex)} 
-              alt={`Facility ${currentImageIndex + 1}`}
+              src={images[currentImageIndex]} 
+              alt={`Indonesia Clients ${currentImageIndex + 1}`}
               className="max-w-[calc(100%-12rem)] max-h-full object-contain animate-[fadeInDown_0.5s_ease-out]"
               style={{ maxWidth: '75%' }}
             />
@@ -256,13 +211,13 @@ export default function FacilitiesPage() {
 
             {/* Image Counter */}
             <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 bg-black/70 text-white px-4 py-2 rounded-full text-sm font-medium">
-              {currentImageIndex + 1} / {facilityImages.length}
+              {currentImageIndex + 1} / {images.length}
             </div>
           </div>
 
           {/* Thumbnail Sidebar - Right */}
           <div ref={thumbnailContainerRef} className="w-52 bg-gray-100 overflow-y-auto flex flex-col gap-3 px-2" style={{ height: '100%', paddingTop: 'calc(50vh - 240px)', paddingBottom: 'calc(50vh - 240px)' }}>
-            {facilityImages.map((src, index) => (
+            {images.map((src, index) => (
               <div
                 key={index}
                 ref={(el) => {
@@ -280,7 +235,7 @@ export default function FacilitiesPage() {
               >
                 <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', opacity: currentImageIndex === index ? 1 : 0.7, transition: 'opacity 0.3s ease-in-out' }}>
                   <img
-                    src={getImageSrc(index)}
+                    src={src}
                     alt={`Thumbnail ${index + 1}`}
                     className="w-full h-full object-cover"
                     style={{ width: '100%', height: '100%', objectFit: 'cover' }}

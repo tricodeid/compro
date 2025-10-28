@@ -45,13 +45,14 @@ const WorkTogether = () => {
           >
             {currentContent.description}
           </p>
-          <button 
-            className="px-10 py-4 bg-[#dc2626] hover:bg-[#b91c1c] text-white font-bold text-lg transition-colors duration-300"
+          <a 
+            href="/contact-us"
+            className="px-10 py-4 bg-[#dc2626] hover:bg-[#b91c1c] text-white font-bold text-lg transition-colors duration-300 inline-block"
             data-aos="fade-up" 
             data-aos-delay="300"
           >
             {currentContent.button}
-          </button>
+          </a>
         </div>
       </div>
     </section>

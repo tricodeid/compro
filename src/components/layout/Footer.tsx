@@ -34,7 +34,7 @@ const Footer = () => {
           {/* Right Side - Social Icons */}
           <div className="flex items-center space-x-2">
             <a 
-              href="https://facebook.com" 
+              href="https://www.facebook.com/Petroseal-Engineering-Sdn-Bhd-222898397756111/" 
               target="_blank" 
               rel="noopener noreferrer"
               className="bg-[#dc2626] hover:bg-[#b91c1c] text-white p-2 rounded transition-colors duration-300"
@@ -44,7 +44,7 @@ const Footer = () => {
               </svg>
             </a>
             <a 
-              href="https://youtube.com" 
+              href="https://petroseal.com.my/#" 
               target="_blank" 
               rel="noopener noreferrer"
               className="bg-[#dc2626] hover:bg-[#b91c1c] text-white p-2 rounded transition-colors duration-300"

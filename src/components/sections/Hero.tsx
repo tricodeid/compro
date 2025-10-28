@@ -31,13 +31,16 @@ const Hero = () => {
         <p className="mt-6 text-lg sm:text-xl md:text-2xl text-white max-w-3xl" data-aos="fade-up" data-aos-delay="100">
           {currentContent.subtitle}
         </p>
-        <button 
-          className="mt-10 px-10 py-4 bg-[#dc2626] hover:bg-[#b91c1c] text-white font-bold text-lg transition-colors duration-300"
+        <a 
+          href="/contact-us"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-10 px-10 py-4 bg-[#dc2626] hover:bg-[#b91c1c] text-white font-bold text-lg transition-colors duration-300 inline-block"
           data-aos="fade-up" 
           data-aos-delay="200"
         >
           {currentContent.button}
-        </button>
+        </a>
       </div>
     </section>
   );

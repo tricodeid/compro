@@ -10,7 +10,10 @@ export default function NewsPage() {
   const [modalOpen, setModalOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [currentGallery, setCurrentGallery] = useState<string[]>([]);
+  const [imageKey, setImageKey] = useState(0);
   const modalRef = useRef<HTMLDivElement | null>(null);
+  const thumbnailRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const thumbnailContainerRef = useRef<HTMLDivElement | null>(null);
 
   // Training For Clients images
   const trainingImages = [
@@ -47,6 +50,11 @@ export default function NewsPage() {
     setCurrentImageIndex((prevIndex) => (prevIndex - 1 + currentGallery.length) % currentGallery.length);
   };
 
+  // Trigger fade animation when image changes
+  useEffect(() => {
+    setImageKey(prev => prev + 1);
+  }, [currentImageIndex]);
+
   // Keyboard navigation for modal
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -63,6 +71,34 @@ export default function NewsPage() {
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [modalOpen, currentGallery.length]);
+
+  // Auto-scroll thumbnail sidebar to center active thumbnail
+  useEffect(() => {
+    if (!modalOpen || !thumbnailRefs.current[currentImageIndex] || !thumbnailContainerRef.current) return;
+
+    const thumbnailContainer = thumbnailContainerRef.current;
+    const thumbnail = thumbnailRefs.current[currentImageIndex];
+    
+    if (!thumbnail || !thumbnailContainer) return;
+
+    const containerHeight = thumbnailContainer.clientHeight;
+    const thumbnailHeight = thumbnail.clientHeight;
+    
+    const containerScrollTop = thumbnailContainer.scrollTop;
+    const thumbnailTop = thumbnail.offsetTop;
+    
+    const thumbnailVisibleTop = thumbnailTop - containerScrollTop;
+    const thumbnailCenter = thumbnailVisibleTop + (thumbnailHeight / 2);
+    const containerCenter = containerHeight / 2;
+    
+    const scrollOffset = thumbnailCenter - containerCenter;
+    const newScrollPosition = containerScrollTop + scrollOffset;
+    
+    thumbnailContainer.scrollTo({
+      top: newScrollPosition,
+      behavior: 'smooth'
+    });
+  }, [currentImageIndex, modalOpen, currentGallery]);
 
   return (
     <main className="font-sans bg-white">
@@ -184,12 +220,12 @@ export default function NewsPage() {
 
           {/* News Category Buttons */}
           <div className="flex flex-col items-center gap-6 py-12" data-aos="fade-up" data-aos-delay="200">
-            <button className="px-16 py-4 bg-[#dc2626] hover:bg-[#b91c1c] text-white font-bold text-lg transition-colors duration-300 shadow-md">
+            <a href="/indonesia-clients-client-conocophilipsmedco-offshore-natuna-dan-titis-sampurna" className="px-16 py-4 bg-[#dc2626] hover:bg-[#b91c1c] text-white font-bold text-lg transition-colors duration-300 shadow-md inline-block">
               INDONESIA NEWS
-            </button>
-            <button className="px-16 py-4 bg-[#dc2626] hover:bg-[#b91c1c] text-white font-bold text-lg transition-colors duration-300 shadow-md">
+            </a>
+            <a href="/indonesia-clients-client-conocophilipsmedco-offshore-natuna-dan-titis-sampurna" className="px-16 py-4 bg-[#dc2626] hover:bg-[#b91c1c] text-white font-bold text-lg transition-colors duration-300 shadow-md inline-block">
               VIETNAM NEWS
-            </button>
+            </a>
           </div>
         </div>
       </section>
@@ -227,11 +263,13 @@ export default function NewsPage() {
               </svg>
             </button>
 
-            {/* Main Image */}
+            {/* Main Image with fade animation */}
             <img 
+              key={imageKey}
               src={currentGallery[currentImageIndex]} 
               alt={`News Image ${currentImageIndex + 1}`}
-              className="max-w-full max-h-full object-contain"
+              className="max-w-[calc(100%-12rem)] max-h-full object-contain animate-[fadeInDown_0.5s_ease-out]"
+              style={{ maxWidth: '75%' }}
             />
 
             {/* Next Button (Down Arrow) */}
@@ -246,28 +284,37 @@ export default function NewsPage() {
             </button>
 
             {/* Image Counter */}
-            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/70 text-white px-4 py-2 rounded-full text-sm font-medium">
+            <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 bg-black/70 text-white px-4 py-2 rounded-full text-sm font-medium">
               {currentImageIndex + 1} / {currentGallery.length}
             </div>
           </div>
 
           {/* Thumbnail Sidebar - Right */}
-          <div className="w-48 bg-gray-100 p-4 overflow-y-auto flex flex-col gap-3">
+          <div ref={thumbnailContainerRef} className="w-52 bg-gray-100 overflow-y-auto flex flex-col gap-3 px-2" style={{ height: '100%', paddingTop: 'calc(50vh - 240px)', paddingBottom: 'calc(50vh - 240px)' }}>
             {currentGallery.map((src, index) => (
               <div
                 key={index}
+                ref={(el) => {
+                  if (thumbnailRefs.current) {
+                    thumbnailRefs.current[index] = el;
+                  }
+                }}
                 onClick={() => setCurrentImageIndex(index)}
-                className={`relative w-full h-28 cursor-pointer rounded overflow-hidden border-2 transition-all ${
+                className={`relative w-full cursor-pointer rounded overflow-hidden border-[3px] transition-all ${
                   currentImageIndex === index 
                     ? 'border-blue-500 shadow-lg' 
                     : 'border-transparent hover:border-gray-300'
                 }`}
+                style={{ width: '100%', paddingBottom: '100%', position: 'relative', height: 0 }}
               >
-                <img
-                  src={src}
-                  alt={`Thumbnail ${index + 1}`}
-                  className="w-full h-full object-cover"
-                />
+                <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', opacity: currentImageIndex === index ? 1 : 0.7, transition: 'opacity 0.3s ease-in-out' }}>
+                  <img
+                    src={src}
+                    alt={`Thumbnail ${index + 1}`}
+                    className="w-full h-full object-cover"
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  />
+                </div>
               </div>
             ))}
           </div>

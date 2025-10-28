@@ -3,12 +3,14 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 
 
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -55,9 +57,21 @@ const Header = () => {
         {/* Desktop Menu */}
         <nav className="hidden lg:flex items-center lg:space-x-6 xl:space-x-8">
           <ul className="flex space-x-6">
-            {navLinks.map(link => (
-              <li key={link.href}><Link href={link.href} className="text-lg font-medium text-gray-700 hover:text-blue-800 transition-colors duration-200">{link.label}</Link></li>
-            ))}
+            {navLinks.map(link => {
+              const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href));
+              return (
+                <li key={link.href} className="relative">
+                  <Link href={link.href} className={`text-lg font-medium transition-colors duration-200 ${
+                    isActive ? 'text-[#dc2626]' : 'text-gray-700 hover:text-blue-800'
+                  }`}>
+                    {link.label}
+                  </Link>
+                  {isActive && (
+                    <div className="absolute -top-2 left-0 right-0 h-1 bg-[#dc2626]"></div>
+                  )}
+                </li>
+              );
+            })}
           </ul>
         </nav>
 
@@ -95,9 +109,25 @@ const Header = () => {
         </div>
         <nav className="p-4">
           <ul className="flex flex-col space-y-3">
-            {navLinks.map(link => (
-              <li key={link.href}><Link href={link.href} className="block py-3 px-4 text-xl font-medium text-gray-700 hover:bg-gray-100 hover:text-blue-800 rounded-md transition-colors" onClick={() => setIsMenuOpen(false)}>{link.label}</Link></li>
-            ))}
+            {navLinks.map(link => {
+              const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href));
+              return (
+                <li key={link.href} className="relative">
+                  <Link 
+                    href={link.href} 
+                    className={`block py-3 px-4 text-xl font-medium rounded-md transition-colors ${
+                      isActive ? 'text-[#dc2626] bg-gray-100' : 'text-gray-700 hover:bg-gray-100 hover:text-blue-800'
+                    }`}
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
+                  {isActive && (
+                    <div className="absolute left-0 top-0 bottom-0 w-1 bg-[#dc2626]"></div>
+                  )}
+                </li>
+              );
+            })}
           </ul>
         </nav>
       </div>

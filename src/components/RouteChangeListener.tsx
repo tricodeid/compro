@@ -17,17 +17,22 @@ export const RouteChangeListener = () => {
   // Effect to start loading on link click using event delegation
   useEffect(() => {
     const handleLinkClick = (event: MouseEvent) => {
-      const target = event.target as HTMLElement | null;
+      const clickedElement = event.target as HTMLElement | null;
       
-      if (!target) return;
+      if (!clickedElement) return;
       
-      const anchor = target.closest('a[href]') as HTMLAnchorElement | null;
+      const anchor = clickedElement.closest('a[href]') as HTMLAnchorElement | null;
 
       if (anchor && anchor.href) {
         const href = anchor.getAttribute('href') || '';
         const currentPath = window.location.pathname;
+        const linkTarget = anchor.getAttribute('target');
 
-        // Check for internal, non-hash link, and not the same page
+        // Check for internal, non-hash link, not the same page, and not opening in new tab
+        if (linkTarget === '_blank') {
+          return; // Don't show loading for links that open in new tab
+        }
+        
         if (href.startsWith('/') && !href.startsWith('/#') && href !== currentPath) {
           setIsLoading(true);
         }

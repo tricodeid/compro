@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { useLanguage } from '@/context/LanguageContext';
 
 const WhoWeAre = () => {
@@ -34,54 +35,68 @@ const WhoWeAre = () => {
   const currentContent = content[language];
 
   return (
-    <section className="py-16 md:py-20 bg-white">
+    <section className="py-16 md:py-20 bg-gray-50">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
-          {/* Left Column - WHO WE ARE */}
-          <div className="border-t-4 border-red-600 pt-8" data-aos="fade-right">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#3a4a5c] mb-6">
-              {currentContent.whoWeAre}
-            </h2>
-            <div className="space-y-4 text-gray-700 leading-relaxed">
-              <p>{currentContent.whoWeAreText1}</p>
-              <p>{currentContent.whoWeAreText2}</p>
-              <p>{currentContent.whoWeAreText3}</p>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 max-w-6xl mx-auto">
+          {/* Left Card - WHO WE ARE */}
+          <div className="bg-white rounded-lg shadow-lg overflow-hidden" data-aos="fade-right">
+            <div className="h-1 bg-red-600"></div>
+            <div className="p-8">
+              <h2 className="text-3xl md:text-4xl font-bold text-[#3a4a5c] mb-6 text-center">
+                {currentContent.whoWeAre}
+              </h2>
+              <div className="space-y-4 text-gray-700 leading-relaxed">
+                <p>{currentContent.whoWeAreText1}</p>
+                <p>{currentContent.whoWeAreText2}</p>
+                <p>{currentContent.whoWeAreText3}</p>
+              </div>
+              <div className="flex justify-center mt-8">
+                <Link 
+                  href="/who-we-are"
+                  className="px-8 py-3 bg-[#3a4a5c] hover:bg-[#2a3a4c] text-white font-bold transition-colors duration-300 inline-block"
+                >
+                  {currentContent.button}
+                </Link>
+              </div>
             </div>
-            <button className="mt-8 px-8 py-3 bg-[#3a4a5c] hover:bg-[#2a3a4c] text-white font-bold transition-colors duration-300">
-              {currentContent.button}
-            </button>
           </div>
 
-          {/* Right Column - VISION & MISSION */}
-          <div className="space-y-10" data-aos="fade-left">
-            {/* Vision */}
-            <div className="border-t-4 border-red-600 pt-8">
-              <div className="flex items-start gap-4 mb-4">
-                <svg className="w-8 h-8 text-red-600 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                </svg>
-                <h3 className="text-2xl md:text-3xl font-bold text-[#3a4a5c]">
-                  {currentContent.vision}
-                </h3>
+          {/* Right Card - VISION & MISSION */}
+          <div className="bg-white rounded-lg shadow-lg overflow-hidden" data-aos="fade-left">
+            <div className="h-1 bg-red-600"></div>
+            <div className="p-8 space-y-8">
+              {/* Vision */}
+              <div>
+                <div className="flex items-start gap-4 mb-4">
+                  <svg className="w-8 h-8 text-red-600 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                  <h3 className="text-2xl md:text-3xl font-bold text-[#3a4a5c]">
+                    {currentContent.vision}
+                  </h3>
+                </div>
+                <p className="text-gray-700 leading-relaxed">
+                  <span className="font-bold">Petroseal</span> {currentContent.visionText}
+                </p>
               </div>
-              <p className="text-gray-700 leading-relaxed">
-                <span className="font-bold">Petroseal</span> {currentContent.visionText}
-              </p>
-            </div>
 
-            {/* Mission */}
-            <div className="border-t-4 border-red-600 pt-8">
-              <div className="flex items-start gap-4 mb-4">
-                <svg className="w-8 h-8 text-red-600 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                </svg>
-                <h3 className="text-2xl md:text-3xl font-bold text-[#3a4a5c]">
-                  {currentContent.mission}
-                </h3>
+              {/* Divider */}
+              <div className="border-t border-gray-300"></div>
+
+              {/* Mission */}
+              <div>
+                <div className="flex items-start gap-4 mb-4">
+                  <svg className="w-8 h-8 text-red-600 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                  <h3 className="text-2xl md:text-3xl font-bold text-[#3a4a5c]">
+                    {currentContent.mission}
+                  </h3>
+                </div>
+                <p className="text-gray-700 leading-relaxed">
+                  <span className="font-bold">Petroseal</span> {currentContent.missionText}
+                </p>
               </div>
-              <p className="text-gray-700 leading-relaxed">
-                <span className="font-bold">Petroseal</span> {currentContent.missionText}
-              </p>
             </div>
           </div>
         </div>
