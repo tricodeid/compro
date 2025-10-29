@@ -225,7 +225,7 @@ export default function FacilitiesPage() {
       
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
-          <h1 className="text-3xl md:text-4xl font-bold text-[#3a4a5c] mb-8" data-aos="fade-up">
+          <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#3a4a5c] mb-6 md:mb-8" data-aos="fade-up">
             Facilities
           </h1>
 
@@ -359,8 +359,8 @@ export default function FacilitiesPage() {
             </div>
           </div>
 
-          {/* Thumbnail Sidebar - Right */}
-          <div ref={thumbnailContainerRef} className="w-52 bg-gray-100 overflow-y-auto flex flex-col gap-3 px-2" style={{ height: '100%', paddingTop: 'calc(50vh - 240px)', paddingBottom: 'calc(50vh - 240px)' }}>
+          {/* Thumbnail Sidebar - Right (hidden on mobile/tablet) */}
+          <div ref={thumbnailContainerRef} className="hidden md:flex md:w-52 bg-gray-100 overflow-y-auto flex-col gap-3 px-2" style={{ height: '100%', paddingTop: 'calc(50vh - 240px)', paddingBottom: 'calc(50vh - 240px)' }}>
             {facilityImages.map((src, index) => (
               <div
                 key={index}

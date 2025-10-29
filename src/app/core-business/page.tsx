@@ -214,7 +214,7 @@ export default function CoreBusinessPage() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Left Column - Images */}
             <div className="lg:col-span-2">
-              <h1 className="text-3xl md:text-4xl font-bold text-[#3a4a5c] mb-8" data-aos="fade-up">
+              <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#3a4a5c] mb-6 md:mb-8" data-aos="fade-up">
                 Our Core Business
               </h1>
               
@@ -261,7 +261,7 @@ export default function CoreBusinessPage() {
             <div className="lg:col-span-1">
               {/* Partner Section */}
               <div className="mb-8" data-aos="fade-left">
-                <h2 className="text-2xl md:text-3xl font-bold text-[#3a4a5c] mb-6">
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#3a4a5c] mb-4 md:mb-6">
                   PETROSEAL<br />
                   INTERNATIONAL<br />
                   PARTNER
@@ -284,7 +284,7 @@ export default function CoreBusinessPage() {
 
               {/* Client List Section */}
               <div className="pt-6" data-aos="fade-left" data-aos-delay="200">
-                <h3 className="text-xl md:text-2xl font-bold text-[#3a4a5c] mb-4">
+                <h3 className="text-lg md:text-xl lg:text-2xl font-bold text-[#3a4a5c] mb-3 md:mb-4">
                   Client List
                 </h3>
                 
@@ -292,7 +292,7 @@ export default function CoreBusinessPage() {
                 <div className="flex gap-2 mb-6">
                   <button
                     onClick={() => setActiveTab('malaysia')}
-                    className={`px-4 py-2 text-sm font-medium transition-colors relative cursor-pointer ${
+                    className={`px-3 py-2 md:px-4 md:py-2 text-xs md:text-sm font-medium transition-colors relative cursor-pointer ${
                       activeTab === 'malaysia'
                         ? 'bg-gray-200 text-gray-700'
                         : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
@@ -305,7 +305,7 @@ export default function CoreBusinessPage() {
                   </button>
                   <button
                     onClick={() => setActiveTab('indonesia')}
-                    className={`px-4 py-2 text-sm font-medium transition-colors relative cursor-pointer ${
+                    className={`px-3 py-2 md:px-4 md:py-2 text-xs md:text-sm font-medium transition-colors relative cursor-pointer ${
                       activeTab === 'indonesia'
                         ? 'bg-gray-200 text-gray-700'
                         : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
@@ -318,7 +318,7 @@ export default function CoreBusinessPage() {
                   </button>
                   <button
                     onClick={() => setActiveTab('vietnam')}
-                    className={`px-4 py-2 text-sm font-medium transition-colors relative cursor-pointer ${
+                    className={`px-3 py-2 md:px-4 md:py-2 text-xs md:text-sm font-medium transition-colors relative cursor-pointer ${
                       activeTab === 'vietnam'
                         ? 'bg-gray-200 text-gray-700'
                         : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
@@ -444,8 +444,8 @@ export default function CoreBusinessPage() {
             </div>
           </div>
 
-          {/* Thumbnail Sidebar - Right */}
-          <div ref={thumbnailContainerRef} className="w-52 bg-gray-100 overflow-y-auto flex flex-col gap-3 px-2" style={{ height: '100%', paddingTop: 'calc(50vh - 240px)', paddingBottom: 'calc(50vh - 240px)' }}>
+          {/* Thumbnail Sidebar - Right (hidden on mobile/tablet) */}
+          <div ref={thumbnailContainerRef} className="hidden md:flex md:w-52 bg-gray-100 overflow-y-auto flex-col gap-3 px-2" style={{ height: '100%', paddingTop: 'calc(50vh - 240px)', paddingBottom: 'calc(50vh - 240px)' }}>
             {images.map((src, index) => (
               <div
                 key={index}

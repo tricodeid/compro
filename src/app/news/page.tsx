@@ -6,12 +6,26 @@ import Footer from '@/components/layout/Footer';
 import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
 
+// Type definitions for vendor-prefixed fullscreen methods
+interface DocumentWithFullscreen extends Document {
+  webkitExitFullscreen?: () => Promise<void>;
+  msExitFullscreen?: () => Promise<void>;
+}
+
+interface ElementWithFullscreen extends HTMLDivElement {
+  webkitRequestFullscreen?: () => Promise<void>;
+  msRequestFullscreen?: () => Promise<void>;
+}
+
 export default function NewsPage() {
   const [modalOpen, setModalOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [currentGallery, setCurrentGallery] = useState<string[]>([]);
   const [imageKey, setImageKey] = useState(0);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
   const modalRef = useRef<HTMLDivElement | null>(null);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const thumbnailRefs = useRef<(HTMLDivElement | null)[]>([]);
   const thumbnailContainerRef = useRef<HTMLDivElement | null>(null);
 
@@ -40,7 +54,97 @@ export default function NewsPage() {
 
   const closeModal = () => {
     setModalOpen(false);
+    setIsPlaying(false);
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+    }
   };
+
+  // Trigger fade animation when image changes
+  useEffect(() => {
+    setImageKey(prev => prev + 1);
+  }, [currentImageIndex]);
+
+  // Auto-scroll thumbnail when image changes
+  useEffect(() => {
+    if (thumbnailRefs.current[currentImageIndex] && thumbnailContainerRef.current) {
+      const thumbnailElement = thumbnailRefs.current[currentImageIndex];
+      const containerElement = thumbnailContainerRef.current;
+      
+      if (thumbnailElement && containerElement) {
+        const containerRect = containerElement.getBoundingClientRect();
+        const thumbnailRect = thumbnailElement.getBoundingClientRect();
+        
+        const scrollTop = containerElement.scrollTop;
+        const thumbnailTop = thumbnailElement.offsetTop;
+        const thumbnailHeight = thumbnailElement.offsetHeight;
+        const containerHeight = containerElement.offsetHeight;
+        
+        const targetScrollTop = thumbnailTop - (containerHeight / 2) + (thumbnailHeight / 2);
+        
+        containerElement.scrollTo({
+          top: Math.max(0, targetScrollTop),
+          behavior: 'smooth'
+        });
+      }
+    }
+  }, [currentImageIndex]);
+
+  // Fullscreen functionality
+  const toggleFullscreen = async () => {
+    if (!modalRef.current) return;
+
+    try {
+      if (!isFullscreen) {
+        const element = modalRef.current as ElementWithFullscreen;
+        if (element.requestFullscreen) {
+          await element.requestFullscreen();
+        } else if (element.webkitRequestFullscreen) {
+          await element.webkitRequestFullscreen();
+        } else if (element.msRequestFullscreen) {
+          await element.msRequestFullscreen();
+        }
+        setIsFullscreen(true);
+      } else {
+        const doc = document as DocumentWithFullscreen;
+        if (doc.exitFullscreen) {
+          await doc.exitFullscreen();
+        } else if (doc.webkitExitFullscreen) {
+          await doc.webkitExitFullscreen();
+        } else if (doc.msExitFullscreen) {
+          await doc.msExitFullscreen();
+        }
+        setIsFullscreen(false);
+      }
+    } catch (error) {
+      console.error('Error toggling fullscreen:', error);
+    }
+  };
+
+  // Autoplay functionality
+  const togglePlay = () => {
+    if (isPlaying) {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
+      setIsPlaying(false);
+    } else {
+      intervalRef.current = setInterval(() => {
+        setCurrentImageIndex((prevIndex) => (prevIndex + 1) % currentGallery.length);
+      }, 3000);
+      setIsPlaying(true);
+    }
+  };
+
+  // Cleanup interval on unmount
+  useEffect(() => {
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
+  }, []);
 
   const showNextImage = () => {
     setCurrentImageIndex((prevIndex) => (prevIndex + 1) % currentGallery.length);
@@ -109,7 +213,7 @@ export default function NewsPage() {
         <div className="container mx-auto px-4">
           {/* Training For Clients Section */}
           <div className="mb-16" data-aos="fade-up">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#3a4a5c] mb-8">
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-[#3a4a5c] mb-5 md:mb-6 lg:mb-8">
               Training For Clients
             </h2>
             
@@ -166,7 +270,7 @@ export default function NewsPage() {
 
           {/* Witness Test Section */}
           <div className="mb-16" data-aos="fade-up" data-aos-delay="100">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#3a4a5c] mb-8">
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-[#3a4a5c] mb-5 md:mb-6 lg:mb-8">
               Witness Test By Rapid Pengerang Personel
             </h2>
             
@@ -220,10 +324,10 @@ export default function NewsPage() {
 
           {/* News Category Buttons */}
           <div className="flex flex-col items-center gap-6 py-12" data-aos="fade-up" data-aos-delay="200">
-            <a href="/indonesia-clients-client-conocophilipsmedco-offshore-natuna-dan-titis-sampurna" className="px-16 py-4 bg-[#dc2626] hover:bg-[#b91c1c] text-white font-bold text-lg transition-colors duration-300 shadow-md inline-block">
+            <a href="/indonesia-clients-client-conocophilipsmedco-offshore-natuna-dan-titis-sampurna" className="px-8 py-2 md:px-12 md:py-3 lg:px-16 lg:py-4 bg-[#dc2626] hover:bg-[#b91c1c] text-white font-bold text-sm md:text-base lg:text-lg transition-colors duration-300 shadow-md inline-block">
               INDONESIA NEWS
             </a>
-            <a href="/indonesia-clients-client-conocophilipsmedco-offshore-natuna-dan-titis-sampurna" className="px-16 py-4 bg-[#dc2626] hover:bg-[#b91c1c] text-white font-bold text-lg transition-colors duration-300 shadow-md inline-block">
+            <a href="/indonesia-clients-client-conocophilipsmedco-offshore-natuna-dan-titis-sampurna" className="px-8 py-2 md:px-12 md:py-3 lg:px-16 lg:py-4 bg-[#dc2626] hover:bg-[#b91c1c] text-white font-bold text-sm md:text-base lg:text-lg transition-colors duration-300 shadow-md inline-block">
               VIETNAM NEWS
             </a>
           </div>
@@ -238,15 +342,40 @@ export default function NewsPage() {
         >
           {/* Controls - Top Left */}
           <div className="absolute top-4 left-4 flex gap-2 z-50">
-            {/* Close Button (X) */}
-            <button
-              onClick={closeModal}
-              className="w-10 h-10 bg-gray-200 hover:bg-gray-300 text-gray-800 flex items-center justify-center transition-colors duration-200"
-              title="Close"
-            >
+            <button onClick={closeModal} className="w-10 h-10 bg-gray-200 hover:bg-gray-300 text-gray-800 flex items-center justify-center transition-colors duration-200 cursor-pointer" title="Close">
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
+            </button>
+            <button
+              onClick={toggleFullscreen}
+              className="w-10 h-10 bg-gray-200 hover:bg-gray-300 text-gray-800 flex items-center justify-center transition-colors duration-200 cursor-pointer"
+              title={isFullscreen ? "Exit Fullscreen" : "Fullscreen"}
+            >
+              {isFullscreen ? (
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 9V4.5M9 9H4.5M9 9L3.75 3.75M9 15v4.5M9 15H4.5M9 15l-5.25 5.25M15 9h4.5M15 9V4.5M15 9l5.25-5.25M15 15h4.5M15 15v4.5m0-4.5l5.25 5.25" />
+                </svg>
+              ) : (
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+                </svg>
+              )}
+            </button>
+            <button
+              onClick={togglePlay}
+              className="w-10 h-10 bg-gray-200 hover:bg-gray-300 text-gray-800 flex items-center justify-center transition-colors duration-200 cursor-pointer"
+              title={isPlaying ? "Pause" : "Play"}
+            >
+              {isPlaying ? (
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>
+                </svg>
+              ) : (
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+              )}
             </button>
           </div>
 
@@ -255,7 +384,7 @@ export default function NewsPage() {
             {/* Previous Button (Up Arrow) */}
             <button
               onClick={showPrevImage}
-              className="absolute top-8 left-1/2 transform -translate-x-1/2 bg-white/80 hover:bg-white text-gray-800 p-3 rounded-full shadow-lg transition-all z-10"
+              className="absolute top-8 left-1/2 transform -translate-x-1/2 bg-white/80 hover:bg-white text-gray-800 p-3 rounded-full shadow-lg transition-all z-10 cursor-pointer"
               title="Previous"
             >
               <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -275,7 +404,7 @@ export default function NewsPage() {
             {/* Next Button (Down Arrow) */}
             <button
               onClick={showNextImage}
-              className="absolute bottom-8 left-1/2 transform -translate-x-1/2 bg-white/80 hover:bg-white text-gray-800 p-3 rounded-full shadow-lg transition-all z-10"
+              className="absolute bottom-8 left-1/2 transform -translate-x-1/2 bg-white/80 hover:bg-white text-gray-800 p-3 rounded-full shadow-lg transition-all z-10 cursor-pointer"
               title="Next"
             >
               <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -289,8 +418,8 @@ export default function NewsPage() {
             </div>
           </div>
 
-          {/* Thumbnail Sidebar - Right */}
-          <div ref={thumbnailContainerRef} className="w-52 bg-gray-100 overflow-y-auto flex flex-col gap-3 px-2" style={{ height: '100%', paddingTop: 'calc(50vh - 240px)', paddingBottom: 'calc(50vh - 240px)' }}>
+          {/* Thumbnail Sidebar - Right (hidden on mobile/tablet) */}
+          <div ref={thumbnailContainerRef} className="hidden md:flex md:w-52 bg-gray-100 overflow-y-auto flex-col gap-3 px-2" style={{ height: '100%', paddingTop: 'calc(50vh - 240px)', paddingBottom: 'calc(50vh - 240px)' }}>
             {currentGallery.map((src, index) => (
               <div
                 key={index}
