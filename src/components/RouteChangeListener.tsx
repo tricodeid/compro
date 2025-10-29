@@ -39,10 +39,17 @@ export const RouteChangeListener = () => {
       }
     };
 
+    // Handle browser back/forward navigation
+    const handlePopState = () => {
+      setIsLoading(false);
+    };
+
     document.addEventListener('click', handleLinkClick);
+    window.addEventListener('popstate', handlePopState);
 
     return () => {
       document.removeEventListener('click', handleLinkClick);
+      window.removeEventListener('popstate', handlePopState);
     };
   }, [setIsLoading]);
 

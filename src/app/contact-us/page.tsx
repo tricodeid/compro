@@ -143,7 +143,7 @@ export default function ContactUsPage() {
                   </svg>
                 </a>
                 <a 
-                  href="https://wa.me/60986868825" 
+                  href="https://wa.me/6281226802362" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="w-10 h-10 sm:w-12 sm:h-12 bg-[#dc2626] hover:bg-[#b91c1c] flex items-center justify-center rounded transition-colors duration-300"
@@ -153,7 +153,7 @@ export default function ContactUsPage() {
                   </svg>
                 </a>
                 <a 
-                  href="mailto:sales@petroseal.com.my" 
+                  href="mailto:admin@petrosealindonesia.com" 
                   className="w-10 h-10 sm:w-12 sm:h-12 bg-[#dc2626] hover:bg-[#b91c1c] flex items-center justify-center rounded transition-colors duration-300"
                 >
                   <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">

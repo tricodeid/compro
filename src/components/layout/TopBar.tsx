@@ -6,11 +6,11 @@ const TopBar = () => {
   return (
     <div className="bg-white border-t-4 border-[#dc2626]">
       <div className="container mx-auto px-4 py-2">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-2">
-          <p className="text-xs md:text-sm text-gray-600">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-2">
+          <p className="text-xs md:text-sm text-gray-600 text-center md:text-left">
             Passion That Builds Excellence | Tel : 6 09 8686825
           </p>
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-2 justify-center">
             <a 
               href="https://www.facebook.com/Petroseal-Engineering-Sdn-Bhd-222898397756111/" 
               target="_blank" 

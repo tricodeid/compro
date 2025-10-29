@@ -6,6 +6,17 @@ import Footer from '@/components/layout/Footer';
 import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
 
+// Type definitions for vendor-prefixed fullscreen methods
+interface DocumentWithFullscreen extends Document {
+  webkitExitFullscreen?: () => Promise<void> | void;
+  msExitFullscreen?: () => Promise<void> | void;
+}
+
+interface ElementWithFullscreen extends HTMLDivElement {
+  webkitRequestFullscreen?: () => Promise<void> | void;
+  msRequestFullscreen?: () => Promise<void> | void;
+}
+
 export default function IndonesiaClientsPage() {
   const [modalOpen, setModalOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -13,6 +24,9 @@ export default function IndonesiaClientsPage() {
   const modalRef = useRef<HTMLDivElement | null>(null);
   const thumbnailRefs = useRef<(HTMLDivElement | null)[]>([]);
   const thumbnailContainerRef = useRef<HTMLDivElement | null>(null);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   // Gallery images with aspect ratio data
   const imagesData = [
@@ -34,6 +48,9 @@ export default function IndonesiaClientsPage() {
 
   const closeModal = () => {
     setModalOpen(false);
+    setIsPlaying(false);
+    if (intervalRef.current) clearInterval(intervalRef.current);
+    if (isFullscreen) exitFullscreen();
   };
 
   const showNextImage = () => {
@@ -42,6 +59,48 @@ export default function IndonesiaClientsPage() {
 
   const showPrevImage = () => {
     setCurrentImageIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
+  };
+
+  const toggleFullscreen = async () => {
+    if (!modalRef.current) return;
+    const element = modalRef.current as ElementWithFullscreen;
+    const doc = document as DocumentWithFullscreen;
+    try {
+      if (!isFullscreen) {
+        if (element.requestFullscreen) await element.requestFullscreen();
+        else if (element.webkitRequestFullscreen) await element.webkitRequestFullscreen();
+        else if (element.msRequestFullscreen) await element.msRequestFullscreen();
+        setIsFullscreen(true);
+      } else {
+        if (document.exitFullscreen) await document.exitFullscreen();
+        else if (doc.webkitExitFullscreen) await doc.webkitExitFullscreen();
+        else if (doc.msExitFullscreen) await doc.msExitFullscreen();
+        setIsFullscreen(false);
+      }
+    } catch (e) {
+      console.error('Fullscreen toggle failed', e);
+    }
+  };
+
+  const exitFullscreen = async () => {
+    const doc = document as DocumentWithFullscreen;
+    if (document.exitFullscreen) await document.exitFullscreen();
+    else if (doc.webkitExitFullscreen) await doc.webkitExitFullscreen();
+    else if (doc.msExitFullscreen) await doc.msExitFullscreen();
+    setIsFullscreen(false);
+  };
+
+  const togglePlay = () => {
+    if (isPlaying) {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+      intervalRef.current = null;
+      setIsPlaying(false);
+    } else {
+      intervalRef.current = setInterval(() => {
+        setCurrentImageIndex((prev) => (prev + 1) % images.length);
+      }, 3000);
+      setIsPlaying(true);
+    }
   };
 
   // Trigger fade animation when image changes
@@ -65,6 +124,13 @@ export default function IndonesiaClientsPage() {
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [modalOpen, images.length]);
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
+  }, []);
 
   // Auto-scroll thumbnail sidebar to center active thumbnail
   useEffect(() => {
@@ -164,24 +230,41 @@ export default function IndonesiaClientsPage() {
         >
           {/* Controls - Top Left */}
           <div className="absolute top-4 left-4 flex gap-2 z-50">
-            {/* Close Button (X) */}
-            <button
-              onClick={closeModal}
-              className="w-10 h-10 bg-gray-200 hover:bg-gray-300 text-gray-800 flex items-center justify-center transition-colors duration-200"
-              title="Close"
-            >
+            <button onClick={closeModal} className="w-10 h-10 bg-gray-200 hover:bg-gray-300 text-gray-800 flex items-center justify-center transition-colors duration-200 cursor-pointer" title="Close">
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
+            <button onClick={toggleFullscreen} className="w-10 h-10 bg-gray-200 hover:bg-gray-300 text-gray-800 flex items-center justify-center transition-colors duration-200 cursor-pointer" title={isFullscreen ? 'Exit Fullscreen' : 'Fullscreen'}>
+              {isFullscreen ? (
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 9V4.5M9 9H4.5M9 9L3.75 3.75M9 15v4.5M9 15H4.5M9 15l-5.25 5.25M15 9h4.5M15 9V4.5M15 9l5.25-5.25M15 15h4.5M15 15v4.5m0-4.5l5.25 5.25" />
+                </svg>
+              ) : (
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+                </svg>
+              )}
+            </button>
+            <button onClick={togglePlay} className="w-10 h-10 bg-gray-200 hover:bg-gray-300 text-gray-800 flex items-center justify-center transition-colors duration-200 cursor-pointer" title={isPlaying ? 'Pause' : 'Play'}>
+              {isPlaying ? (
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>
+                </svg>
+              ) : (
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+              )}
+            </button>
           </div>
 
           {/* Main Content Area */}
-          <div className="flex-1 flex items-center justify-center relative p-8">
+          <div className="flex-1 flex items-center justify-center relative p-8 cursor-pointer">
             {/* Previous Button (Up Arrow) */}
             <button
               onClick={showPrevImage}
-              className="absolute top-8 left-1/2 transform -translate-x-1/2 bg-white/80 hover:bg-white text-gray-800 p-3 rounded-full shadow-lg transition-all z-10"
+              className="absolute top-8 left-1/2 transform -translate-x-1/2 bg-white/80 hover:bg-white text-gray-800 p-3 rounded-full shadow-lg transition-all z-10 cursor-pointer"
               title="Previous"
             >
               <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -201,7 +284,7 @@ export default function IndonesiaClientsPage() {
             {/* Next Button (Down Arrow) */}
             <button
               onClick={showNextImage}
-              className="absolute bottom-8 left-1/2 transform -translate-x-1/2 bg-white/80 hover:bg-white text-gray-800 p-3 rounded-full shadow-lg transition-all z-10"
+              className="absolute bottom-8 left-1/2 transform -translate-x-1/2 bg-white/80 hover:bg-white text-gray-800 p-3 rounded-full shadow-lg transition-all z-10 cursor-pointer"
               title="Next"
             >
               <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -215,8 +298,8 @@ export default function IndonesiaClientsPage() {
             </div>
           </div>
 
-          {/* Thumbnail Sidebar - Right */}
-          <div ref={thumbnailContainerRef} className="w-52 bg-gray-100 overflow-y-auto flex flex-col gap-3 px-2" style={{ height: '100%', paddingTop: 'calc(50vh - 240px)', paddingBottom: 'calc(50vh - 240px)' }}>
+          {/* Thumbnail Sidebar - Right (hidden on mobile/tablet) */}
+          <div ref={thumbnailContainerRef} className="hidden md:flex md:w-52 bg-gray-100 overflow-y-auto flex-col gap-3 px-2" style={{ height: '100%', paddingTop: 'calc(50vh - 240px)', paddingBottom: 'calc(50vh - 240px)' }}>
             {images.map((src, index) => (
               <div
                 key={index}
