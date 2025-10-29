@@ -9,7 +9,7 @@ import Footer from '@/components/layout/Footer';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Home - Petroseal Engineering',
+  title: 'Petroseal Engineering Sdn Bhd - Supply and service for mechanical seal',
 };
 
 export default function Home() {

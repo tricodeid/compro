@@ -41,7 +41,21 @@ export const RouteChangeListener = () => {
 
     // Handle browser back/forward navigation
     const handlePopState = () => {
+      // Stop any ongoing loading spinner
       setIsLoading(false);
+
+      // If returning to pages that should refresh (to avoid stuck states), reload
+      const path = window.location.pathname;
+      if (path === '/' || path === '/news') {
+        // Defer reload slightly to let history state settle
+        setTimeout(() => {
+          try {
+            window.location.reload();
+          } catch (_) {
+            // ignore
+          }
+        }, 0);
+      }
     };
 
     document.addEventListener('click', handleLinkClick);
