@@ -33,7 +33,7 @@ export default function ContactUsPage() {
       <Header />
       
       {/* Hero Section */}
-      <section className="relative min-h-[500px] overflow-hidden">
+      <section className="relative h-[400px] overflow-hidden flex items-center justify-center">
         <div className="absolute inset-0 bg-black bg-opacity-60">
           <Image
             src="https://petroseal.com.my/wp-content/uploads/2015/02/avada-who-we-are-header.jpg"
@@ -44,11 +44,9 @@ export default function ContactUsPage() {
         </div>
         
         {/* Content */}
-        <div className="relative h-full flex items-center justify-center z-10">
-          <div className="text-center text-white">
-            <h1 className="text-3xl md:text-4xl font-bold mb-4 uppercase">GET IN TOUCH</h1>
-            <p className="text-base md:text-lg">Our team of experts are ready to hear from you</p>
-          </div>
+        <div className="relative z-10 text-center text-white px-4">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 md:mb-4 uppercase">GET IN TOUCH</h1>
+          <p className="text-sm sm:text-base md:text-lg">Our team of experts are ready to hear from you</p>
         </div>
       </section>
 
@@ -63,21 +61,28 @@ export default function ContactUsPage() {
         }}
       >
         {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-[#2b313c] bg-opacity-90"></div>
+        <div className="absolute inset-0 bg-[#2b313c] bg-opacity-90">
+          <Image
+            src="https://petroseal.com.my/wp-content/uploads/2015/02/banner-home.jpg"
+            alt="Background"
+            fill
+            className="object-cover"
+          />
+        </div>
         
         <div className="relative container mx-auto px-4 z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
             {/* Left Column - Let's Get Started */}
             <div className="text-white">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 uppercase">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 md:mb-6 uppercase">
                 LET&apos;S GET STARTED
               </h2>
-              <p className="text-lg mb-8 italic leading-relaxed">
+              <p className="text-base sm:text-lg mb-6 md:mb-8 italic leading-relaxed">
                 We&apos;re here to help answer your questions. Our experts are on hand to help inform you of every aspect regarding your topic. We take great pride in using our expertise for you and look forward to hearing from you.
               </p>
               
               {/* Social Media Icons */}
-              <div className="flex gap-3">
+              <div className="flex gap-3 flex-wrap">
                 <a 
                   href="https://www.facebook.com/Petroseal-Engineering-Sdn-Bhd-222898397756111/" 
                   target="_blank" 
@@ -121,8 +126,8 @@ export default function ContactUsPage() {
 
             {/* Right Column - Contact Form */}
             <div>
-              <form className="space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <form className="space-y-3 md:space-y-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
                   <div>
                     <label className="block text-white font-medium mb-2 text-sm uppercase">NAME</label>
                     <input
@@ -170,7 +175,7 @@ export default function ContactUsPage() {
                 <div className="flex justify-end">
                   <button
                     onClick={handleSubmit}
-                    className="px-8 py-3 bg-[#dc2626] hover:bg-[#b91c1c] text-white font-bold text-sm uppercase transition-colors duration-300 rounded"
+                    className="px-6 py-2.5 md:px-8 md:py-3 bg-[#dc2626] hover:bg-[#b91c1c] text-white font-bold text-xs md:text-sm uppercase transition-colors duration-300 rounded w-full md:w-auto"
                   >
                     SUBMIT MESSAGE
                   </button>
@@ -185,112 +190,131 @@ export default function ContactUsPage() {
       <section className="py-16 bg-white border-t-4 border-[#dc2626]">
         <div className="container mx-auto px-4">
           {/* USA Office */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12 pb-12 border-b" data-aos="fade-up">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-8 md:mb-12 pb-8 md:pb-12 border-b" data-aos="fade-up">
             <div className="text-center md:text-left">
-              <div className="flex justify-center md:justify-start mb-4">
-                <svg className="w-16 h-16 text-[#dc2626]" fill="currentColor" viewBox="0 0 24 24">
+              <div className="flex justify-center md:justify-start mb-3 md:mb-4">
+                <svg className="w-12 h-12 md:w-16 md:h-16 text-[#dc2626]" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
                 </svg>
               </div>
-              <h3 className="text-2xl font-bold text-[#3a4a5c] mb-4">Address</h3>
-              <p className="text-gray-700 font-semibold">USA OFFICE:</p>
-              <p className="text-gray-600">10762 Briar Forest Dr, Houston, TX 77042,</p>
-              <p className="text-gray-600">USA</p>
+              <h3 className="text-xl md:text-2xl font-bold text-[#3a4a5c] mb-3 md:mb-4">Address</h3>
+              <p className="text-sm md:text-base text-gray-700 font-semibold">USA OFFICE:</p>
+              <p className="text-sm md:text-base text-gray-600">10762 Briar Forest Dr, Houston, TX 77042,</p>
+              <p className="text-sm md:text-base text-gray-600">USA</p>
             </div>
             <div className="text-center md:text-left">
-              <div className="flex justify-center md:justify-start mb-4">
-                <svg className="w-16 h-16 text-[#dc2626]" fill="currentColor" viewBox="0 0 24 24">
+              <div className="flex justify-center md:justify-start mb-3 md:mb-4">
+                <svg className="w-12 h-12 md:w-16 md:h-16 text-[#dc2626]" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
                 </svg>
               </div>
-              <h3 className="text-2xl font-bold text-[#3a4a5c] mb-4">Phone</h3>
-              <p className="text-gray-600">Tel :+1 832-833-3340 (Houston )</p>
+              <h3 className="text-xl md:text-2xl font-bold text-[#3a4a5c] mb-3 md:mb-4">Phone</h3>
+              <p className="text-sm md:text-base text-gray-600">Tel :+1 832-833-3340 (Houston )</p>
             </div>
           </div>
 
           {/* Malaysia Office */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 pb-12 border-b" data-aos="fade-up" data-aos-delay="100">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-8 md:mb-12 pb-8 md:pb-12 border-b" data-aos="fade-up" data-aos-delay="100">
             <div className="text-center md:text-left">
-              <div className="flex justify-center md:justify-start mb-4">
-                <svg className="w-16 h-16 text-[#dc2626]" fill="currentColor" viewBox="0 0 24 24">
+              <div className="flex justify-center md:justify-start mb-3 md:mb-4">
+                <svg className="w-12 h-12 md:w-16 md:h-16 text-[#dc2626]" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
                 </svg>
               </div>
-              <h3 className="text-2xl font-bold text-[#3a4a5c] mb-4">Address</h3>
-              <p className="text-gray-700 font-semibold">MALAYSIA OFFICE:</p>
-              <p className="text-gray-600">PETROSEAL ENGINEERING SDN BHD</p>
-              <p className="text-gray-600">36, Jalan Putra A/2 Bandar Putra,</p>
-              <p className="text-gray-600">24000 Kemaman Terengganu,</p>
-              <p className="text-gray-600">MALAYSIA</p>
+              <h3 className="text-xl md:text-2xl font-bold text-[#3a4a5c] mb-3 md:mb-4">Address</h3>
+              <p className="text-sm md:text-base text-gray-700 font-semibold">MALAYSIA OFFICE:</p>
+              <p className="text-sm md:text-base text-gray-600">PETROSEAL ENGINEERING SDN BHD</p>
+              <p className="text-sm md:text-base text-gray-600">36, Jalan Putra A/2 Bandar Putra,</p>
+              <p className="text-sm md:text-base text-gray-600">24000 Kemaman Terengganu,</p>
+              <p className="text-sm md:text-base text-gray-600">MALAYSIA</p>
             </div>
             <div className="text-center md:text-left">
-              <div className="flex justify-center md:justify-start mb-4">
-                <svg className="w-16 h-16 text-[#dc2626]" fill="currentColor" viewBox="0 0 24 24">
+              <div className="flex justify-center md:justify-start mb-3 md:mb-4">
+                <svg className="w-12 h-12 md:w-16 md:h-16 text-[#dc2626]" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
                 </svg>
               </div>
-              <h3 className="text-2xl font-bold text-[#3a4a5c] mb-4">Phone</h3>
-              <p className="text-gray-600">Tel : 609 868 6825</p>
-              <p className="text-gray-600">Fax : 609 868 6979</p>
+              <h3 className="text-xl md:text-2xl font-bold text-[#3a4a5c] mb-3 md:mb-4">Phone</h3>
+              <p className="text-sm md:text-base text-gray-600">Tel : 609 868 6825</p>
+              <p className="text-sm md:text-base text-gray-600">Fax : 609 868 6979</p>
             </div>
             <div className="text-center md:text-left">
-              <div className="flex justify-center md:justify-start mb-4">
-                <svg className="w-16 h-16 text-[#dc2626]" fill="currentColor" viewBox="0 0 24 24">
+              <div className="flex justify-center md:justify-start mb-3 md:mb-4">
+                <svg className="w-12 h-12 md:w-16 md:h-16 text-[#dc2626]" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
                 </svg>
               </div>
-              <h3 className="text-2xl font-bold text-[#3a4a5c] mb-4">Email</h3>
-              <p className="text-gray-600">Email : sales@petroseal.com.my</p>
+              <h3 className="text-xl md:text-2xl font-bold text-[#3a4a5c] mb-3 md:mb-4">Email</h3>
+              <p className="text-sm md:text-base text-gray-600">Email : sales@petroseal.com.my</p>
             </div>
           </div>
 
           {/* Indonesia Office */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12 pb-12 border-b" data-aos="fade-up" data-aos-delay="200">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 pb-12 border-b" data-aos="fade-up" data-aos-delay="200">
             <div className="text-center md:text-left">
-              <div className="flex justify-center md:justify-start mb-4">
-                <svg className="w-16 h-16 text-[#dc2626]" fill="currentColor" viewBox="0 0 24 24">
+              <div className="flex justify-center md:justify-start mb-3 md:mb-4">
+                <svg className="w-12 h-12 md:w-16 md:h-16 text-[#dc2626]" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
                 </svg>
               </div>
-              <h3 className="text-2xl font-bold text-[#3a4a5c] mb-4">Address</h3>
-              <p className="text-gray-700 font-semibold">INDONESIA OFFICE:</p>
-              <p className="text-gray-600">Jl. Green Ville Raya, Blok A,No.7</p>
-              <p className="text-gray-600">Jakarta Barat 11510, Indonesia</p>
-              <p className="text-gray-600">INDONESIA</p>
+              <h3 className="text-xl md:text-2xl font-bold text-[#3a4a5c] mb-3 md:mb-4">Address</h3>
+              <p className="text-sm md:text-base text-gray-700 font-semibold">INDONESIA OFFICE:</p>
+              <p className="text-sm md:text-base text-gray-600">Komplek Ruko Siliwangi Blok D,</p>
+              <p className="text-sm md:text-base text-gray-600">Jl. Siliwangi No. 15,</p>
+              <p className="text-sm md:text-base text-gray-600">Kelurahan Depok, Kecamatan Pancoran Mas</p>
+              <p className="text-sm md:text-base text-gray-600">Kota Depok, Jawa Barat 16431, Indonesia.</p>
             </div>
             <div className="text-center md:text-left">
-              <div className="flex justify-center md:justify-start mb-4">
-                <svg className="w-16 h-16 text-[#dc2626]" fill="currentColor" viewBox="0 0 24 24">
+              <div className="flex justify-center md:justify-start mb-3 md:mb-4">
+                <svg className="w-12 h-12 md:w-16 md:h-16 text-[#dc2626]" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
                 </svg>
               </div>
-              <h3 className="text-2xl font-bold text-[#3a4a5c] mb-4">Phone</h3>
-              <p className="text-gray-600">Tel : +62 812-8411-7300 (Jakarta)</p>
+              <h3 className="text-xl md:text-2xl font-bold text-[#3a4a5c] mb-3 md:mb-4">Phone</h3>
+              <p className="text-sm md:text-base text-gray-600">
+                Phone: 
+                <a href="https://wa.me/6281226802362" target="_blank" rel="noopener noreferrer" className="text-[#dc2626] hover:underline ml-1 break-all">
+                  62-81226802362
+                </a>
+              </p>
+            </div>
+            <div className="text-center md:text-left">
+              <div className="flex justify-center md:justify-start mb-3 md:mb-4">
+                <svg className="w-12 h-12 md:w-16 md:h-16 text-[#dc2626]" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                </svg>
+              </div>
+              <h3 className="text-xl md:text-2xl font-bold text-[#3a4a5c] mb-3 md:mb-4">Email</h3>
+              <p className="text-sm md:text-base text-gray-600">
+                <a href="mailto:admin@petrosealindonesia.com" className="text-[#dc2626] hover:underline break-all">
+                  admin@petrosealindonesia.com
+                </a>
+              </p>
             </div>
           </div>
 
           {/* Vietnam Office */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8" data-aos="fade-up" data-aos-delay="300">
             <div className="text-center md:text-left">
-              <div className="flex justify-center md:justify-start mb-4">
-                <svg className="w-16 h-16 text-[#dc2626]" fill="currentColor" viewBox="0 0 24 24">
+              <div className="flex justify-center md:justify-start mb-3 md:mb-4">
+                <svg className="w-12 h-12 md:w-16 md:h-16 text-[#dc2626]" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
                 </svg>
               </div>
-              <h3 className="text-2xl font-bold text-[#3a4a5c] mb-4">Address</h3>
-              <p className="text-gray-700 font-semibold">VIETNAM OFFICE:</p>
-              <p className="text-gray-600">Block 3C – No. 973 – 30/4 Street, Ward 11, Vung</p>
-              <p className="text-gray-600">Tau S. R. Viet Nam</p>
-              <p className="text-gray-600">VIETNAM</p>
+              <h3 className="text-xl md:text-2xl font-bold text-[#3a4a5c] mb-3 md:mb-4">Address</h3>
+              <p className="text-sm md:text-base text-gray-700 font-semibold">VIETNAM OFFICE:</p>
+              <p className="text-sm md:text-base text-gray-600">Block 3C – No. 973 – 30/4 Street, Ward 11, Vung</p>
+              <p className="text-sm md:text-base text-gray-600">Tau S. R. Viet Nam</p>
+              <p className="text-sm md:text-base text-gray-600">VIETNAM</p>
             </div>
             <div className="text-center md:text-left">
-              <div className="flex justify-center md:justify-start mb-4">
-                <svg className="w-16 h-16 text-[#dc2626]" fill="currentColor" viewBox="0 0 24 24">
+              <div className="flex justify-center md:justify-start mb-3 md:mb-4">
+                <svg className="w-12 h-12 md:w-16 md:h-16 text-[#dc2626]" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
                 </svg>
               </div>
-              <h3 className="text-2xl font-bold text-[#3a4a5c] mb-4">Phone</h3>
-              <p className="text-gray-600">Tel : +84-64 355 4715</p>
+              <h3 className="text-xl md:text-2xl font-bold text-[#3a4a5c] mb-3 md:mb-4">Phone</h3>
+              <p className="text-sm md:text-base text-gray-600">Tel : +84-64 355 4715</p>
             </div>
           </div>
         </div>

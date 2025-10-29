@@ -6,11 +6,26 @@ import Footer from '@/components/layout/Footer';
 import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
 
+// Type definitions for vendor-prefixed fullscreen methods
+interface DocumentWithFullscreen extends Document {
+  webkitExitFullscreen?: () => Promise<void>;
+  msExitFullscreen?: () => Promise<void>;
+}
+
+interface ElementWithFullscreen extends HTMLDivElement {
+  webkitRequestFullscreen?: () => Promise<void>;
+  msRequestFullscreen?: () => Promise<void>;
+}
+
 export default function FacilitiesPage() {
   const [modalOpen, setModalOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [imageErrors, setImageErrors] = useState<boolean[]>(new Array(26).fill(false));
   const [imageKey, setImageKey] = useState(0);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const modalRef = useRef<HTMLDivElement | null>(null);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const thumbnailRefs = useRef<(HTMLDivElement | null)[]>([]);
   const thumbnailContainerRef = useRef<HTMLDivElement | null>(null);
 
@@ -81,6 +96,56 @@ export default function FacilitiesPage() {
 
   const closeModal = () => {
     setModalOpen(false);
+    setIsPlaying(false);
+    if (intervalRef.current) clearInterval(intervalRef.current);
+    if (isFullscreen) exitFullscreen();
+  };
+
+  const toggleFullscreen = () => {
+    if (!isFullscreen) {
+      enterFullscreen();
+    } else {
+      exitFullscreen();
+    }
+  };
+
+  const enterFullscreen = () => {
+    const elem = modalRef.current as ElementWithFullscreen | null;
+    if (elem) {
+      if (elem.requestFullscreen) {
+        elem.requestFullscreen();
+      } else if (elem.webkitRequestFullscreen) {
+        elem.webkitRequestFullscreen();
+      } else if (elem.msRequestFullscreen) {
+        elem.msRequestFullscreen();
+      }
+      setIsFullscreen(true);
+    }
+  };
+
+  const exitFullscreen = () => {
+    const doc = document as DocumentWithFullscreen;
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (doc.webkitExitFullscreen) {
+      doc.webkitExitFullscreen();
+    } else if (doc.msExitFullscreen) {
+      doc.msExitFullscreen();
+    }
+    setIsFullscreen(false);
+  };
+
+  const togglePlay = () => {
+    if (!isPlaying) {
+      setIsPlaying(true);
+      const interval = setInterval(() => {
+        setCurrentImageIndex((prev) => (prev + 1) % facilityImages.length);
+      }, 3000);
+      intervalRef.current = interval;
+    } else {
+      setIsPlaying(false);
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    }
   };
 
   const showNextImage = () => {
@@ -205,28 +270,62 @@ export default function FacilitiesPage() {
       {modalOpen && (
         <div 
           className="fixed inset-0 bg-white z-[9999] flex"
-          onClick={closeModal}
+          ref={modalRef}
         >
           {/* Controls - Top Left */}
           <div className="absolute top-4 left-4 flex gap-2 z-50">
             {/* Close Button (X) */}
             <button
               onClick={closeModal}
-              className="w-10 h-10 bg-gray-200 hover:bg-gray-300 text-gray-800 flex items-center justify-center transition-colors duration-200"
+              className="w-10 h-10 bg-gray-200 hover:bg-gray-300 text-gray-800 flex items-center justify-center transition-colors duration-200 cursor-pointer"
               title="Close"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
+
+            {/* Fullscreen Button */}
+            <button
+              onClick={toggleFullscreen}
+              className="w-10 h-10 bg-gray-200 hover:bg-gray-300 text-gray-800 flex items-center justify-center transition-colors duration-200 cursor-pointer"
+              title={isFullscreen ? "Exit Fullscreen" : "Fullscreen"}
+            >
+              {isFullscreen ? (
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 9V4.5M9 9H4.5M9 9L3.75 3.75M9 15v4.5M9 15H4.5M9 15l-5.25 5.25M15 9h4.5M15 9V4.5M15 9l5.25-5.25M15 15h4.5M15 15v4.5m0-4.5l5.25 5.25" />
+                </svg>
+              ) : (
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+                </svg>
+              )}
+            </button>
+
+            {/* Play/Pause Button */}
+            <button
+              onClick={togglePlay}
+              className="w-10 h-10 bg-gray-200 hover:bg-gray-300 text-gray-800 flex items-center justify-center transition-colors duration-200 cursor-pointer"
+              title={isPlaying ? "Pause" : "Play"}
+            >
+              {isPlaying ? (
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>
+                </svg>
+              ) : (
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+              )}
+            </button>
           </div>
 
           {/* Main Content Area */}
-          <div className="flex-1 flex items-center justify-center p-8 relative">
+          <div className="flex-1 flex items-center justify-center p-8 relative cursor-pointer">
             {/* Previous Button (Up Arrow) */}
             <button
               onClick={showPrevImage}
-              className="absolute top-8 left-1/2 transform -translate-x-1/2 bg-white/80 hover:bg-white text-gray-800 p-3 rounded-full shadow-lg transition-all z-10"
+              className="absolute top-8 left-1/2 transform -translate-x-1/2 bg-white/80 hover:bg-white text-gray-800 p-3 rounded-full shadow-lg transition-all z-10 cursor-pointer"
               title="Previous"
             >
               <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -246,7 +345,7 @@ export default function FacilitiesPage() {
             {/* Next Button (Down Arrow) */}
             <button
               onClick={showNextImage}
-              className="absolute bottom-8 left-1/2 transform -translate-x-1/2 bg-white/80 hover:bg-white text-gray-800 p-3 rounded-full shadow-lg transition-all z-10"
+              className="absolute bottom-8 left-1/2 transform -translate-x-1/2 bg-white/80 hover:bg-white text-gray-800 p-3 rounded-full shadow-lg transition-all z-10 cursor-pointer"
               title="Next"
             >
               <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">

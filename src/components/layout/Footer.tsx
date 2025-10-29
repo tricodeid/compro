@@ -20,9 +20,9 @@ const Footer = () => {
   return (
     <>
       <footer className="bg-white border-t border-gray-200 py-6">
-        <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+        <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
           {/* Left Side */}
-          <div className="flex flex-col">
+          <div className="flex flex-col text-center md:text-left">
             <p className="text-sm md:text-base text-gray-800 font-medium mb-2">
               Passion That Builds Excellence | Tel : 09 8686825
             </p>

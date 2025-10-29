@@ -188,9 +188,7 @@ export default function CoreBusinessPage() {
       'FPG OLEOCHEMICALS SDN BHD',
     ],
     indonesia: [
-      'CONOCOPHILLIPS',
-      'MEDCO OFFSHORE NATUNA',
-      'TITIS SAMPURNA',
+      'Conocophilips, Medco offshore Natuna, dan Titis Sampurna',
     ],
     vietnam: [
       'VIETSO PETROL',
@@ -408,11 +406,11 @@ export default function CoreBusinessPage() {
           </div>
 
           {/* Main Content Area */}
-          <div className="flex-1 flex items-center justify-center relative p-8">
+          <div className="flex-1 flex items-center justify-center relative p-8 cursor-pointer">
             {/* Previous Button (Up Arrow) */}
             <button
               onClick={() => setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length)}
-              className="absolute top-8 left-1/2 transform -translate-x-1/2 bg-white/80 hover:bg-white text-gray-800 p-3 rounded-full shadow-lg transition-all z-10"
+              className="absolute top-8 left-1/2 transform -translate-x-1/2 bg-white/80 hover:bg-white text-gray-800 p-3 rounded-full shadow-lg transition-all z-10 cursor-pointer"
               title="Previous"
             >
               <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -432,7 +430,7 @@ export default function CoreBusinessPage() {
             {/* Next Button (Down Arrow) */}
             <button
               onClick={() => setCurrentImageIndex((prev) => (prev + 1) % images.length)}
-              className="absolute bottom-8 left-1/2 transform -translate-x-1/2 bg-white/80 hover:bg-white text-gray-800 p-3 rounded-full shadow-lg transition-all z-10"
+              className="absolute bottom-8 left-1/2 transform -translate-x-1/2 bg-white/80 hover:bg-white text-gray-800 p-3 rounded-full shadow-lg transition-all z-10 cursor-pointer"
               title="Next"
             >
               <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
