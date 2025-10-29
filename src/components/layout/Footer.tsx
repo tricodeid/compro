@@ -24,7 +24,10 @@ const Footer = () => {
           {/* Left Side */}
           <div className="flex flex-col text-center md:text-left">
             <p className="text-sm md:text-base text-gray-800 font-medium mb-2">
-              Passion That Builds Excellence | Tel : 09 8686825
+              Passion That Builds Excellence | Tel :
+              <a href="https://wa.me/6281226802362" target="_blank" rel="noopener noreferrer" className="text-[#dc2626] hover:underline ml-1">
+                62-81226802362
+              </a>
             </p>
             <p className="text-xs md:text-sm text-gray-600">
               © Copyright 2019 - 2025 Petroseal Engineering Sdn Bhd. All Rights Reserved.

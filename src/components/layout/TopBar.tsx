@@ -8,7 +8,10 @@ const TopBar = () => {
       <div className="container mx-auto px-4 py-2">
         <div className="flex flex-col md:flex-row justify-between items-center gap-2">
           <p className="text-xs md:text-sm text-gray-600 text-center md:text-left">
-            Passion That Builds Excellence | Tel : 6 09 8686825
+            Passion That Builds Excellence | Tel :
+            <a href="https://wa.me/6281226802362" target="_blank" rel="noopener noreferrer" className="text-[#dc2626] hover:underline ml-1">
+              62-81226802362
+            </a>
           </p>
           <div className="flex items-center space-x-2 justify-center">
             <a 
